@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Http\Controllers;
 
 use App\Models\Booking;
@@ -7,7 +6,20 @@ use Illuminate\Http\Request;
 
 class BookingController extends Controller
 {
-    //
+    public function showCalendar()
+    {
+        $bookings = Booking::all()->map(function ($booking) {
+            return [
+                'title' => '-'.$booking->end_time,
+                'start' => $booking->booking_date . 'T' . $booking->start_time,
+                'end' => $booking->booking_date . 'T' . $booking->end_time,
+                'color' => 'red'
+            ];
+        });
+
+        return view('check_availability', ['bookings' => $bookings]);
+    }
+
     public function checkAvailability(Request $request)
     {
         $validatedData = $request->validate([
@@ -20,70 +32,63 @@ class BookingController extends Controller
         $startTime = $validatedData['start_time'];
         $endTime = $validatedData['end_time'];
 
-        // Check if the selected date and time range is available
         $isAvailable = !Booking::where('booking_date', $bookingDate)
-                               ->where(function ($query) use ($startTime, $endTime) {
-                                   $query->whereBetween('start_time', [$startTime, $endTime])
-                                         ->orWhereBetween('end_time', [$startTime, $endTime])
-                                         ->orWhere(function ($query) use ($startTime, $endTime) {
-                                             $query->where('start_time', '<', $startTime)
-                                                   ->where('end_time', '>', $endTime);
-                                         });
-                               })
-                               ->exists();
+            ->where(function ($query) use ($startTime, $endTime) {
+                $query->whereBetween('start_time', [$startTime, $endTime])
+                    ->orWhereBetween('end_time', [$startTime, $endTime])
+                    ->orWhere(function ($query) use ($startTime, $endTime) {
+                        $query->where('start_time', '<', $startTime)
+                            ->where('end_time', '>', $endTime);
+                    });
+            })
+            ->exists();
 
-                               if ($isAvailable) {
-                                // If available, redirect to the registration page with the booking details
-                                return view('createBooking', compact('bookingDate', 'startTime', 'endTime'));
-                            } else {
-                                // If not available, return some response or display an error message
-                                // return response()->json(['error' => 'Selected date and time range is not available.']);
-                                session()->flash('error', 'Selected date and time range is not available.');
-                                  return redirect()->back();
-                            }
+        if ($isAvailable) {
+            return view('createBooking', compact('bookingDate', 'startTime', 'endTime'))->with('success','time slot is avalible');
+        } else {
+          // If the time slot is not available, redirect back with an error message
+        return redirect()->back()->with('error', 'Selected date and time range is not available.');
+
+        }
     }
+
+    public function createBookingForm(Request $request)
+    {
+        $bookingDate = $request->query('booking_date');
+        return view('createBooking', ['bookingDate' => $bookingDate]);
+    }
+
     public function createBooking(Request $request)
     {
-        // Validate the incoming request data for user registration
         $validatedData = $request->validate([
             'name' => 'required|string',
             'email' => 'required|email',
             'booking_date' => 'required|date',
             'start_time' => 'required',
             'end_time' => 'required',
-            'file_path' => 'nullable|file',
-            // Add more validation rules for other fields if needed
+            'fileUpload' => 'nullable|file',
         ]);
 
         $booking = new Booking();
-$booking->booking_date = $request->input('booking_date');
-$booking->start_time = $request->input('start_time');
-$booking->end_time = $request->input('end_time');
-$booking->name = $request->input('name');
-$booking->email = $request->input('email');
-$booking->phone = $request->input('phone');
-$booking->faculty = $request->input('faculty');
-$booking->post = $request->input('post');
-$booking->activity = $request->input('activity');
+        $booking->booking_date = $request->input('booking_date');
+        $booking->start_time = $request->input('start_time');
+        $booking->end_time = $request->input('end_time');
+        $booking->name = $request->input('name');
+        $booking->email = $request->input('email');
+        $booking->phone = $request->input('phone');
+        $booking->faculty = $request->input('faculty');
+        $booking->post = $request->input('post');
+        $booking->activity = $request->input('activity');
 
-$filePath = null;
-if ($request->hasFile('fileUpload')) {
-    $filePath = $request->file('fileUpload')->store('upload', 'public');
-    // The 'upload' directory will be created inside the 'public' disk
-    // Adjust the path as needed
-    $booking->file_path = $filePath;
-} else {
-    // Handle the case when no file is uploaded
-    $booking->file_path = null;
-}
-// Add more fields as needed
-$booking->save();
+        if ($request->hasFile('fileUpload')) {
+            $filePath = $request->file('fileUpload')->store('upload', 'public');
+            $booking->file_path = $filePath;
+        } else {
+            $booking->file_path = null;
+        }
 
-        // Redirect the user to a confirmation page or display a success message
-        return response()->json(['success' => 'you are succefully send request']);
+        $booking->save();
+
+        return response()->json(['success' => 'You have successfully submitted the booking request.']);
     }
-
-
-
-
 }

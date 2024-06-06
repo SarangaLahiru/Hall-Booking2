@@ -155,20 +155,26 @@
                                         </div>
                                     </div>
                                 </div>
+                                @foreach ($availabilityData as $index => $data)
+                                <hr>
                                 <div class="form-group">
-                                    <label for="booking_date">Booking Date</label>
-                                    <input type="text" class="form-control" id="booking_date" name="booking_date" value="{{ $bookingDate }}" readonly>
+                                    <label for="booking_date{{ $index }}">Booking Date {{ $index + 1 }}</label>
+                                    <input type="text" class="form-control" id="booking_date{{ $index }}" name="booking_date[]" value="{{ $data['date'] }}" readonly>
                                 </div>
                                 <div class="row">
                                     <div class="col form-group">
-                                        <label for="start_time">Start Time</label>
-                                        <input type="text" class="form-control" id="start_time" name="start_time" value="{{ $startTime }}" readonly>
+                                        <label for="start_time{{ $index }}">Start Time</label>
+                                        <input type="text" class="form-control" id="start_time{{ $index }}" name="start_time[]" value="{{ $data['start_time'] }}" readonly>
                                     </div>
                                     <div class="col form-group">
-                                        <label for="end_time">End Time</label>
-                                        <input type="text" class="form-control" id="end_time" name="end_time" value="{{ $endTime }}" readonly>
+                                        <label for="end_time{{ $index }}">End Time</label>
+                                        <input type="text" class="form-control" id="end_time{{ $index }}" name="end_time[]" value="{{ $data['end_time'] }}" readonly>
                                     </div>
                                 </div>
+                                <hr>
+                            @endforeach
+
+
                                 <button type="button" class="btn btn-primary next-step">Next</button>
                             </div>
 
@@ -221,12 +227,12 @@
                                                 <label class="form-check-label" for="fullHall">Full Hall</label>
                                             </div>
                                             <div class="form-check col">
-                                                <input class="form-check-input" type="checkbox" value="balcony" id="balcony" name="facilities[]">
-                                                <label class="form-check-label" for="balcony">Balcony</label>
+                                                <input class="form-check-input" type="checkbox" value="balcony" id="balcony1" name="facilities[]">
+                                                <label class="form-check-label" for="balcony1">Balcony</label>
                                             </div>
                                             <div class="form-check col">
-                                                <input class="form-check-input" type="checkbox" value="balcony" id="balcony" name="facilities[]">
-                                                <label class="form-check-label" for="balcony">Audiance</label>
+                                                <input class="form-check-input" type="checkbox" value="audience" id="audience" name="facilities[]">
+                                                <label class="form-check-label" for="audience">Audience</label>
                                             </div>
                                         </div>
                                   </div>
@@ -242,18 +248,34 @@
                             <!-- Step 3 -->
                             <div class="step" data-step="2" style="display: none;">
                                 <div class="form-group">
-                                    <label for="fileInput">File Upload</label>
-                                    <input type="file" class="form-control-file" id="fileInput" name="fileInput">
+                                    <label for="fileInput">Upload Documents (JPG, PNG, PDF)</label>
+                                    <div class="custom-file">
+                                        <input type="file" class="custom-file-input" id="fileInput" name="fileInput" accept=".jpg, .jpeg, .png, .pdf" required>
+                                        <label class="custom-file-label" for="fileInput">Choose file</label>
+                                        <div class="invalid-feedback">
+                                            Please upload a file in JPG, PNG, or PDF format.
+                                        </div>
+                                        <div class="invalid-feedback" id="fileSizeError" style="display: none;">
+                                            File size exceeds the limit of 5MB.
+                                        </div>
+                                    </div>
                                 </div>
 
                                 <div class="form-check">
+                                    <div>
+                                        <a href="#" data-toggle="modal" data-target="#termsModal">View Terms & Conditions</a>
+                                    </div>
                                     <input class="form-check-input" type="checkbox" value="termsConditions" id="termsConditions" required>
                                     <label class="form-check-label" for="termsConditions">I have read and agree to the Terms & Conditions</label>
-                                    <!-- Display Terms & Conditions here -->
-                                    <a href="#" data-toggle="modal" data-target="#termsModal">View Terms & Conditions</a>
+                                    <div class="invalid-feedback">
+                                        Please agree to the terms and conditions.
+                                    </div>
                                 </div>
-                                <button type="button" class="btn btn-secondary prev-step mr-2">Previous</button>
-                                <button type="submit" class="btn btn-primary">Register Booking</button>
+
+                                <div class="mt-2">
+                                    <button type="button" class="btn btn-secondary prev-step mr-2">Previous</button>
+                                    <button type="button" id="submitBtn" class="btn btn-primary">Register Booking</button>
+                                </div>
                             </div>
 
                             <!-- Terms & Conditions Modal -->
@@ -284,6 +306,31 @@
         </div>
     </div>
 </div>
+<!-- Modal for Confirmation -->
+<div class="modal fade" id="confirmationModal" tabindex="-1"  aria-labelledby="confirmationModalLabel" tabindex="-1" role="dialog" data-backdrop="static" data-keyboard="false">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="confirmationModalLabel">Confirmation</h5>
+
+            </div>
+            <div class="modal-body">
+                <p>Date and time are available. Do you want to proceed with this booking?</p>
+                <ul id="dateTimeList">
+                    @foreach($availabilityData as $data)
+                        <li>{{ $data['date'] }} - {{ $data['start_time'] }} to {{ $data['end_time'] }}</li>
+                    @endforeach
+                </ul>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" id="notconfirmBooking">No, choose another time</button>
+                <button type="button" id="confirmBooking" class="btn btn-primary">Yes, proceed</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
 
 <!-- SweetAlert2 -->
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
@@ -327,7 +374,7 @@
         });
 
 
-        $('#categoryModal').modal('show');
+
 
         var currentStep = 0;
         var steps = $('.step-content .step');
@@ -389,6 +436,46 @@
             });
             return isValid;
         }
+        $('#fileInput').change(function() {
+            var fileName = $(this).val().split('\\').pop(); // Extract the file name
+            $(this).next('.custom-file-label').html(fileName); // Set the file name as the label text
+        });
+
+        $('#fileInput').change(function() {
+            var fileName = $(this).val().split('\\').pop(); // Extract the file name
+            $(this).next('.custom-file-label').html(fileName); // Set the file name as the label text
+        });
+
+        $('#submitBtn').click(function() {
+            // Check if file is selected
+            var fileInput = $('#fileInput')[0];
+            if (fileInput.files.length === 0) {
+                $('#fileInput').addClass('is-invalid');
+            } else {
+                var fileSize = fileInput.files[0].size / (1024 * 1024); // Convert bytes to MB
+                if (fileSize > 5) { // Check if file size exceeds 5 MB
+                    $('#fileInput').addClass('is-invalid');
+                    $('#fileInput').next('.custom-file-label').html('Choose file'); // Reset file label
+                    alert('File size exceeds the limit of 5 MB.');
+                    return; // Exit the function without submitting the form
+                } else {
+                    $('#fileInput').removeClass('is-invalid');
+                }
+            }
+
+            // Check if terms and conditions checkbox is checked
+            if (!$('#termsConditions').is(':checked')) {
+                $('#termsConditions').addClass('is-invalid');
+            } else {
+                $('#termsConditions').removeClass('is-invalid');
+            }
+
+            // Check if both conditions are met
+            if (fileInput.files.length > 0 && $('#termsConditions').is(':checked')) {
+                // Submit the form
+                $('#stepper-form').submit();
+            }
+        });
 
         $('input, select').on('input', function() {
             $(this).removeClass('is-invalid');
@@ -401,28 +488,9 @@
             $('#categoryModal').modal('hide');
         });
 
-        $('#categoryModal').modal('show');
 
-        @if($bookingDate)
-        Swal.fire({
-            icon: 'success',
-            title: 'Success',
-            text: 'Date and time are available. Do you want to proceed with this booking?',
-            showCancelButton: true,
-            confirmButtonText: 'Yes, proceed',
-            cancelButtonText: 'No, choose another time',
-        }).then((result) => {
-            if (result.isConfirmed) {
-                // User clicked "Yes, proceed"
-                // You can add further action here, such as submitting the form
 
-            } else {
-                // User clicked "No, choose another time"
-                // Redirect to the home page
-                window.location.href = '/';
-            }
-        });
-        @endif
+
 
         @if(session('error'))
             Swal.fire({
@@ -432,6 +500,30 @@
                 confirmButtonText: 'OK'
             });
         @endif
+
+
+
+
+            $('#confirmationModal').modal('show');
+
+            $('#confirmBooking').click(function(event) {
+                // Prevent the default form submission behavior
+                event.preventDefault();
+                // User clicked "Yes, proceed"
+                // You can add further action here, such as submitting the form
+                // If you want to submit the form, you can trigger the submit event
+                // $('#yourFormId').submit();
+                $('#confirmationModal').modal('hide');
+                $('#categoryModal').modal('show');
+            });
+            $('#notconfirmBooking').click(function(event) {
+                // Prevent the default form submission behavior
+                event.preventDefault();
+                window.location.href='/';
+            });
+
+
+
     });
 </script>
 </body>

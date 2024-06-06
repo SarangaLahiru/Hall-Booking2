@@ -30,7 +30,8 @@ class BookingController extends Controller
         foreach ($bookings as $booking) {
             foreach ($booking->booking_dates as $bookingDate) {
                 $events[] = [
-                    'title' => $booking->event_type . ' - ' . $booking->event_description,
+                    // 'title' => $booking->event_type . ' - ' . $booking->event_description,
+                    'title'=>  $bookingDate['end_time'],
                     'start' => $bookingDate['date'] . 'T' . $bookingDate['start_time'],
                     'end' => $bookingDate['date'] . 'T' . $bookingDate['end_time'],
                     'color' => 'red', // Customize the color if needed
@@ -97,6 +98,18 @@ class BookingController extends Controller
                 'end_time' => $request->input('end_time')[$index],
             ];
         }
+        if ($request->hasFile('fileInput')) {
+            $file = $request->file('fileInput');
+
+            // Define the directory where you want to store the files
+            $destinationPath = 'public/documents';
+
+            // Store the file and get its path
+            $path = $file->store($destinationPath);
+
+            // Save the relative path to the database (remove 'public/' part)
+            $document = str_replace('public/','', $path);
+        }
 
         // Prepare facilities data
         $facilities = $request->input('facilities', []);
@@ -107,16 +120,39 @@ class BookingController extends Controller
         switch ($category) {
             case 'student':
                 $additionalFields = [
-                    'studentNo' => $request->input('studentNo'),
+                    'student_no' => $request->input('studentNo'),
                     'faculty' => $request->input('faculty'),
-                    'category'=>$request->input('category')
+                    'category' => $request->input('category'),
+                    'eventType' => $request->input('eventType'),
+                    'society' => $request->input('society'),
+                    'event_type'=>$request->input('eventType'),
+                    'event_description'=>$request->input('eventDescription'),
+                    'documents'=>$document,
                 ];
                 break;
             case 'external':
                 $additionalFields = [
-                    'idNo' => $request->input('idNo'),
+                    'nic_no' => $request->input('idNo'),
                     'institution' => $request->input('institution'),
                     'post' => $request->input('post'),
+                    'category' => $request->input('category'),
+                    'event_type'=>$request->input('eventType'),
+                    'event_description'=>$request->input('eventDescription'),
+                    'documents'=>$document,
+                ];
+                break;
+            case 'academic':
+            case 'non-academic':
+            case 'administrative':
+                $additionalFields = [
+                    'nic_no' => $request->input('idNo'),
+                    'institution' => $request->input('institution'),
+                    'post' => $request->input('post'),
+                    'category' => $request->input('category'),
+                    'society' => $request->input('society'),
+                    'event_type'=>$request->input('eventType'),
+                    'event_description'=>$request->input('eventDescription'),
+                    'documents'=>$document,
                 ];
                 break;
             // Add more cases as needed for other categories
@@ -127,18 +163,14 @@ class BookingController extends Controller
 
         // Merge all data into one array
         $bookingData = array_merge(
-            $request->only(['name', 'phone', 'email', 'eventType', 'eventDescription']),
+            $request->only(['name', 'phone', 'email']),
             ['booking_dates' => $bookingDates], // Without json_encode here
             ['facilities' => $facilities],
             $additionalFields
         );
 
         // Handle file upload
-        if ($request->hasFile('fileInput')) {
-            $file = $request->file('fileInput');
-            $path = $file->store('documents');
-            $bookingData['fileInput'] = $path;
-        }
+
 
         // Create a new Booking instance with the booking data
         $booking = new Booking($bookingData);

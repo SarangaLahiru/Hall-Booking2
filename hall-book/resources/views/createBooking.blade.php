@@ -495,13 +495,9 @@
 
 
 
-        @if(session('error'))
-            Swal.fire({
-                icon: 'error',
-                title: 'Error',
-                text: '{{ session('error') }}',
-                confirmButtonText: 'OK'
-            });
+        @if(!$availabilityData)
+         window.location.href='/';
+
         @endif
 
 

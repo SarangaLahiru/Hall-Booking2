@@ -72,10 +72,11 @@
                         </div>
                     </div>
 
-                    <form id="stepper-form" action="/booked" method="POST" class="needs-validation" novalidate enctype="multipart/form-data">
+                    <form id="stepper-form" action="{{ route('storeBooking') }}" method="POST" class="needs-validation" novalidate enctype="multipart/form-data">
                         @csrf
 
                         <!-- Step 1 -->
+                        <input type="hidden" id="selectedCategory" name="category" value="">
                         <div class="step-content">
                             <div class="step" data-step="0">
                                 <div class="form-row">
@@ -274,7 +275,7 @@
 
                                 <div class="mt-2">
                                     <button type="button" class="btn btn-secondary prev-step mr-2">Previous</button>
-                                    <button type="button" id="submitBtn" class="btn btn-primary">Register Booking</button>
+                                    <button type="button" id="submitBtn"  class="btn btn-primary">Register Booking</button>
                                 </div>
                             </div>
 
@@ -343,8 +344,10 @@
 
         $('.category-icon').click(function() {
             $('.category-icon').removeClass('selected');
+
             $(this).addClass('selected');
             selectedCategory = $(this).data('category');
+            $('#selectedCategory').val(selectedCategory);
 
             if (selectedCategory === 'student') {
                 $('#studentNoField').show();

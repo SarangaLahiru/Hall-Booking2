@@ -83,9 +83,9 @@
         var calendarEl = document.getElementById('calendar');
         var calendar = new FullCalendar.Calendar(calendarEl, {
             initialView: 'dayGridMonth',
-            events: @json($bookings), // Inject booking data from the controller
+            events: @json($events),
             eventDidMount: function (info) {
-                info.el.classList.add('booked-date'); // Highlight booked dates
+                info.el.classList.add('booked-date');
             },
             dateClick: function (info) {
                 var bookingDate = info.dateStr;

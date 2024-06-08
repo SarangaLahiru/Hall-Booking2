@@ -63,13 +63,25 @@
     </div>
 </div>
 
-
+<link href='https://use.fontawesome.com/releases/v5.0.6/css/all.css' rel='stylesheet'>
+  <link href='packages/core/main.css' rel='stylesheet' />
+  <link href='packages/bootstrap/main.css' rel='stylesheet' />
+  <link href='packages/timegrid/main.css' rel='stylesheet' />
+  <link href='packages/daygrid/main.css' rel='stylesheet' />
+  <link href='packages/list/main.css' rel='stylesheet' />
+  <script src='packages/core/main.js'></script>
+  <script src='packages/interaction/main.js'></script>
+  <script src='packages/bootstrap/main.js'></script>
+  <script src='packages/daygrid/main.js'></script>
+  <script src='packages/timegrid/main.js'></script>
+  <script src='packages/list/main.js'></script>
+  <script src='js/theme-chooser.js'></script>
 <!-- Ensure FullCalendar CSS is loaded -->
-<link href="https://cdn.jsdelivr.net/npm/fullcalendar-scheduler@5.3.0/main.min.css" rel="stylesheet">
+{{--  <link href="https://cdn.jsdelivr.net/npm/fullcalendar-scheduler@5.3.0/main.min.css" rel="stylesheet">  --}}
 
 <!-- Ensure FullCalendar JS is loaded -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/fullcalendar-scheduler@5.3.0/main.min.js"></script>
+{{--  <script src="https://cdn.jsdelivr.net/npm/fullcalendar-scheduler@5.3.0/main.min.js"></script>  --}}
 <!-- SweetAlert library -->
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 <!-- Bootstrap JS (Ensure you have Bootstrap CSS included in your app layout) -->
@@ -77,16 +89,24 @@
 <!-- Include jQuery library -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 
-
-<script>
+  <script>
     document.addEventListener('DOMContentLoaded', function () {
         var calendarEl = document.getElementById('calendar');
         var calendar = new FullCalendar.Calendar(calendarEl, {
-            initialView: 'dayGridMonth',
+            plugins: ['bootstrap', 'interaction', 'dayGrid', 'timeGrid', 'list'],
+            themeSystem: 'bootstrap',
             events: @json($events),
             eventDidMount: function (info) {
                 info.el.classList.add('booked-date');
             },
+            header: {
+                left: 'title',
+                center: 'prev,next today',
+                right: 'dayGridMonth,timeGridWeek,timeGridDay'
+            },
+            weekNumbers: true,
+            navLinks: true,
+            eventLimit: true,
             dateClick: function (info) {
                 var bookingDate = info.dateStr;
                 var bookedTimePeriods = getBookedTimePeriods(bookingDate);
@@ -99,51 +119,51 @@
             var events = calendar.getEvents();
             var bookedTimePeriods = [];
             events.forEach(function (event) {
-                if (event.startStr.startsWith(bookingDate) || event.endStr.startsWith(bookingDate)) {
-                    var startTime = formatTime(event.startStr.substr(11));
-                    var endTime = formatTime(event.endStr.substr(11));
+                var eventStartDate = event.start ? event.start.toISOString().split('T')[0] : null;
+                var eventEndDate = event.end ? event.end.toISOString().split('T')[0] : null;
+                if (eventStartDate === bookingDate || eventEndDate === bookingDate) {
+                    var startTime = event.start ? formatTime(event.start) : '';
+                    var endTime = event.end ? formatTime(event.end) : '';
                     bookedTimePeriods.push(startTime + ' - ' + endTime);
                 }
             });
             return bookedTimePeriods;
         }
 
-        function formatTime(timeStr) {
-            var [hours, minutes] = timeStr.split(':');
+        function formatTime(date) {
+            if (!date) return '';
+            var hours = date.getHours();
+            var minutes = date.getMinutes();
             var suffix = hours >= 12 ? 'PM' : 'AM';
             hours = hours % 12 || 12;
+            minutes = minutes.toString().padStart(2, '0');
             return hours + ':' + minutes + ' ' + suffix;
         }
-
         function showBookedTimePeriods(bookedTimePeriods, bookingDate) {
-            var formattedTimePeriods = bookedTimePeriods.join('\n');
+            var formattedTimePeriods = bookedTimePeriods.length ? bookedTimePeriods.join('<br>') : 'No bookings for this date';
+
             Swal.fire({
-                title: 'Booked Time Periods for ' + bookingDate,
-                html: '<pre>' + formattedTimePeriods + '</pre>',
-                icon: 'info'
+                title: '<span style="font-size: 24px; color: #ff6b6b; font-weight: bold;">Booked Time Periods</span>',
+                html: '<div style="font-size: 18px; color: #333; padding: 20px;">' + formattedTimePeriods + '</div>',
+                icon: 'info',
+                confirmButtonText: 'Close',
+                confirmButtonColor: '#6c5ce7',
+                customClass: {
+                    title: 'text-center',
+                    htmlContainer: 'text-left',
+                    popup: 'custom-popup-class',
+                    confirmButton: 'btn btn-primary',
+                },
+                buttonsStyling: false,
+                animation: true,
+                showClass: {
+                    popup: 'animated bounceInDown faster',
+                },
+                hideClass: {
+                    popup: 'animated bounceOutUp faster',
+                },
             });
         }
-
-        @if(session('error'))
-
-            $(document).ready(function(){
-                Swal.fire({
-                    title: 'Error',
-                    html: '<p>{{ session('error')['message'] }}</p>' +
-                          @if(count(session('error')['unavailable_slots']) > 0)
-                              '<p>Unavailable Time Slots:</p>' +
-                              '<ul>' +
-                                  @foreach(session('error')['unavailable_slots'] as $slot)
-                                      '<li>{{ $slot['date'] }} - {{ $slot['start_time'] }} to {{ $slot['end_time'] }}</li>' +
-                                  @endforeach
-                              '</ul>' +
-                          @endif
-                          '',
-                    icon: 'error'
-                });
-            });
-
-    @endif
 
 
 
@@ -161,7 +181,6 @@
             dayCount++;
             var container = document.getElementById('multiple-days-fields');
             var dayDiv = document.createElement('div');
-           // dayDiv.classList.add('row', 'mt-3');
             dayDiv.innerHTML = `
             <div class="row mt-3">
                 <div class="col-md-4">
@@ -180,8 +199,7 @@
                     <button type="button" class="btn btn-danger remove-day-btn">Remove</button>
                 </div>
             </div>
-
-        `;
+            `;
             container.appendChild(dayDiv);
 
             dayDiv.querySelector('.remove-day-btn').addEventListener('click', function () {
@@ -190,6 +208,24 @@
             });
         });
 
+        @if(session('error'))
+        $(document).ready(function(){
+            Swal.fire({
+                title: 'Error',
+                html: '<p>{{ session('error')['message'] }}</p>' +
+                      @if(count(session('error')['unavailable_slots']) > 0)
+                          '<p>Unavailable Time Slots:</p>' +
+                          '<ul>' +
+                              @foreach(session('error')['unavailable_slots'] as $slot)
+                                  '<li>{{ $slot['date'] }} - {{ $slot['start_time'] }} to {{ $slot['end_time'] }}</li>' +
+                              @endforeach
+                          '</ul>' +
+                      @endif
+                      '',
+                icon: 'error'
+            });
+        });
+    @endif
 
 
         document.getElementById('save-multiple-days').addEventListener('click', function () {
@@ -199,5 +235,8 @@
             $('#multipleDaysModal').modal('hide');
         });
     });
+
 </script>
+
+
 @endsection

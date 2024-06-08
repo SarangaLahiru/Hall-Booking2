@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Booking;
+use Illuminate\Support\Facades\Session;
 
 class AvailabilityController extends Controller
 {
@@ -49,8 +50,10 @@ class AvailabilityController extends Controller
     //     ]);
     // }
     if (empty($unavailableSlots)) {
+        Session::put('availabilityData',$availabilityData);
         // All requested time slots are available
-        return redirect()->route('createBookingForm')->with('availabilityData', $availabilityData)->with('success', 'All requested time slots are available.');
+        return redirect()->route('createBookingForm')->with('success', 'All requested time slots are available.');
+        // return redirect()->route('createBookingForm')->with('availabilityData', $availabilityData)->with('success', 'All requested time slots are available.');
         // return view('createBooking', compact('availabilityData'))->with('success', 'All requested time slots are available.');
     } else {
         // Some of the requested time slots are unavailable

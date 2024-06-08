@@ -7,7 +7,16 @@ use Illuminate\Support\Facades\Route;
 Route::get('/calendar', function () {
     return view('calendar');
 });
-Route::post('/booked', [BookingController::class, 'store'])->name('booked');
+Route::get('/services', function () {
+    return view('services');
+});
+Route::get('/resources', function () {
+    return view('resources');
+});
+Route::get('/support', function () {
+    return view('support');
+});
+// Route::post('/booked', [BookingController::class, 'store'])->name('booked');
 Route::get('/', [BookingController::class, 'showCalendar'])->name('show-calendar');
 // Route::post('/check-availability', [BookingController::class, 'checkAvailability'])->name('check-availability');
 // Route::post('/booked', [BookingController::class, 'store'])->name('booked');

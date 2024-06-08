@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use App\Models\Booking;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Session;
 
 class BookingController extends Controller
 {
@@ -34,7 +35,7 @@ class BookingController extends Controller
                     'title'=>  $bookingDate['end_time'],
                     'start' => $bookingDate['date'] . 'T' . $bookingDate['start_time'],
                     'end' => $bookingDate['date'] . 'T' . $bookingDate['end_time'],
-                    'color' => 'red', // Customize the color if needed
+                    'color' => 'green', // Customize the color if needed
                 ];
             }
         }
@@ -53,7 +54,8 @@ class BookingController extends Controller
 
     public function create(Request $request)
     {
-        $availabilityData = session('availabilityData', []);
+        $availabilityData = Session::get('availabilityData',[]);
+        // $availabilityData = session('availabilityData', []);
         return view('createBooking', compact('availabilityData'));
     }
 

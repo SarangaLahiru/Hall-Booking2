@@ -83,3 +83,9 @@
     font-weight: bold;
     color: #429af9;
 }
+
+#wave {
+    position: absolute;
+    top: 0px;
+    z-index: -1;
+}

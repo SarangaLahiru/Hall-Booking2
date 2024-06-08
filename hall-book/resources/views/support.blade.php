@@ -1,20 +1,27 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"
-        integrity="sha512-AA1Bzp5Q0K1KanKKmvN/4d3IRKVlv9PYgwFPvm32nPO6QS8yH1HO7LbgB1pgiOxPtfeg5zEn2ba64MUcqJx6CA=="
-        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="{{ asset('css/check_availability.css') }}">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.11.3/font/bootstrap-icons.min.css" integrity="sha512-dPXYcDub/aeb08c63jRq/k6GaKccl256JQy/AnOq7CAnEZ9FzSL9wSbcZkMp4R26vBsMLFYH4kQ67/bbV8XaCQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link
+    rel="stylesheet"
+    href="https://cdn.ayroui.com/1.0/css/bootstrap.min.css"
+  />
+
+  <!--====== Lineicons CSS ======-->
+  <link href="https://cdn.lineicons.com/3.0/lineicons.css" rel="stylesheet" />
+
+  <!--====== Style css ======-->
+  <link rel="stylesheet" href="https://cdn.ayroui.com/1.0/css/starter.css" />
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/support.css') }}">
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
 
 </head>
-
 <body>
     <!--====== NAVBAR ONE PART START ======-->
     <section class="navbar-area navbar-one ">
@@ -77,34 +84,54 @@
        <!-- container -->
     </section>
     <!--====== NAVBAR ONE PART ENDS ======-->
+    <!--====== Glightbox  Css ======-->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/glightbox/dist/css/glightbox.min.css" />
 
+    <!--====== VIDEO ONE PART START ======-->
+    <section class="video-area video-one">
+       <div class="container">
+          <div class="row justify-content-center">
+             <div class="col-lg-6 col-md-10">
+                <div class="video-title text-center">
+                   <h5>Learn & Share</h5>
+                   <h2>Do good work and share</h2>
+                   <p class="text-lg">
+                      Firsthand accounts from leaders who have changed the world we
+                      live in and the entrepreneurs shaping tomorrow’s world.
+                   </p>
+                </div>
+                <!-- video title -->
+             </div>
+          </div>
+          <!-- row -->
+          <div class="row justify-content-center">
+             <div class="col-lg-10">
+                <div class="video-content text-center">
+                   <img src="https://cdn.ayroui.com/1.0/images/video/video.png" alt="Video" />
+                   <a class="video-popup glightbox" href="https://www.youtube.com/watch?v=NJbXptdalP0">
+                   <i class="lni lni-play"></i>
+                   </a>
+                </div>
+             </div>
+          </div>
+          <!-- row -->
+       </div>
+       <!-- container -->
+    </section>
+    <!--====== VIDEO ONE PART ENDS ======-->
 
-
-
-    <div class="containe">
-        @yield('content')
-    </div>
-</body>
-<!--====== Bootstrap js ======-->
-    <script src="https://cdn.ayroui.com/1.0/js/bootstrap.bundle.min.js"></script>
+    <!--====== Glightbox js ======-->
+    <script src="https://cdn.jsdelivr.net/gh/mcstudios/glightbox/dist/js/glightbox.min.js"></script>
 
     <script>
-       //===== close navbar-collapse when a  clicked
-       var navbarTogglerOne = document.querySelector(
-         ".navbar-one .navbar-toggler"
-       );
-       navbarTogglerOne.addEventListener("click", function () {
-         navbarTogglerOne.classList.toggle("active");
-       });
-    </script>
-<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
-    integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
-    crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js"
-    integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
-    crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"
-    integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
-    crossorigin="anonymous"></script>
-
+          //========= glightbox
+          const videoTwo = GLightbox({
+            selector: ".glightbox",
+            type: "video",
+            source: "youtube", //vimeo, youtube or local
+            width: 900,
+            autoplayVideos: true,
+          });
+     </script>
+</body>
 </html>

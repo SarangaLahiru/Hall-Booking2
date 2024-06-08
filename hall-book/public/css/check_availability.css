@@ -13,7 +13,8 @@
 }
 
 body {
-    background: url('https://wallpapers.com/images/featured/theater-background-dhb5kq69nqqd8erp.jpg');
+    /* background: url('https://wallpapers.com/images/featured/theater-background-dhb5kq69nqqd8erp.jpg'); */
+    background-color: white;
     background-size: cover;
 }
 
@@ -43,18 +44,7 @@ body {
     margin-right: 10px;
 }
 
-.fc-button {
-    background-color: red;
-    /* Change 'yourColor' to the desired color */
-    color: #fff;
-    /* Change text color if needed */
-}
 
-/* Change the hover color of the buttons */
-.fc-button:hover {
-    background-color: red;
-    /* Change 'yourHoverColor' to the desired hover color */
-}
 
 
 
@@ -68,7 +58,29 @@ body {
 /* Change color of "more" link */
 .fc-more {
 
-    color: red;
+    color: green;
+    background-color: rgb(232, 255, 230);
+    padding: 1px 2px;
+    border-radius: 20px;
+
+}
+
+@media(max-width: 2000px) {
+    .title {
+        font-size: 70px;
+        margin-top: 20px;
+    }
+
+    .check {
+        margin-top: -100px;
+    }
+
+    .dis {
+        position: relative;
+        top: -80px;
+    }
+
+
 }
 
 @media(max-width: 1400px) {
@@ -76,6 +88,19 @@ body {
         font-size: 70px;
         margin-top: 20px;
     }
+
+    .check {
+        margin-top: -100px;
+    }
+
+    .dis {
+        position: relative;
+        top: -80px;
+    }
+
+
+
+
 }
 
 @media(max-width: 1200px) {
@@ -83,6 +108,15 @@ body {
         font-size: 50px;
         margin-top: 15px;
     }
+
+    .dis {
+        position: relative;
+        top: -50px;
+    }
+
+
+
+
 }
 
 @media(max-width: 992px) {
@@ -90,12 +124,22 @@ body {
         font-size: 50px;
         margin-top: 10px;
     }
+
+    .check {
+        margin-top: 200px;
+    }
+
+
 }
 
 @media(max-width: 768px) {
     .title {
         font-size: 40px;
         margin-top: 5px;
+    }
+
+    .check {
+        margin-top: 80px;
     }
 }
 
@@ -104,4 +148,6 @@ body {
         font-size: 40px;
         margin-top: 0;
     }
+
+
 }

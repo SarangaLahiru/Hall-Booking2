@@ -3,26 +3,77 @@
 @section('title', 'Check Availability')
 
 @section('content')
-<div class="container mt-5">
-    <div class="row">
+<!--====== HEADER ONE PART START ======-->
+<section class="header-area header-one" >
+   <div class="header-content-area " style="height: 580px;">
+      <div class="container">
+         <div class="row align-items-center dis" style="margin-top: 0px">
+            <div class="col-lg-6 col-12">
+               <div class="header-wrapper">
+                  <div class="header-content">
+                     <h1 class="header-title">
+                        Hall Reservation System
+                     </h1>
+                     <p class="text-lg">
+                        Are you planning an event and looking for the perfect venue? Our state-of-the-art Hall Reservation System is here to make your booking process smooth and hassle-free!
+                     </p>
+                     {{--  <div class="header-btn rounded-buttons">
+                        <a
+                           class="btn primary-btn-outline btn-lg"
+                           href="javascript:void(0)"
+                           >
+                        DOWNLOAD NOW
+                        </a>
+                     </div>  --}}
+                  </div>
+                  <!-- header content -->
+               </div>
+            </div>
+            <div class="col">
+               {{--  <div class="header-image d-none d-lg-block">
+                  <div class="image">
+                     <img
+                        src="https://cdn.ayroui.com/1.0/images/header/header-1.svg"
+                        alt="Header"
+                        />
+                  </div>
+               </div>  --}}
+               <div class="shadow">
+                <div id="calendar" class="calendar"></div>
+            </div>
+            </div>
+         </div>
+         <!-- row -->
+      </div>
+      <!-- container -->
+      <div class="header-shape">
+         <img src="https://cdn.ayroui.com/1.0/images/header/header-shape.svg" alt="shape" />
+      </div>
+      <!-- header-shape -->
+   </div>
+   <!-- header content area -->
+</section>
+<!--====== HEADER ONE PART ENDS ======-->
+<div class="container check">
+    {{--  <div class="row">
         <div class="col-md-6">
             <h2 class="text-xl-start fs-3 fs-md-4 title">Hall Reservation System</h2>
         </div>
         <div class="col-md-6 text-md-right">
             <div id="calendar" class="calendar"></div>
         </div>
-    </div>
+    </div>  --}}
 
     <div class="row justify-content-center mt-4">
         <div class="col">
-            <div class="card">
+            <div class="car">
                 <div class="card-body">
                     <form id="multipleDaysForm" action="/check-multiple-days-availability" method="POST">
                         @csrf
                         <div class="modal-dialo modal-xl modal-dialog-centered" role="document">
-                            <div class="modal-content">
+                            <div class="modal-content shadow-lg" style="border: none;">
 
-                                <div class="modal-body">
+                                <div class="modal-body ">
                                     <div id="multiple-days-fields">
                                         <!-- Fields for the first day -->
                                         <div class="row mt-3">
@@ -39,6 +90,8 @@
                                                 <input type="time" id="end_time" name="availability_data[0][end_time]" class="form-control" required>
                                             </div>
                                             <div class="col d-flex align-items-end">
+
+                                                <button type="submit" id="check-availability" class="btn btn-primary" style="font-size: 15px">Check Availability</button>
                                                 {{--  <button type="button" class="btn btn-danger remove-day-btn">Remove</button>  --}}
                                                 {{--  <button type="submit" id="check-availability" class="btn btn-primary a2">Check Availability</button>  --}}
                                             </div>
@@ -46,12 +99,13 @@
 
                                     </div>
                                     <div class="text-left mt-2">
-                                        <button type="button" id="add-day-btn" class="btn btn-success">Add more Days</button>
+                                        {{--  <button type="button" id="add-day-btn" class="btn btn-success">Add more Days</button>  --}}
                                     </div>
                                 </div>
                                 <div class="modal-footer">
+                                    <button type="button" id="add-day-btn" class="btn btn-success">Add more Days</button>
 
-                                    <button type="submit" id="check-availability" class="btn btn-primary">Check Availability</button>
+
 
                                 </div>
                             </div>
@@ -144,13 +198,13 @@
 
             Swal.fire({
                 title: '<span style="font-size: 24px; color: #ff6b6b; font-weight: bold;">Booked Time Periods</span>',
-                html: '<div style="font-size: 18px; color: #333; padding: 20px;">' + formattedTimePeriods + '</div>',
+                html: '<div class="card" style="font-size: 18px; color: green; padding: 20px;background-color: rgb(232, 255, 230);">' + formattedTimePeriods + '</div>',
                 icon: 'info',
                 confirmButtonText: 'Close',
                 confirmButtonColor: '#6c5ce7',
                 customClass: {
                     title: 'text-center',
-                    htmlContainer: 'text-left',
+                    htmlContainer: 'text-center',
                     popup: 'custom-popup-class',
                     confirmButton: 'btn btn-primary',
                 },

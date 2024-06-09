@@ -1,6 +1,7 @@
 <?php
 namespace App\Http\Controllers;
-
+use App\Mail\BookingAccepted;
+use Illuminate\Support\Facades\Mail;
 use App\Models\Booking;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -183,6 +184,27 @@ class BookingController extends Controller
         // Redirect the user to a success page
         return redirect()->route('successPage')->with('success', 'Booking created successfully.');
     }
+
+    public function accept($id)
+{
+    $booking = Booking::find($id);
+    $booking->status = 'accepted';
+    $booking->save();
+    Mail::to($booking->email)->send(new BookingAccepted($booking));
+
+    return redirect()->route('admin.dashboard')->with('success', 'Booking accepted successfully.');
+}
+
+public function reject($id)
+{
+    $booking = Booking::find($id);
+    $booking->status = 'rejected';
+    $booking->save();
+
+
+    return redirect()->route('admin.dashboard')->with('success', 'Booking rejected successfully.');
+}
+
 
 
 

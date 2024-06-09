@@ -24,6 +24,7 @@ class CreateBookingsTable extends Migration
             $table->json('booking_dates');
             $table->json('facilities')->nullable();
             $table->json('documents')->nullable();
+            $table->string('status')->default("pending");
             $table->timestamps();
         });
     }

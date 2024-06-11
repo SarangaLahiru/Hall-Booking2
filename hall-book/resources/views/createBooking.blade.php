@@ -5,101 +5,301 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Stepper Form with Validation</title>
+    <link rel="stylesheet" href="{{asset('/css/create_booking.css')}}">
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
 </head>
 <body>
+
+<!-- Category Selection Modal -->
+<div class="modal fade" id="categoryModal" tabindex="-1" role="dialog" data-backdrop="static" data-keyboard="false">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Select User Category</h5>
+            </div>
+            <div class="modal-body">
+                <div class="d-flex justify-content-center flex-wrap">
+                    <div class="category-icon text-center" data-category="academic">
+                        <i class="fas fa-user-graduate fa-3x"></i>
+                        <p>Academic</p>
+                    </div>
+                    <div class="category-icon text-center" data-category="non-academic">
+                        <i class="fas fa-briefcase fa-3x"></i>
+                        <p>Non-Academic</p>
+                    </div>
+                    <div class="category-icon text-center" data-category="administrative">
+                        <i class="fas fa-user-tie fa-3x"></i>
+                        <p>Administrative</p>
+                    </div>
+                    <div class="category-icon text-center" data-category="student">
+                        <i class="fas fa-user fa-3x"></i>
+                        <p>Student</p>
+                    </div>
+                    <div class="category-icon text-center" data-category="external">
+                        <i class="fas fa-users fa-3x"></i>
+                        <p>External</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
 
 <div class="container mt-5">
     <div class="row justify-content-center">
         <div class="col-md-8">
-            <div class="card">
+            <div class="card shadow">
                 <div class="card-header">
                     <h5 class="card-title">Hall Booking System</h5>
                 </div>
                 <div class="card-body">
-                    <form id="stepper-form" action="/booked" method="POST" class="needs-validation" novalidate enctype="multipart/form-data">
+                    <!-- Stepper -->
+                    <div class="stepper">
+                        <div class="step active" data-step="0">
+                            <div class="circle">1</div>
+                            <div class="label">Step 1</div>
+                        </div>
+                        <div class="step" data-step="1">
+                            <div class="circle">2</div>
+                            <div class="label">Step 2</div>
+                        </div>
+                        <div class="step" data-step="2">
+                            <div class="circle">3</div>
+                            <div class="label">Step 3</div>
+                        </div>
+                    </div>
+
+                    <form id="stepper-form" action="{{ route('storeBooking') }}" method="POST" class="needs-validation" novalidate enctype="multipart/form-data">
                         @csrf
 
                         <!-- Step 1 -->
-                        <div class="step">
-                            <div class="form-row">
-                                <div class="col-md-4 mb-3">
-                                    <label for="name">Name</label>
-                                    <input type="text" class="form-control" id="name" name="name" required>
-                                    <div class="invalid-feedback">
-                                        Please enter your name.
+                        <input type="hidden" id="selectedCategory" name="category" value="">
+                        <div class="step-content">
+                            <div class="step" data-step="0">
+                                <div class="form-row">
+                                    <div class="col mb-3">
+                                        <label for="name">Applicant Name</label>
+                                        <input type="text" class="form-control" id="name" name="name" required>
+                                        <div class="invalid-feedback">
+                                            Please enter your name.
+                                        </div>
+                                    </div>
+                                    <div class="col mb-3" id="studentNoField" style="display: none;">
+                                        <label for="studentNo">Student Register No</label>
+                                        <input type="text" class="form-control" id="studentNo" name="studentNo" required>
+                                        <div class="invalid-feedback">
+                                            Please enter a valid student number.
+                                        </div>
+                                    </div>
+                                    <div class="col mb-3" id="idNoField" style="display: none;">
+                                        <label for="idNo">NIC Number</label>
+                                        <input type="text" class="form-control" id="idNo" name="idNo" required>
+                                        <div class="invalid-feedback">
+                                            Please enter a valid ID number.
+                                        </div>
+                                    </div>
+
+
+                                </div>
+                                <div class="form-row">
+                                    <div class="col-md-6 mb-3">
+                                        <label for="phone">Contact Number</label>
+                                        <input type="number" class="form-control" id="phone" name="phone" required>
+                                        <div class="invalid-feedback">
+                                            Please enter a valid phone number.
+                                        </div>
+                                    </div>
+
+
+                                    <div class="col-md-6 mb-3">
+                                        <label for="email">Email Address</label>
+                                        <input type="email" class="form-control" id="email" name="email" required>
+                                        <div class="invalid-feedback">
+                                            Please enter a valid email address.
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 mb-3" id="facultyField" style="display: none;">
+                                        <label for="faculty">Name of Faculty</label>
+                                        <select class="form-control" id="faculty" name="faculty" required>
+                                            <option value="">Select</option>
+                                            <option value="Faculty 1">Faculty 1</option>
+                                            <option value="Faculty 2">Faculty 2</option>
+                                            <!-- Add more options as needed -->
+                                        </select>
+                                        <div class="invalid-feedback">
+                                            Please select your Faculty.
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-6 mb-3" id="societyField">
+                                        <label for="society">Society</label>
+                                        <input type="text" class="form-control" id="society" name="society" required>
+                                        <div class="invalid-feedback">
+                                            Please enter your Society.
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 mb-3" id="institutionField" style="display: none;">
+                                        <label for="institution">Name of the Institution</label>
+                                        <input type="text" class="form-control" id="institution" name="institution" required>
+                                        <div class="invalid-feedback">
+                                            Please enter the name of the institution.
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 mb-3" id="postField">
+                                        <label for="post">Designation</label>
+                                        <input type="text" class="form-control" name="post" required>
+                                        <div class="invalid-feedback">
+                                            Please enter a valid post.
+                                        </div>
                                     </div>
                                 </div>
-                                <div class="col-md-4 mb-3">
-                                    <label for="email">Email</label>
-                                    <input type="email" class="form-control" id="email" name="email" required>
-                                    <div class="invalid-feedback">
-                                        Please enter a valid email address.
+                                @foreach ($availabilityData as $index => $data)
+                                <hr>
+                                <div class="form-group">
+                                    <label for="booking_date{{ $index }}">Booking Date {{ $index + 1 }}</label>
+                                    <input type="text" class="form-control" id="booking_date{{ $index }}" name="booking_date[]" value="{{ $data['date'] }}" readonly>
+                                </div>
+                                <div class="row">
+                                    <div class="col form-group">
+                                        <label for="start_time{{ $index }}">Start Time</label>
+                                        <input type="text" class="form-control" id="start_time{{ $index }}" name="start_time[]" value="{{ $data['start_time'] }}" readonly>
+                                    </div>
+                                    <div class="col form-group">
+                                        <label for="end_time{{ $index }}">End Time</label>
+                                        <input type="text" class="form-control" id="end_time{{ $index }}" name="end_time[]" value="{{ $data['end_time'] }}" readonly>
                                     </div>
                                 </div>
-                                <div class="col-md-4 mb-3">
-                                    <label for="phone">Phone</label>
-                                    <input type="number" class="form-control" id="phone" name="phone" required>
-                                    <div class="invalid-feedback">
-                                        Please enter a valid email address.
-                                    </div>
-                                </div>
+                                <hr>
+                            @endforeach
+
+
+                                <button type="button" class="btn btn-primary next-step">Next</button>
                             </div>
-                            <div class="form-row">
-                                <div class="col-md-6 mb-3">
-                                    <label for="">Faculty/Society</label>
-                                    <input type="text" class="form-control" id="" name="faculty" required>
+
+                            <!-- Step 2 -->
+                            <div class="step" data-step="1" style="display: none;">
+                                <div class="form-group">
+                                    <label for="eventType">Type of Event</label>
+                                    <select class="form-control" id="eventType" name="eventType" required>
+                                        <option value="">Select Event Type</option>
+                                        <option value="conference">Conference</option>
+                                        <option value="workshop">Workshop</option>
+                                        <option value="concert">Concert</option>
+                                        <option value="wedding">Wedding</option>
+                                        <option value="party">Party</option>
+                                    </select>
                                     <div class="invalid-feedback">
-                                        Please enter your Faculty or Society.
+                                        Please select the type of event.
                                     </div>
                                 </div>
-                                <div class="col-md-6 mb-3">
-                                    <label for="">Post</label>
-                                    <input type="text" class="form-control"  name="post" required>
+                                <div class="form-group">
+                                    <label for="eventDescription">Description of Event</label>
+                                    <textarea class="form-control" id="eventDescription" name="eventDescription" rows="3" required></textarea>
                                     <div class="invalid-feedback">
-                                        Please enter a valid post.
+                                        Please enter a description of your event.
                                     </div>
                                 </div>
 
-                            </div>
-                            <div class="form-group">
-                                <label for="booking_date">Booking Date</label>
-                                <input type="text" class="form-control" id="booking_date" name="booking_date" value="{{ $bookingDate }}" readonly>
-                            </div>
-                            <div class="form-group">
-                                <label for="start_time">Start Time</label>
-                                <input type="text" class="form-control" id="start_time" name="start_time" value="{{ $startTime }}" readonly>
-                            </div>
-                            <div class="form-group">
-                                <label for="end_time">End Time</label>
-                                <input type="text" class="form-control" id="end_time" name="end_time" value="{{ $endTime }}" readonly>
-                            </div>
-                            <button type="button" class="btn btn-primary next-step">Next</button>
-                        </div>
 
-                        <!-- Step 2 -->
-<div class="step" style="display: none;">
-    <div class="form-group">
-        <label for="activity">Brief Description About Your Activity</label>
-        <input type="text" class="form-control" id="activity" name="activity" required>
-        <div class="invalid-feedback">
-            Please enter a brief description of your activity.
-        </div>
-    </div>
-    <div class="form-group">
-        <label for="fileUpload">Upload File</label>
-        <input type="file" class="form-control-file" id="fileUpload" name="fileUpload">
-    </div>
+                                <div class="form-group">
+                                    <label>Additional Facilities</label><br>
+                                  <div class="container">
+                                    <div class="row container">
+                                        <div class="form-check col">
+                                            <input class="form-check-input" type="checkbox" value="stage" id="stage" name="facilities[]">
+                                            <label class="form-check-label" for="stage">Stage</label>
+                                        </div>
+                                        <div class="form-check col">
+                                            <input class="form-check-input" type="checkbox" value="lightSystem" id="lightSystem" name="facilities[]">
+                                            <label class="form-check-label" for="lightSystem">Light System</label>
+                                        </div>
+                                        <div class="form-check col">
+                                            <input class="form-check-input" type="checkbox" value="audioSystem" id="audioSystem" name="facilities[]">
+                                            <label class="form-check-label" for="audioSystem">Audio System</label>
+                                        </div>
+                                       </div>
 
-    <button type="button" class="btn btn-secondary prev-step mr-2">Previous</button>
-    <button type="button" class="btn btn-primary next-step">Next</button>
-</div>
+                                        <div class="row container">
+                                            <div class="form-check col">
+                                                <input class="form-check-input" type="checkbox" value="fullHall" id="fullHall" name="facilities[]">
+                                                <label class="form-check-label" for="fullHall">Full Hall</label>
+                                            </div>
+                                            <div class="form-check col">
+                                                <input class="form-check-input" type="checkbox" value="balcony" id="balcony1" name="facilities[]">
+                                                <label class="form-check-label" for="balcony1">Balcony</label>
+                                            </div>
+                                            <div class="form-check col">
+                                                <input class="form-check-input" type="checkbox" value="audience" id="audience" name="facilities[]">
+                                                <label class="form-check-label" for="audience">Audience</label>
+                                            </div>
+                                        </div>
+                                  </div>
+                                </div>
 
-                        <!-- Step 3 -->
-                        <div class="step" style="display: none;">
-                            <!-- Add additional steps here -->
-                            <button type="button" class="btn btn-secondary prev-step mr-2">Previous</button>
-                            <button type="submit" class="btn btn-primary">Register Booking</button>
+
+                                <button type="button" class="btn btn-secondary prev-step mr-2">Previous</button>
+                                <button type="button" class="btn btn-primary next-step">Next</button>
+                            </div>
+
+
+
+                            <!-- Step 3 -->
+                            <div class="step" data-step="2" style="display: none;">
+                                <div class="form-group">
+                                    <label for="fileInput">Upload Documents (JPG, PNG, PDF)</label>
+                                    <div class="custom-file">
+                                        <input type="file" class="custom-file-input" id="fileInput" name="fileInput" accept=".jpg, .jpeg, .png, .pdf" required>
+                                        <label class="custom-file-label" for="fileInput">Choose file</label>
+                                        <div class="invalid-feedback">
+                                            Please upload a file in JPG, PNG, or PDF format.
+                                        </div>
+                                        <div class="invalid-feedback" id="fileSizeError" style="display: none;">
+                                            File size exceeds the limit of 5MB.
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="form-check">
+                                    <div>
+                                        <a href="#" data-toggle="modal" data-target="#termsModal">View Terms & Conditions</a>
+                                    </div>
+                                    <input class="form-check-input" type="checkbox" value="termsConditions" id="termsConditions" required>
+                                    <label class="form-check-label" for="termsConditions">I have read and agree to the Terms & Conditions</label>
+                                    <div class="invalid-feedback">
+                                        Please agree to the terms and conditions.
+                                    </div>
+                                </div>
+
+                                <div class="mt-2">
+                                    <button type="button" class="btn btn-secondary prev-step mr-2">Previous</button>
+                                    <button type="button" id="submitBtn"  class="btn btn-primary">Register Booking</button>
+                                </div>
+                            </div>
+
+                            <!-- Terms & Conditions Modal -->
+                            <div class="modal fade" id="termsModal" tabindex="-1" role="dialog" aria-labelledby="termsModalLabel" aria-hidden="true">
+                                <div class="modal-dialog modal-dialog-scrollable" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="termsModalLabel">Terms & Conditions</h5>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <!-- Your terms and conditions content here -->
+                                            <p>This is where your terms and conditions will be displayed.</p>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
                         </div>
                     </form>
                 </div>
@@ -107,25 +307,112 @@
         </div>
     </div>
 </div>
+<!-- Modal for Confirmation -->
+<div class="modal fade" id="confirmationModal" tabindex="-1"  aria-labelledby="confirmationModalLabel" tabindex="-1" role="dialog" data-backdrop="static" data-keyboard="false">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="confirmationModalLabel">Confirmation</h5>
 
+            </div>
+            <div class="modal-body">
+                <p>Date and time are available. Do you want to proceed with this booking?</p>
+                <ul id="dateTimeList">
+                    @foreach($availabilityData as $data)
+                        <li>{{ $data['date'] }} - {{ $data['start_time'] }} to {{ $data['end_time'] }}</li>
+                    @endforeach
+                </ul>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" id="notconfirmBooking">No, choose another time</button>
+                <button type="button" id="confirmBooking" class="btn btn-primary">Yes, proceed</button>
+            </div>
+        </div>
+    </div>
+</div>
+<svg id="wave" style="transform:rotate(180deg); transition: 0.3s" viewBox="0 0 1440 180" version="1.1" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="sw-gradient-0" x1="0" x2="0" y1="1" y2="0"><stop stop-color="rgba(51.331, 179.922, 255, 1)" offset="0%"></stop><stop stop-color="rgba(255, 255, 255, 0)" offset="100%"></stop></linearGradient></defs><path style="transform:translate(0, 0px); opacity:1" fill="url(#sw-gradient-0)" d="M0,36L60,36C120,36,240,36,360,57C480,78,600,120,720,129C840,138,960,114,1080,90C1200,66,1320,42,1440,30C1560,18,1680,18,1800,36C1920,54,2040,90,2160,99C2280,108,2400,90,2520,96C2640,102,2760,132,2880,120C3000,108,3120,54,3240,39C3360,24,3480,48,3600,51C3720,54,3840,36,3960,27C4080,18,4200,18,4320,24C4440,30,4560,42,4680,57C4800,72,4920,90,5040,105C5160,120,5280,132,5400,132C5520,132,5640,120,5760,111C5880,102,6000,96,6120,99C6240,102,6360,114,6480,123C6600,132,6720,138,6840,117C6960,96,7080,48,7200,24C7320,0,7440,0,7560,12C7680,24,7800,48,7920,69C8040,90,8160,108,8280,108C8400,108,8520,90,8580,81L8640,72L8640,180L8580,180C8520,180,8400,180,8280,180C8160,180,8040,180,7920,180C7800,180,7680,180,7560,180C7440,180,7320,180,7200,180C7080,180,6960,180,6840,180C6720,180,6600,180,6480,180C6360,180,6240,180,6120,180C6000,180,5880,180,5760,180C5640,180,5520,180,5400,180C5280,180,5160,180,5040,180C4920,180,4800,180,4680,180C4560,180,4440,180,4320,180C4200,180,4080,180,3960,180C3840,180,3720,180,3600,180C3480,180,3360,180,3240,180C3120,180,3000,180,2880,180C2760,180,2640,180,2520,180C2400,180,2280,180,2160,180C2040,180,1920,180,1800,180C1680,180,1560,180,1440,180C1320,180,1200,180,1080,180C960,180,840,180,720,180C600,180,480,180,360,180C240,180,120,180,60,180L0,180Z"></path><defs><linearGradient id="sw-gradient-1" x1="0" x2="0" y1="1" y2="0"><stop stop-color="rgba(126.204, 207.522, 255, 1)" offset="0%"></stop><stop stop-color="rgba(0, 161, 255, 1)" offset="100%"></stop></linearGradient></defs><path style="transform:translate(0, 50px); opacity:0.9" fill="url(#sw-gradient-1)" d="M0,0L60,27C120,54,240,108,360,114C480,120,600,78,720,78C840,78,960,120,1080,120C1200,120,1320,78,1440,69C1560,60,1680,84,1800,96C1920,108,2040,108,2160,111C2280,114,2400,120,2520,120C2640,120,2760,114,2880,114C3000,114,3120,120,3240,120C3360,120,3480,114,3600,120C3720,126,3840,144,3960,144C4080,144,4200,126,4320,111C4440,96,4560,84,4680,66C4800,48,4920,24,5040,27C5160,30,5280,60,5400,81C5520,102,5640,114,5760,99C5880,84,6000,42,6120,39C6240,36,6360,72,6480,75C6600,78,6720,48,6840,39C6960,30,7080,42,7200,57C7320,72,7440,90,7560,87C7680,84,7800,60,7920,48C8040,36,8160,36,8280,48C8400,60,8520,84,8580,96L8640,108L8640,180L8580,180C8520,180,8400,180,8280,180C8160,180,8040,180,7920,180C7800,180,7680,180,7560,180C7440,180,7320,180,7200,180C7080,180,6960,180,6840,180C6720,180,6600,180,6480,180C6360,180,6240,180,6120,180C6000,180,5880,180,5760,180C5640,180,5520,180,5400,180C5280,180,5160,180,5040,180C4920,180,4800,180,4680,180C4560,180,4440,180,4320,180C4200,180,4080,180,3960,180C3840,180,3720,180,3600,180C3480,180,3360,180,3240,180C3120,180,3000,180,2880,180C2760,180,2640,180,2520,180C2400,180,2280,180,2160,180C2040,180,1920,180,1800,180C1680,180,1560,180,1440,180C1320,180,1200,180,1080,180C960,180,840,180,720,180C600,180,480,180,360,180C240,180,120,180,60,180L0,180Z"></path></svg>
+<!-- SweetAlert2 -->
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/js/bootstrap.bundle.min.js"></script>
 <script>
+
     $(document).ready(function() {
+        var selectedCategory = null;
+
+        $('.category-icon').click(function() {
+            $('.category-icon').removeClass('selected');
+
+            $(this).addClass('selected');
+            selectedCategory = $(this).data('category');
+            $('#selectedCategory').val(selectedCategory);
+
+            if (selectedCategory === 'student') {
+                $('#studentNoField').show();
+                $('#facultyField').show();
+                $('#idNoField').hide();
+                $('#institutionField').hide(); // Hide institution field if student category is selected
+                $('#societyField').show(); // Show society field if student category is selected
+                $('#postField').hide();
+            } else if (selectedCategory === 'external') {
+                $('#studentNoField').hide();
+                $('#idNoField').show();
+                $('#facultyField').hide(); // Hide faculty field if external category is selected
+                $('#institutionField').show(); // Show institution field if external category is selected
+                $('#societyField').hide(); // Hide society field if external category is selected
+                $('#postField').show();
+            } else {
+                // Default case for other categories
+                $('#studentNoField').hide();
+                $('#idNoField').show();
+                $('#facultyField').hide();
+                $('#institutionField').hide();
+                $('#societyField').show();
+                $('#postField').show();
+            }
+
+            $('#categoryModal').modal('hide');
+        });
+
+
+
+
         var currentStep = 0;
-        var steps = $('.step');
+        var steps = $('.step-content .step');
+        var stepperSteps = $('.stepper .step');
+        var selectedCategory = null;
 
         function showStep(step) {
             steps.hide();
             steps.eq(step).show();
+            stepperSteps.removeClass('active');
+            stepperSteps.eq(step).addClass('active');
         }
 
         $('.next-step').click(function() {
+
+
+
             if (currentStep < steps.length - 1) {
+
                 var isValid = validateStep(currentStep);
+                console.log(isValid)
                 if (isValid) {
                     currentStep++;
                     showStep(currentStep);
+                }
+            } else {
+                // Proceed to the next step only if a category is selected
+                if (selectedCategory) {
+                    currentStep++;
+                    showStep(currentStep);
+                } else {
+                    Swal.fire({
+                        icon: 'warning',
+                        title: 'Select a Category',
+                        text: 'Please select a category before proceeding to the next step.',
+                        confirmButtonText: 'OK'
+                    });
                 }
             }
         });
@@ -138,7 +425,7 @@
         });
 
         function validateStep(step) {
-            var inputs = steps.eq(step).find('input, select');
+            var inputs = steps.eq(step).find('input:visible, select:visible, textarea:visible');
             var isValid = true;
             inputs.each(function() {
                 if (!this.checkValidity()) {
@@ -150,12 +437,92 @@
             });
             return isValid;
         }
+        $('#fileInput').change(function() {
+            var fileName = $(this).val().split('\\').pop(); // Extract the file name
+            $(this).next('.custom-file-label').html(fileName); // Set the file name as the label text
+        });
+
+        $('#fileInput').change(function() {
+            var fileName = $(this).val().split('\\').pop(); // Extract the file name
+            $(this).next('.custom-file-label').html(fileName); // Set the file name as the label text
+        });
+
+        $('#submitBtn').click(function() {
+            // Check if file is selected
+            var fileInput = $('#fileInput')[0];
+            if (fileInput.files.length === 0) {
+                $('#fileInput').addClass('is-invalid');
+            } else {
+                var fileSize = fileInput.files[0].size / (1024 * 1024); // Convert bytes to MB
+                if (fileSize > 5) { // Check if file size exceeds 5 MB
+                    $('#fileInput').addClass('is-invalid');
+                    $('#fileInput').next('.custom-file-label').html('Choose file'); // Reset file label
+                    alert('File size exceeds the limit of 5 MB.');
+                    return; // Exit the function without submitting the form
+                } else {
+                    $('#fileInput').removeClass('is-invalid');
+                }
+            }
+
+            // Check if terms and conditions checkbox is checked
+            if (!$('#termsConditions').is(':checked')) {
+                $('#termsConditions').addClass('is-invalid');
+            } else {
+                $('#termsConditions').removeClass('is-invalid');
+            }
+
+            // Check if both conditions are met
+            if (fileInput.files.length > 0 && $('#termsConditions').is(':checked')) {
+                // Submit the form
+                $('#stepper-form').submit();
+            }
+        });
 
         $('input, select').on('input', function() {
             $(this).removeClass('is-invalid');
         });
+
+        $('.category-icon').click(function() {
+            $('.category-icon').removeClass('selected');
+            $(this).addClass('selected');
+            selectedCategory = $(this).data('category');
+            $('#categoryModal').modal('hide');
+        });
+
+
+
+
+
+          @if(!$availabilityData)
+         window.location.href='/';
+
+        @endif
+
+
+
+
+
+            $('#confirmationModal').modal('show');
+
+            $('#confirmBooking').click(function(event) {
+                // Prevent the default form submission behavior
+                event.preventDefault();
+                // User clicked "Yes, proceed"
+                // You can add further action here, such as submitting the form
+                // If you want to submit the form, you can trigger the submit event
+                // $('#yourFormId').submit();
+                $('#confirmationModal').modal('hide');
+                $('#categoryModal').modal('show');
+            });
+            $('#notconfirmBooking').click(function(event) {
+                // Prevent the default form submission behavior
+                event.preventDefault();
+                window.location.href='/';
+            });
+
+
+
     });
 </script>
-
 </body>
 </html>

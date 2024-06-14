@@ -122,7 +122,7 @@
                                         </div>
                                     </div>
                                     <div class="col-md-6 mb-3" id="facultyField" style="display: none;">
-                                        <label for="faculty">Name of Faculty</label>
+                                        <label for="faculty">Name of the Faculty</label>
                                         <select class="form-control" id="faculty" name="faculty" required>
                                             <option value="">Select</option>
                                             <option value="Faculty 1">Faculty 1</option>
@@ -131,6 +131,25 @@
                                         </select>
                                         <div class="invalid-feedback">
                                             Please select your Faculty.
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 mb-3" id="departmentField" style="display: none;">
+                                        <label for="department">Name of Department</label>
+                                        <select class="form-control" id="department" name="department" required>
+                                            <option value="">Select</option>
+                                            <option value="Department 1">Department 1</option>
+                                            <option value="Department 2">Department 2</option>
+                                            <!-- Add more options as needed -->
+                                        </select>
+                                        <div class="invalid-feedback">
+                                            Please select your Department.
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 mb-3" id="divisionField" style="display: none;">
+                                        <label for="division">Name of Division</label>
+                                        <input type="text" class="form-control" id="division" name="division" required>
+                                        <div class="invalid-feedback">
+                                            Please enter your Division.
                                         </div>
                                     </div>
 
@@ -153,6 +172,13 @@
                                         <input type="text" class="form-control" name="post" required>
                                         <div class="invalid-feedback">
                                             Please enter a valid post.
+                                        </div>
+                                    </div>
+                                    <div class="col mb-3" id="addressField" style="display: none;">
+                                        <label for="address">Address</label>
+                                        <input type="text" class="form-control" id="address" name="address" required>
+                                        <div class="invalid-feedback">
+                                            Please enter a valid address.
                                         </div>
                                     </div>
                                 </div>
@@ -185,12 +211,24 @@
                                     <label for="eventType">Type of Event</label>
                                     <select class="form-control" id="eventType" name="eventType" required>
                                         <option value="">Select Event Type</option>
+
+                                        <option value="booklaunch">Book launch</option>
+                                        <option value="career_fair">Career Fair</option>
                                         <option value="conference">Conference</option>
-                                        <option value="workshop">Workshop</option>
                                         <option value="concert">Concert</option>
-                                        <option value="wedding">Wedding</option>
+                                        <option value="corporate_event">Corporate Event</option>
+                                        <option value="cultural_event">Cultural Event</option>
+                                        <option value="exhibition">Exhibition</option>
+                                        <option value="faculty_meeting">Faculty Meeting</option>
+                                        <option value="lecture">Lecture</option>
+                                        <option value="panel_discussion">Panel Discussion</option>
                                         <option value="party">Party</option>
+                                        <option value="seminar">Seminar</option>
+                                        <option value="social_gathering">Social Gathering</option>
+                                        <option value="student_meeting">Student Meeting</option>
+                                        <option value="workshop">Workshop</option>
                                     </select>
+
                                     <div class="invalid-feedback">
                                         Please select the type of event.
                                     </div>
@@ -206,38 +244,58 @@
 
                                 <div class="form-group">
                                     <label>Additional Facilities</label><br>
-                                  <div class="container">
-                                    <div class="row container">
-                                        <div class="form-check col">
-                                            <input class="form-check-input" type="checkbox" value="stage" id="stage" name="facilities[]">
-                                            <label class="form-check-label" for="stage">Stage</label>
-                                        </div>
-                                        <div class="form-check col">
-                                            <input class="form-check-input" type="checkbox" value="lightSystem" id="lightSystem" name="facilities[]">
-                                            <label class="form-check-label" for="lightSystem">Light System</label>
-                                        </div>
-                                        <div class="form-check col">
-                                            <input class="form-check-input" type="checkbox" value="audioSystem" id="audioSystem" name="facilities[]">
-                                            <label class="form-check-label" for="audioSystem">Audio System</label>
-                                        </div>
-                                       </div>
-
-                                        <div class="row container">
+                                    <div class="container">
+                                        <div class="row">
                                             <div class="form-check col">
-                                                <input class="form-check-input" type="checkbox" value="fullHall" id="fullHall" name="facilities[]">
-                                                <label class="form-check-label" for="fullHall">Full Hall</label>
+                                                <input class="form-check-input" type="checkbox" value="stage" id="stage" name="facilities[]">
+                                                <label class="form-check-label" for="stage">Stage</label>
                                             </div>
                                             <div class="form-check col">
-                                                <input class="form-check-input" type="checkbox" value="balcony" id="balcony1" name="facilities[]">
-                                                <label class="form-check-label" for="balcony1">Balcony</label>
+                                                <input class="form-check-input" type="checkbox" value="lightSystem" id="lightSystem" name="facilities[]">
+                                                <label class="form-check-label" for="lightSystem">Lightning System</label>
+                                            </div>
+                                            <div class="form-check col">
+                                                <input class="form-check-input" type="checkbox" value="fullHall" id="fullHall" name="facilities[]">
+                                                <label class="form-check-label" for="fullHall">Hall</label>
+                                            </div>
+
+                                        </div>
+                                        <div class="row">
+
+                                            <div class="form-check col">
+                                                <input class="form-check-input" type="checkbox" value="balcony" id="balcony" name="facilities[]">
+                                                <label class="form-check-label" for="balcony">Balcony</label>
                                             </div>
                                             <div class="form-check col">
                                                 <input class="form-check-input" type="checkbox" value="audience" id="audience" name="facilities[]">
                                                 <label class="form-check-label" for="audience">Audience</label>
                                             </div>
+                                            <div class="form-check col">
+                                                <input class="form-check-input" type="checkbox" value="technicalOfficer" id="technicalOfficer" name="facilities[]">
+                                                <label class="form-check-label" for="technicalOfficer">Technical Officer</label>
+                                            </div>
                                         </div>
-                                  </div>
+
+                                        <div class="row">
+                                            <div class="form-check col">
+                                                <input class="form-check-input" type="checkbox" value="audioSystem" id="audioSystem" name="facilities[]">
+                                                <label class="form-check-label" for="audioSystem">Audio System</label>
+                                            </div>
+                                            <div class="form-check col">
+                                                <input class="form-check-input" type="checkbox" value="multimedia" id="multimedia" name="facilities[]">
+                                                <label class="form-check-label" for="multimedia">Multimedia</label>
+                                            </div>
+                                            <div class="form-check col">
+                                                <input class="form-check-input" type="checkbox" value="oilLamp" id="oilLamp" name="facilities[]">
+                                                <label class="form-check-label" for="oilLamp">Oil Lamp</label>
+                                            </div>
+                                        </div>
+
+                                    </div>
                                 </div>
+
+
+
 
 
                                 <button type="button" class="btn btn-secondary prev-step mr-2">Previous</button>
@@ -249,7 +307,7 @@
                             <!-- Step 3 -->
                             <div class="step" data-step="2" style="display: none;">
                                 <div class="form-group">
-                                    <label for="fileInput">Upload Documents (JPG, PNG, PDF)</label>
+                                    <label for="fileInput">Upload your verification Document (JPG, PNG, PDF)</label>
                                     <div class="custom-file">
                                         <input type="file" class="custom-file-input" id="fileInput" name="fileInput" accept=".jpg, .jpeg, .png, .pdf" required>
                                         <label class="custom-file-label" for="fileInput">Choose file</label>
@@ -319,7 +377,7 @@
                 <p>Date and time are available. Do you want to proceed with this booking?</p>
                 <ul id="dateTimeList">
                     @foreach($availabilityData as $data)
-                        <li>{{ $data['date'] }} - {{ $data['start_time'] }} to {{ $data['end_time'] }}</li>
+                    <li>{{ $data['date'] }} - {{ date('g:i A', strtotime($data['start_time'])) }} to {{ date('g:i A', strtotime($data['end_time'])) }}</li>
                     @endforeach
                 </ul>
             </div>
@@ -354,6 +412,8 @@
                 $('#institutionField').hide(); // Hide institution field if student category is selected
                 $('#societyField').show(); // Show society field if student category is selected
                 $('#postField').hide();
+                $('#departmentField').show();
+
             } else if (selectedCategory === 'external') {
                 $('#studentNoField').hide();
                 $('#idNoField').show();
@@ -361,14 +421,39 @@
                 $('#institutionField').show(); // Show institution field if external category is selected
                 $('#societyField').hide(); // Hide society field if external category is selected
                 $('#postField').show();
-            } else {
-                // Default case for other categories
+                $('#addressField').show();
+
+            }
+            else if (selectedCategory === 'academic') {
                 $('#studentNoField').hide();
                 $('#idNoField').show();
-                $('#facultyField').hide();
+                $('#facultyField').show();
                 $('#institutionField').hide();
                 $('#societyField').show();
                 $('#postField').show();
+                $('#departmentField').show();
+
+            }
+            else if (selectedCategory === 'non-academic') {
+                $('#studentNoField').hide();
+                $('#idNoField').show();
+                $('#facultyField').show();
+                $('#institutionField').hide();
+                $('#societyField').show();
+                $('#postField').show();
+                $('#divisionField').show();
+
+            }
+
+            else {
+                // Default case for other categories
+                $('#studentNoField').hide();
+                $('#idNoField').show();
+                $('#facultyField').show();
+                $('#institutionField').hide();
+                $('#societyField').show();
+                $('#postField').show();
+                $('#divisionField').show();
             }
 
             $('#categoryModal').modal('hide');
@@ -437,6 +522,9 @@
             });
             return isValid;
         }
+
+
+
         $('#fileInput').change(function() {
             var fileName = $(this).val().split('\\').pop(); // Extract the file name
             $(this).next('.custom-file-label').html(fileName); // Set the file name as the label text

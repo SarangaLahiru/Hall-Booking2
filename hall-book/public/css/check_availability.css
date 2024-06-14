@@ -12,6 +12,40 @@
     border-radius: 5px;
 }
 
+.legend {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: flex-start;
+}
+
+.legend li {
+    margin-right: 20px;
+    display: flex;
+    align-items: center;
+}
+
+.legend .color-box {
+    width: 20px;
+    height: 20px;
+    margin-right: 8px;
+}
+
+.accepted {
+    background-color: green;
+}
+
+.pending {
+    background-color: #FFD700;
+}
+
+/* Dark yellow */
+.other {
+    background-color: red;
+}
+
+
 body {
     /* background: url('https://wallpapers.com/images/featured/theater-background-dhb5kq69nqqd8erp.jpg'); */
     background-color: white;
@@ -72,7 +106,7 @@ body {
     }
 
     .check {
-        margin-top: -100px;
+        margin-top: -90px;
     }
 
     .dis {
@@ -90,7 +124,7 @@ body {
     }
 
     .check {
-        margin-top: -100px;
+        margin-top: -90px;
     }
 
     .dis {

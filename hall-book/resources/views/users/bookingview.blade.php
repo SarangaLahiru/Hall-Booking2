@@ -57,6 +57,10 @@
             </div>
             <div class="card-body">
                 <table>
+                    <tr>
+                        <th>Status</th>
+                        <td>{{ $booking->status }}</td>
+                    </tr>
                     @if($booking->student_no)
                         <tr>
                             <th>Student No:</th>
@@ -185,13 +189,13 @@
                         </tr>
                     @endif
                 </table>
-                <div class="text-right mt-3">
+                {{--  <div class="text-right mt-3">
                     <form action="{{ route('booking.accept', $booking->id) }}" method="POST" style="display: inline;">
                         @csrf
                         <button type="submit" class="btn btn-success">Accept</button>
                     </form>
                     <button class="btn btn-danger" data-toggle="modal" data-target="#rejectModal">Reject</button>
-                </div>
+                </div>  --}}
                 <a href="{{ route('admin.dashboard') }}" class="btn btn-primary">Back to Dashboard</a>
             </div>
                 {{--  <a href="{{ route('admin.dashboard') }}" class="btn btn-primary">Back to Dashboard</a>  --}}
@@ -201,38 +205,7 @@
             </div>
         </div>
     </div>
-    <!-- Modal for Rejection Reason -->
-    <div class="modal fade" id="rejectModal" tabindex="-1" aria-labelledby="rejectModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="rejectModalLabel">Reason for Rejection</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <form action="{{ route('booking.reject', $booking->id) }}" method="POST">
-                    @csrf
-                    <div class="modal-body">
-                        <div class="form-group">
-                            <label for="reason">Reason:</label>
-                            <select name="reason" id="reason" class="form-control" required>
-                                <option value="">Select Reason</option>
-                                <option value="Document verification failed">Document verification failed</option>
-                                <option value="Event type not suitable">Event type not suitable</option>
-                                <option value="Facilities not available">Facilities not available</option>
-                                <option value="Other">Other</option>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                        <button type="submit" class="btn btn-danger">Reject</button>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
+
 
 
     <!-- Modal -->

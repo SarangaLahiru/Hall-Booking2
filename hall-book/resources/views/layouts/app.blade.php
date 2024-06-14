@@ -54,7 +54,7 @@
                          </li>
                       </ul>
                    </div>
-                   <div class="navbar-btn d-none d-sm-inline-block">
+                   {{--  <div class="navbar-btn d-none d-sm-inline-block">
                       <ul>
                          <li>
                             <a class="btn primary-btn-outline" href="javascript:void(0)"
@@ -67,7 +67,7 @@
                                >
                          </li>
                       </ul>
-                   </div>
+                   </div>  --}}
                 </nav>
                 <!-- navbar -->
              </div>

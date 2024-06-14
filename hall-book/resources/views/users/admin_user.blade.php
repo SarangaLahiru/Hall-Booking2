@@ -11,7 +11,7 @@
 <body>
     <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
         <div class="container">
-            <a class="navbar-brand" href="#"><i class="fas fa-user-shield mr-2"></i>Admin Dashboard</a>
+            <a class="navbar-brand" href="#"><i class="fas fa-user-shield mr-2"></i>User Dashboard</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
                 aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -127,7 +127,7 @@
                             @endforeach
                         </td>
                         <td>
-                            <a href="{{ route('admin.booking.show', $booking->id) }}" class="btn btn-primary btn-sm">View More</a>
+                            <a href="{{ route('adminview.booking.show', $booking->id) }}" class="btn btn-primary btn-sm">View More</a>
                         </td>
                     </tr>
                 @endforeach

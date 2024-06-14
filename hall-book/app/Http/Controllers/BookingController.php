@@ -1,6 +1,7 @@
 <?php
 namespace App\Http\Controllers;
 use App\Mail\BookingAccepted;
+use App\Mail\BookingRejected;
 use Illuminate\Support\Facades\Mail;
 use App\Models\Booking;
 use App\Models\User;
@@ -22,28 +23,65 @@ class BookingController extends Controller
 
     //     return view('check_availability', ['bookings' => $bookings]);
     // }
+    // public function showCalendar()
+    // {
+    //     // Retrieve booking data from the database
+    //     $bookings = Booking::all();
+
+    //     // Format the booking data for FullCalendar
+    //     $events = [];
+    //     foreach ($bookings as $booking) {
+    //         foreach ($booking->booking_dates as $bookingDate) {
+    //             // $events[] = [
+    //             //     // 'title' => $booking->event_type . ' - ' . $booking->event_description,
+    //             //     'title'=>  $bookingDate['end_time'],
+    //             //     'start' => $bookingDate['date'] . 'T' . $bookingDate['start_time'],
+    //             //     'end' => $bookingDate['date'] . 'T' . $bookingDate['end_time'],
+    //             //     'color' => 'green', // Customize the color if needed
+    //             // ];
+
+    //             $startTime = date('g:i A', strtotime($bookingDate['start_time']));
+    //             $endTime = date('g:i A', strtotime($bookingDate['end_time']));
+    //             $events[] = [
+    //                 'title' =>'- '.$endTime .' - '.$booking->event_type,
+    //                 'start' => $bookingDate['date'] . 'T' . $bookingDate['start_time'],
+    //                 'end' => $bookingDate['date'] . 'T' . $bookingDate['end_time'],
+    //                 'color' => 'green', // Customize the color if needed
+    //             ];
+    //         }
+    //     }
+
+    //     // Pass the formatted data to the view
+    //     return view('check_availability', compact('events'));
+    // }
+
     public function showCalendar()
-    {
-        // Retrieve booking data from the database
-        $bookings = Booking::all();
+{
+    // Retrieve booking data from the database
+    $bookings = Booking::all();
 
-        // Format the booking data for FullCalendar
-        $events = [];
-        foreach ($bookings as $booking) {
-            foreach ($booking->booking_dates as $bookingDate) {
-                $events[] = [
-                    // 'title' => $booking->event_type . ' - ' . $booking->event_description,
-                    'title'=>  $bookingDate['end_time'],
-                    'start' => $bookingDate['date'] . 'T' . $bookingDate['start_time'],
-                    'end' => $bookingDate['date'] . 'T' . $bookingDate['end_time'],
-                    'color' => 'green', // Customize the color if needed
-                ];
-            }
+    // Format the booking data for FullCalendar
+    $events = [];
+    foreach ($bookings as $booking) {
+        foreach ($booking->booking_dates as $bookingDate) {
+            $startTime = date('g:i A', strtotime($bookingDate['start_time']));
+            $endTime = date('g:i A', strtotime($bookingDate['end_time']));
+
+            // Determine color based on the status
+            $color = ($booking->status == 'accepted') ? 'green' : '#EEE600';
+
+            $events[] = [
+                'title' => '- ' . $endTime . ' - ' . $booking->event_type,
+                'start' => $bookingDate['date'] . 'T' . $bookingDate['start_time'],
+                'end' => $bookingDate['date'] . 'T' . $bookingDate['end_time'],
+                'color' => $color, // Customize the color based on status
+            ];
         }
-
-        // Pass the formatted data to the view
-        return view('check_availability', compact('events'));
     }
+
+    // Assuming you are returning a view with the events
+    return view('check_availability', ['events' => $events]);
+}
 
 
 
@@ -130,6 +168,7 @@ class BookingController extends Controller
                     'society' => $request->input('society'),
                     'event_type'=>$request->input('eventType'),
                     'event_description'=>$request->input('eventDescription'),
+                    'department'=>$request->input('department'),
                     'documents'=>$document,
                 ];
                 break;
@@ -141,20 +180,49 @@ class BookingController extends Controller
                     'category' => $request->input('category'),
                     'event_type'=>$request->input('eventType'),
                     'event_description'=>$request->input('eventDescription'),
+                    'address'=>$request->input('address'),
                     'documents'=>$document,
                 ];
                 break;
             case 'academic':
-            case 'non-academic':
-            case 'administrative':
                 $additionalFields = [
                     'nic_no' => $request->input('idNo'),
-                    'institution' => $request->input('institution'),
+                    // 'institution' => $request->input('institution'),
                     'post' => $request->input('post'),
                     'category' => $request->input('category'),
                     'society' => $request->input('society'),
                     'event_type'=>$request->input('eventType'),
                     'event_description'=>$request->input('eventDescription'),
+                    'faculty' => $request->input('faculty'),
+                    'department'=>$request->input('department'),
+                    'documents'=>$document,
+                ];
+                break;
+            case 'non-academic':
+                $additionalFields = [
+                    'nic_no' => $request->input('idNo'),
+                    // 'institution' => $request->input('institution'),
+                    'post' => $request->input('post'),
+                    'category' => $request->input('category'),
+                    'society' => $request->input('society'),
+                    'event_type'=>$request->input('eventType'),
+                    'event_description'=>$request->input('eventDescription'),
+                    'faculty' => $request->input('faculty'),
+                    'division'=>$request->input('division'),
+                    'documents'=>$document,
+                ];
+                break;
+            case 'administrative':
+                $additionalFields = [
+                    'nic_no' => $request->input('idNo'),
+                    // 'institution' => $request->input('institution'),
+                    'post' => $request->input('post'),
+                    'category' => $request->input('category'),
+                    'society' => $request->input('society'),
+                    'event_type'=>$request->input('eventType'),
+                    'event_description'=>$request->input('eventDescription'),
+                    'faculty' => $request->input('faculty'),
+                    'division'=>$request->input('division'),
                     'documents'=>$document,
                 ];
                 break;
@@ -182,7 +250,8 @@ class BookingController extends Controller
         $booking->save();
 
         // Redirect the user to a success page
-        return redirect()->route('successPage')->with('success', 'Booking created successfully.');
+        // return redirect()->route('successPage')->with('success', 'Booking created successfully.');
+        return view('successpage')->with('success', 'Booking created successfully.');
     }
 
     public function accept($id)
@@ -195,15 +264,51 @@ class BookingController extends Controller
     return redirect()->route('admin.dashboard')->with('success', 'Booking accepted successfully.');
 }
 
-public function reject($id)
+// public function reject($id)
+// {
+//     $booking = Booking::find($id);
+//     $booking->status = 'rejected';
+//     $booking->save();
+
+
+//     return redirect()->route('admin.dashboard')->with('success', 'Booking rejected successfully.');
+// }
+// public function reject(Request $request, $id)
+//     {
+//         $request->validate([
+//             'reason' => 'required|string',
+//         ]);
+
+//         $booking = Booking::findOrFail($id);
+//         $booking->status = 'rejected';
+//         $booking->save();
+
+//         // Send rejection email with reason
+//         $reason = $request->input('reason');
+//         Mail::to($booking->email)->send(new BookingRejected($booking, $reason));
+
+//         return redirect()->route('admin.dashboard')->with('success', 'Booking rejected successfully.');
+//     }
+
+public function reject(Request $request, $id)
 {
-    $booking = Booking::find($id);
-    $booking->status = 'rejected';
-    $booking->save();
+    $request->validate([
+        'reason' => 'required|string',
+    ]);
+
+    $booking = Booking::findOrFail($id);
 
 
-    return redirect()->route('admin.dashboard')->with('success', 'Booking rejected successfully.');
+
+    // Reject and delete the booking
+    $reason = $request->input('reason');
+    Mail::to($booking->email)->send(new BookingRejected($booking, $reason));
+
+    $booking->delete();
+
+    return redirect()->route('admin.dashboard')->with('success', 'Booking rejected and deleted successfully.');
 }
+
 
 
 

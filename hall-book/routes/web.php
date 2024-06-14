@@ -20,6 +20,8 @@ Route::get('/resources', function () {
 Route::get('/support', function () {
     return view('support');
 });
+
+
 // Route::get('/dash', function () {
 //     return view('admin.dashboard');
 // });
@@ -46,9 +48,14 @@ Route::prefix('admin')->group(function () {
         Route::get('/password/reset', [Controller::class, 'showResetForm'])->name('admin.password.reset');
         Route::post('/password/reset', [Controller::class, 'reset'])->name('admin.password.update');
         Route::get('/dashboard', [Controller::class, 'index'])->name('admin.dashboard');
-        Route::get('/booking/{id}', [App\Http\Controllers\Controller::class, 'showBooking'])->name('admin.booking.show');
-        Route::post('/booking/{id}/accept', [BookingController::class, 'accept'])->name('booking.accept');
-        Route::post('/booking/{id}/reject', [BookingController::class, 'reject'])->name('booking.reject');
+        Route::get('/booking/{id}', [App\Http\Controllers\Controller::class, 'showBooking'])->name('admin.booking.show')->middleware('check.role:admin');
+        Route::post('/booking/{id}/accept', [BookingController::class, 'accept'])->name('booking.accept')->middleware('check.role:admin');;
+        Route::post('/booking/{id}/reject', [BookingController::class, 'reject'])->name('booking.reject')->middleware('check.role:admin');;
+
+        Route::get('/bookingview/{id}', [App\Http\Controllers\Controller::class, 'showviewBooking'])->name('adminview.booking.show');
+
+
+
     });
 
 });

@@ -20,6 +20,9 @@ class CreateBookingsTable extends Migration
             $table->string('post')->nullable();
             $table->string('category');
             $table->string('event_type')->nullable();
+            $table->string('department')->nullable();
+            $table->string('address')->nullable();
+            $table->string('division')->nullable();
             $table->text('event_description')->nullable();
             $table->json('booking_dates');
             $table->json('facilities')->nullable();

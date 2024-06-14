@@ -39,7 +39,15 @@
                   </div>
                </div>  --}}
                <div class="shadow">
-                <div id="calendar" class="calendar"></div>
+
+                <div id="calendar" class="calendar" style="margin-top: -10px">
+
+                    <ul class="legend" style="display: flex">
+                        <li><div class="color-box accepted"></div>Accepted</li>
+                        <li><div class="color-box pending"></div>Pending</li>
+                    </ul>
+                </div>
+
             </div>
             </div>
          </div>
@@ -161,7 +169,9 @@
             weekNumbers: true,
             navLinks: true,
             eventLimit: true,
+
             dateClick: function (info) {
+                console.log(info)
                 var bookingDate = info.dateStr;
                 var bookedTimePeriods = getBookedTimePeriods(bookingDate);
                 showBookedTimePeriods(bookedTimePeriods, bookingDate);
@@ -172,15 +182,25 @@
         function getBookedTimePeriods(bookingDate) {
             var events = calendar.getEvents();
             var bookedTimePeriods = [];
+            var bookingDateTime = new Date(bookingDate).getTime();
             events.forEach(function (event) {
                 var eventStartDate = event.start ? event.start.toISOString().split('T')[0] : null;
                 var eventEndDate = event.end ? event.end.toISOString().split('T')[0] : null;
-                if (eventStartDate === bookingDate || eventEndDate === bookingDate) {
-                    var startTime = event.start ? formatTime(event.start) : '';
-                    var endTime = event.end ? formatTime(event.end) : '';
-                    bookedTimePeriods.push(startTime + ' - ' + endTime);
+                var eventStartTime = event.start ? event.start.getTime() : null;
+                var eventEndTime = event.end ? event.end.getTime() : null;
+
+                if (eventStartDate && eventEndDate) {
+                    var startOfDay = new Date(bookingDate).setHours(0, 0, 0, 0);
+                    var endOfDay = new Date(bookingDate).setHours(23, 59, 59, 999);
+
+                    if (eventStartTime <= endOfDay && eventEndTime >= startOfDay) {
+                        var startTime = event.start ? formatTime(event.start) : '';
+                        var endTime = event.end ? formatTime(event.end) : '';
+                        bookedTimePeriods.push(startTime + ' - ' + endTime);
+                    }
                 }
             });
+            console.log(bookedTimePeriods);
             return bookedTimePeriods;
         }
 
@@ -264,18 +284,23 @@
 
         @if(session('error'))
         $(document).ready(function(){
+            var unavailableSlotsHtml = '';
+
+            @if(count(session('error')['unavailable_slots']) > 0)
+                unavailableSlotsHtml += '<p>Unavailable Time Slots:</p><ul>';
+                @foreach(session('error')['unavailable_slots'] as $slot)
+                    <?php
+                        $formattedStartTime = date('g:i A', strtotime($slot['start_time']));
+                        $formattedEndTime = date('g:i A', strtotime($slot['end_time']));
+                    ?>
+                    unavailableSlotsHtml += '<li>{{ $slot['date'] }} - {{ $formattedStartTime }} to {{ $formattedEndTime }}</li>';
+                @endforeach
+                unavailableSlotsHtml += '</ul>';
+            @endif
+
             Swal.fire({
-                title: 'Error',
-                html: '<p>{{ session('error')['message'] }}</p>' +
-                      @if(count(session('error')['unavailable_slots']) > 0)
-                          '<p>Unavailable Time Slots:</p>' +
-                          '<ul>' +
-                              @foreach(session('error')['unavailable_slots'] as $slot)
-                                  '<li>{{ $slot['date'] }} - {{ $slot['start_time'] }} to {{ $slot['end_time'] }}</li>' +
-                              @endforeach
-                          '</ul>' +
-                      @endif
-                      '',
+                title: 'Unavailable',
+                html: '<p>{{ session('error')['message'] }}</p>' + unavailableSlotsHtml,
                 icon: 'error'
             });
         });

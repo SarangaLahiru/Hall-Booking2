@@ -57,6 +57,10 @@
             </div>
             <div class="card-body">
                 <table>
+                    <tr>
+                        <th>Status</th>
+                        <td>{{ $booking->status }}</td>
+                    </tr>
                     @if($booking->student_no)
                         <tr>
                             <th>Student No:</th>

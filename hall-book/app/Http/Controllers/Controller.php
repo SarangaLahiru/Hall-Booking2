@@ -61,7 +61,7 @@ class Controller extends BaseController
     public function showviewBooking($id)
     {
         $booking = Booking::findOrFail($id);
-        return view('admin.bookingview', compact('booking'));
+        return view('users.bookingview', compact('booking'));
     }
     public function showResetForm()
     {

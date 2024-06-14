@@ -127,7 +127,7 @@
                             @endforeach
                         </td>
                         <td>
-                            <a href="{{ route('admin.booking.show', $booking->id) }}" class="btn btn-primary btn-sm">View More</a>
+                            <a href="{{ route('adminview.booking.show', $booking->id) }}" class="btn btn-primary btn-sm">View More</a>
                         </td>
                     </tr>
                 @endforeach

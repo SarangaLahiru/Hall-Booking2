@@ -62,6 +62,7 @@ jobs:
       - name: Run tests
         run: php vendor/bin/phpunit
         working-directory: ./hall-book
+        
 
       # Add additional steps for deployment if needed
       # e.g., deploying to a server or cloud service

@@ -3,7 +3,7 @@ name: Deploy Laravel Project
 on:
   push:
     branches:
-      - deployment # Change to the branch you want to deploy from
+      - deploymet  # Change to the branch you want to deploy from
 
 jobs:
   deploy:
@@ -32,14 +32,20 @@ jobs:
         with:
           php-version: 7.4
 
+      - name: Change to project directory
+        run: cd hall-book
+
       - name: Install dependencies
-        run: composer install --prefer-dist --no-progress --no-suggest
+        run: composer install --prefer-dist --no-progress
+        working-directory: ./hall-book
 
       - name: Copy .env file
         run: cp .env.example .env
+        working-directory: ./hall-book
 
       - name: Generate application key
         run: php artisan key:generate
+        working-directory: ./hall-book
 
       - name: Migrate and seed database
         run: |
@@ -51,9 +57,11 @@ jobs:
           DB_DATABASE: laravel
           DB_USERNAME: root
           DB_PASSWORD: root
+        working-directory: ./hall-book
 
       - name: Run tests
         run: php vendor/bin/phpunit
+        working-directory: ./hall-book
 
       # Add additional steps for deployment if needed
       # e.g., deploying to a server or cloud service

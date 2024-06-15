@@ -5,7 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b532f30c-c724-4daa-9349-f9b7b748e956" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.github/workflow/deploy.yml" beforeDir="false" afterPath="$PROJECT_DIR$/.github/workflows/deploy.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/hall-book/.github/workflows/deploy.yml" beforeDir="false" afterPath="$PROJECT_DIR$/.github/workflows/deploy.yml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -164,6 +164,8 @@
 }</component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="H:\Hall-Booking2" />
+      <recent name="H:\Hall-Booking2\hall-book" />
       <recent name="H:\Hall-Booking2\.github\workflow" />
     </key>
   </component>
@@ -185,7 +187,7 @@
       <workItem from="1715701701768" duration="30000" />
       <workItem from="1716295185154" duration="7802000" />
       <workItem from="1718347566322" duration="1466000" />
-      <workItem from="1718429544418" duration="5538000" />
+      <workItem from="1718429544418" duration="6082000" />
     </task>
     <servers />
   </component>

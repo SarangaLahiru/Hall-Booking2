@@ -47,55 +47,6 @@
             </div>
         </div>
     </nav>
-    <div class="container mt-4">
-        <div class="row">
-            <div class="col-lg-4">
-                <div class="card text-white bg-danger mb-3">
-                    <div class="card-body">
-                        <div class="d-flex align-items-center">
-                            <div>
-                                <h5 class="card-title"><i class="fas fa-clock mr-2"></i>Pending Bookings</h5>
-                                <p class="card-text">{{ $pendingCount }}</p>
-                            </div>
-                            <div class="ml-auto">
-                                <i class="fas fa-exclamation-circle fa-2x"></i>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-4">
-                <div class="card text-white bg-success mb-3">
-                    <div class="card-body">
-                        <div class="d-flex align-items-center">
-                            <div>
-                                <h5 class="card-title"><i class="fas fa-check-circle mr-2"></i>Accepted Bookings</h5>
-                                <p class="card-text">{{ $acceptedCount }}</p>
-                            </div>
-                            <div class="ml-auto">
-                                <i class="fas fa-thumbs-up fa-2x"></i>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-4">
-                <div class="card text-white bg-secondary mb-3">
-                    <div class="card-body">
-                        <div class="d-flex align-items-center">
-                            <div>
-                                <h5 class="card-title"><i class="fas fa-times-circle mr-2"></i>Rejected Bookings</h5>
-                                <p class="card-text">{{ $rejectedCount }}</p>
-                            </div>
-                            <div class="ml-auto">
-                                <i class="fas fa-thumbs-down fa-2x"></i>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
 
     <div class="container mt-5">
         <h1 class="text-center mb-4">Booking Details</h1>
@@ -112,7 +63,7 @@
                 </tr>
             </thead>
             <tbody>
-                @foreach ($bookings->sortByDesc('created_at') as $index => $booking)
+            @foreach ($bookings->where('status', 'accepted')->sortByDesc('created_at') as $index => $booking)
                     <tr>
                         <td>{{ $index + 1 }}</td>
                         <td>{{ $booking->created_at->format('Y-m-d') }}</td>

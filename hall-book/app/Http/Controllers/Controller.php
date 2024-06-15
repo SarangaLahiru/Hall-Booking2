@@ -34,7 +34,6 @@ class Controller extends BaseController
          }
          else{
             return view('users.admin_user', compact('adminData', 'bookings', 'pendingCount', 'acceptedCount', 'rejectedCount'));
-
          }
 
 

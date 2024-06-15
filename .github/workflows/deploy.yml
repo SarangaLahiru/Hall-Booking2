@@ -2,8 +2,8 @@ name: Deploy Laravel Project
 
 on:
   push:
-    branches:
-      - deploymet  # Change to the branch you want to deploy from
+  branches:
+    - deployment  # Change to the branch you want to deploy from
 
 jobs:
   deploy:
@@ -62,7 +62,7 @@ jobs:
       - name: Run tests
         run: php vendor/bin/phpunit
         working-directory: ./hall-book
-        
+
 
       # Add additional steps for deployment if needed
       # e.g., deploying to a server or cloud service

@@ -12,10 +12,10 @@
                <div class="header-wrapper">
                   <div class="header-content">
                      <h1 class="header-title">
-                        Hall Reservation System
+                        Prof.Dayananda Somasundara Auditorum
                      </h1>
-                     <p class="text-lg">
-                        Are you planning an event and looking for the perfect venue? Our state-of-the-art Hall Reservation System is here to make your booking process smooth and hassle-free!
+                     <p class="text-lg" style="font-size: 24px">
+                        Hall Reservation System
                      </p>
                      {{--  <div class="header-btn rounded-buttons">
                         <a
@@ -305,6 +305,15 @@
             });
         });
     @endif
+    @if(session('error2'))
+    Swal.fire({
+        title: 'Unavailable',
+        text:'Time slots cannot span multiple days',
+        icon: 'error'
+    });
+
+    @endif
+
 
 
         document.getElementById('save-multiple-days').addEventListener('click', function () {

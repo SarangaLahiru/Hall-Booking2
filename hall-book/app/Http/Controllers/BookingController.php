@@ -139,6 +139,7 @@ class BookingController extends Controller
                 'end_time' => $request->input('end_time')[$index],
             ];
         }
+        $document = null;
         if ($request->hasFile('fileInput')) {
             $file = $request->file('fileInput');
 

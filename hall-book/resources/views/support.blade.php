@@ -30,7 +30,7 @@
              <div class="col-lg-12">
                 <nav class="navbar navbar-expand-lg">
                    <a class="navbar-brand" href="javascript:void(0)">
-                   <img src="https://cdn.ayroui.com/1.0/images/white-logo.svg" alt="Logo" />
+                   <img src="/logo.png" alt="Logo" width="300px"  />
                    </a>
                    <button
                       class="navbar-toggler"
@@ -62,7 +62,7 @@
                       </ul>
                    </div>
                    <div class="navbar-btn d-none d-sm-inline-block">
-                      <ul>
+                      {{--  <ul>
                          <li>
                             <a class="btn primary-btn-outline" href="javascript:void(0)"
                                >Sign In</a
@@ -73,7 +73,7 @@
                                >Sign Up</a
                                >
                          </li>
-                      </ul>
+                      </ul>  --}}
                    </div>
                 </nav>
                 <!-- navbar -->

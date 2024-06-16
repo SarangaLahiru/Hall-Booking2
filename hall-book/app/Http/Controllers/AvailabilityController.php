@@ -18,6 +18,12 @@ class AvailabilityController extends Controller
         $startTime = $data['start_time'];
         $endTime = $data['end_time'];
 
+         // Check if the time slot spans two days
+         if (strtotime($startTime) > strtotime($endTime)) {
+            $invalidSlots[] = $data;
+            continue; // Skip further checks for this slot
+        }
+
         // Get all bookings
         $bookings = Booking::all();
 
@@ -49,6 +55,9 @@ class AvailabilityController extends Controller
     //         'unavailable_slots' => $unavailableSlots
     //     ]);
     // }
+    if (!empty($invalidSlots)) {
+        return redirect()->back()->with('error2', ['message' => 'Time slots cannot span multiple days.', 'invalid_slots' => $invalidSlots]);
+    }
     if (empty($unavailableSlots)) {
         Session::put('availabilityData',$availabilityData);
         // All requested time slots are available

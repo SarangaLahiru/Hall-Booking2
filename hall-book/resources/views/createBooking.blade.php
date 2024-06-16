@@ -11,7 +11,15 @@
 
 </head>
 <body>
-
+    <div id="loadingIndicator" class="loading-indicator">
+        <div class="d-flex justify-content-center align-items-center" style="height: 100vh; position: fixed; top: 0; left: 0; right: 0; bottom: 0; background-color: rgba(255, 255, 255, 0.8); z-index: 1000;">
+          <div class="spinner-border text-primary" role="status">
+            <span class="visually-hidden"></span>
+          </div>
+          {{-- Uncomment below to add loading text --}}
+          {{-- <p class="loading-text" style="color:rgb(0, 153, 255);">Loading...</p> --}}
+        </div>
+      </div>
 <!-- Category Selection Modal -->
 <div class="modal fade" id="categoryModal" tabindex="-1" role="dialog" data-backdrop="static" data-keyboard="false">
     <div class="modal-dialog modal-dialog-centered" role="document">
@@ -647,6 +655,17 @@
 
 
     });
+    window.onload = function() {
+        hideLoadingIndicator();
+      };
+
+    function showLoadingIndicator() {
+        document.getElementById('loadingIndicator').style.display = 'block';
+      }
+
+      function hideLoadingIndicator() {
+        document.getElementById('loadingIndicator').style.display = 'none';
+      }
 </script>
 </body>
 </html>

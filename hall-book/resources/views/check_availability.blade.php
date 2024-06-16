@@ -3,6 +3,15 @@
 @section('title', 'Check Availability')
 
 @section('content')
+<div id="loadingIndicator" class="loading-indicator">
+    <div class="d-flex justify-content-center align-items-center" style="height: 100vh; position: fixed; top: 0; left: 0; right: 0; bottom: 0; background-color: rgba(255, 255, 255, 0.8); z-index: 1000;">
+      <div class="spinner-border text-primary" role="status">
+        <span class="visually-hidden"></span>
+      </div>
+      {{-- Uncomment below to add loading text --}}
+      {{-- <p class="loading-text" style="color:rgb(0, 153, 255);">Loading...</p> --}}
+    </div>
+  </div>
 <!--====== HEADER ONE PART START ======-->
 <section class="header-area header-one" >
    <div class="header-content-area " style="height: 580px;">
@@ -123,6 +132,8 @@
             </div>
         </div>
     </div>
+
+
 </div>
 
 <link href='https://use.fontawesome.com/releases/v5.0.6/css/all.css' rel='stylesheet'>
@@ -153,6 +164,13 @@
 
   <script>
     document.addEventListener('DOMContentLoaded', function () {
+
+        showLoadingIndicator();
+
+
+
+
+
         var calendarEl = document.getElementById('calendar');
         var calendar = new FullCalendar.Calendar(calendarEl, {
             plugins: ['bootstrap', 'interaction', 'dayGrid', 'timeGrid', 'list'],
@@ -323,6 +341,17 @@
             $('#multipleDaysModal').modal('hide');
         });
     });
+    window.onload = function() {
+        hideLoadingIndicator();
+      };
+
+    function showLoadingIndicator() {
+        document.getElementById('loadingIndicator').style.display = 'block';
+      }
+
+      function hideLoadingIndicator() {
+        document.getElementById('loadingIndicator').style.display = 'none';
+      }
 
 </script>
 

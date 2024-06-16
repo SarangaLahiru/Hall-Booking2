@@ -49,6 +49,15 @@
     </style>
 </head>
 <body>
+    <div id="loadingIndicator" class="loading-indicator">
+        <div class="d-flex justify-content-center align-items-center" style="height: 100vh; position: fixed; top: 0; left: 0; right: 0; bottom: 0; background-color: rgba(255, 255, 255, 0.8); z-index: 1000;">
+          <div class="spinner-border text-primary" role="status">
+            <span class="visually-hidden"></span>
+          </div>
+          {{-- Uncomment below to add loading text --}}
+          {{-- <p class="loading-text" style="color:rgb(0, 153, 255);">Loading...</p> --}}
+        </div>
+      </div>
     <div class="container mt-5">
         <h1 class="text-center mb-4">Booking Details</h1>
         <div class="card">
@@ -262,5 +271,21 @@
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            showLoadingIndicator();
+          });
+        window.onload = function() {
+            hideLoadingIndicator();
+          };
+
+        function showLoadingIndicator() {
+            document.getElementById('loadingIndicator').style.display = 'block';
+          }
+
+          function hideLoadingIndicator() {
+            document.getElementById('loadingIndicator').style.display = 'none';
+          }
+    </script>
 </body>
 </html>

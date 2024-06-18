@@ -13,13 +13,13 @@
     </div>
   </div>
 <!--====== HEADER ONE PART START ======-->
-<section class="header-area header-one" >
+<section class="header-area header-one"  >
    <div class="header-content-area " style="height: 580px;">
       <div class="container">
          <div class="row align-items-center dis" style="margin-top: 0px">
             <div class="col-lg-6 col-12">
                <div class="header-wrapper">
-                  <div class="header-content">
+                  <div class="header-content"  data-aos="fade-up"  data-aos-duration="3000">
                      <h1 class="header-title">
                         Prof.Dayananda Somasundara Auditorum
                      </h1>
@@ -49,7 +49,7 @@
                </div>  --}}
                <div class="shadow">
 
-                <div id="calendar" class="calendar" style="margin-top: -10px">
+                <div id="calendar" class="calendar" style="margin-top: -10px" data-aos="fade-left">
 
                     <ul class="legend" style="display: flex">
                         <li><div class="color-box accepted"></div>Accepted</li>
@@ -81,7 +81,7 @@
         </div>
     </div>  --}}
 
-    <div class="row justify-content-center mt-4">
+    <div class="row justify-content-center mt-4" data-aos="fade-up"  data-aos-duration="1000">
         <div class="col">
             <div class="car">
                 <div class="card-body">

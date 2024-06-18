@@ -195,7 +195,7 @@
                     @endif
                 </table>
                 <div class="text-right mt-3">
-                    <form action="{{ route('booking.accept', $booking->id) }}" method="POST" style="display: inline;">
+                    <form action="{{ route('booking.accept', $booking->id) }}" method="POST" style="display: inline;" id='accept'>
                         @csrf
                         <button type="submit" class="btn btn-success">Accept</button>
                     </form>
@@ -220,7 +220,7 @@
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <form action="{{ route('booking.reject', $booking->id) }}" method="POST">
+                <form action="{{ route('booking.reject', $booking->id) }}" method="POST" id="reject">
                     @csrf
                     <div class="modal-body">
                         <div class="form-group">
@@ -286,6 +286,12 @@
           function hideLoadingIndicator() {
             document.getElementById('loadingIndicator').style.display = 'none';
           }
+          document.getElementById('accept').addEventListener('submit', function(event) {
+            showLoadingIndicator();
+          });
+          document.getElementById('reject').addEventListener('submit', function(event) {
+            showLoadingIndicator();
+          });
     </script>
 </body>
 </html>

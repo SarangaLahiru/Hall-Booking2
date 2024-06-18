@@ -12,6 +12,8 @@
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('css/check_availability.css') }}">
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
+    <link rel="stylesheet" href="bower_components/aos/dist/aos.css" />
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 
 </head>
 
@@ -39,18 +41,19 @@
                    <span class="toggler-icon"></span>
                    </button>
                    <div class="collapse navbar-collapse sub-menu-bar" id="navbarOne">
-                      <ul class="navbar-nav m-auto">
+                    <ul class="navbar-nav m-auto">
                         <li class="nav-item">
                             <a href="/">Booking</a>
                          </li>
-                         <li class="nav-item">
-                            <a href="/services">Services</a>
-                         </li>
+
                          <li class="nav-item">
                             <a href="/resources">Resources</a>
                          </li>
                          <li class="nav-item">
-                            <a href="/support">Support</a>
+                            <a href="/staff">Staff</a>
+                         </li>
+                         <li class="nav-item">
+                            <a href="/support">Help</a>
                          </li>
                       </ul>
                    </div>
@@ -87,6 +90,11 @@
 </body>
 <!--====== Bootstrap js ======-->
     <script src="https://cdn.ayroui.com/1.0/js/bootstrap.bundle.min.js"></script>
+    <script src="bower_components/aos/dist/aos.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init();
+      </script>
 
     <script>
        //===== close navbar-collapse when a  clicked

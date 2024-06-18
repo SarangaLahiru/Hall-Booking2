@@ -11,7 +11,7 @@ use Illuminate\Support\Facades\Mail;
 Route::get('/calendar', function () {
     return view('calendar');
 });
-Route::get('/services', function () {
+Route::get('/staff', function () {
     return view('services');
 });
 Route::get('/resources', function () {

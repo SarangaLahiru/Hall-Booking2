@@ -88,7 +88,7 @@
 
 
     <!--====== SLIDER ONE PART START ======-->
-    <section class="slider-area slider-one">
+    {{--  <section class="slider-area slider-one">
        <div class="bd-example">
           <div id="carouselOne" class="carousel slide" data-bs-ride="carousel">
              <ol class="carousel-indicators">
@@ -104,7 +104,8 @@
                 <div
                    class="carousel-item bg_cover active"
                    style="
-                   background-image: url(https://cdn.ayroui.com/1.0/images/slider/slider-one/1.jpg);
+                   background-image: url(/Images/_AVU8959.JPG);
+                   background-size:'cover';
                    "
                    >
                    <div class="carousel-caption">
@@ -149,7 +150,7 @@
                 <div
                    class="carousel-item bg_cover"
                    style="
-                   background-image: url(https://cdn.ayroui.com/1.0/images/slider/slider-one/2.jpg);
+                   background-image: url(/Images/_AVU5214.JPG);
                    "
                    >
                    <div class="carousel-caption">
@@ -194,7 +195,7 @@
                 <div
                    class="carousel-item bg_cover"
                    style="
-                   background-image: url(https://cdn.ayroui.com/1.0/images/slider/slider-one/3.jpg);
+                   background-image: url(/Images/_AVU4617.JPG);
                    "
                    >
                    <div class="carousel-caption">
@@ -245,7 +246,7 @@
                 data-bs-slide="prev"
                 >
              {{--  <i class="lni lni-chevron-left"></i>  --}}
-             <i class="bi bi-arrow-left-short"></i>
+             {{--  <i class="bi bi-arrow-left-short"></i>
              </a>
              <a
                 class="carousel-control-next"
@@ -254,13 +255,13 @@
                 data-bs-slide="next"
                 >
              {{--  <i class="lni lni-chevron-right"></i>  --}}
-             <i class="bi  bi-arrow-right-short"></i>
+             {{--  <i class="bi  bi-arrow-right-short"></i>
              </a>
           </div>
           <!-- carousel -->
        </div>
        <!-- bd-example -->
-    </section>
+    </section>    --}}
     <!--====== SLIDER ONE PART ENDS ======-->
 
     <!--====== gLightBox CSS ======-->
@@ -272,23 +273,19 @@
       <div class="row justify-content-center">
          <div class="col-xxl-6 col-xl-7 col-lg-8">
             <div class="section-title text-center mb-5">
-               <h2 class="mb-3 fw-bold">Portfolio Style</h2>
-               <p class="text-lg">
-                  Morem ipsum dolor sit amet consectetur, adipisicing elit. Illum
-                  quam suscipit distinctio optio, quaerat consequatur labore
-                  pariatur rerum.
-               </p>
+               <h2 class="mb-3 fw-bold "> Prof.Dayananda Somasundara Auditorum</h2>
+
             </div>
          </div>
       </div>
       <div class="row">
          <div class="col-lg-12">
             <div class="portfolio-menu">
-               <button data-filter="all" class="active">ALL WORK</button>
-               <button data-filter="branding">BRANDING</button>
-               <button data-filter="marketing">MARKETING</button>
-               <button data-filter="planning">PLANNING</button>
-               <button data-filter="research">RESEARCH</button>
+               <button data-filter="all" class="active">Events</button>
+               <button data-filter="branding">Lighting system</button>
+               <button data-filter="marketing">Audio System</button>
+               <button data-filter="planning">Stage</button>
+               {{--  <button data-filter="research">RESEARCH</button>  --}}
             </div>
             <!-- portfolio menu -->
          </div>
@@ -299,7 +296,7 @@
             <div class="portfolio-style-one text-center">
                <div class="portfolio-image">
                   <img
-                     src="https://cdn.ayroui.com/1.0/images/portfolio/portfolio-1/pf1.jpg"
+                     src="/Images/_AVU4617.JPG"
                      alt="image"
                      />
                </div>
@@ -315,13 +312,13 @@
                      </div>
                      <div class="portfolio-text">
                         <h4 class="portfolio-title">
-                           <a href="javascript:void(0)">Graphics Design</a>
+                          <a href="javascript:void(0)">Events</a>
                         </h4>
                         <p class="text">
-                           Short description for the ones who look for something new.
-                           Awesome!
+                          Ceremony celebrating the achievements of our graduates.
                         </p>
-                     </div>
+                      </div>
+
                   </div>
                </div>
             </div>
@@ -331,7 +328,7 @@
             <div class="portfolio-style-one text-center">
                <div class="portfolio-image">
                   <img
-                     src="https://cdn.ayroui.com/1.0/images/portfolio/portfolio-1/pf2.jpg"
+                      src="/Images/_AVU4620 (1).JPG"
                      alt="image"
                      />
                </div>
@@ -347,13 +344,13 @@
                      </div>
                      <div class="portfolio-text">
                         <h4 class="portfolio-title">
-                           <a href="javascript:void(0)">Graphics Design</a>
+                          <a href="javascript:void(0)">Events</a>
                         </h4>
                         <p class="text">
-                           Short description for the ones who look for something new.
-                           Awesome!
+                          Ceremony celebrating the achievements of our graduates.
                         </p>
-                     </div>
+                      </div>
+
                   </div>
                </div>
             </div>
@@ -363,7 +360,7 @@
             <div class="portfolio-style-one text-center">
                <div class="portfolio-image">
                   <img
-                     src="https://cdn.ayroui.com/1.0/images/portfolio/portfolio-1/pf3.jpg"
+                      src="/Images/_AVU4623.JPG"
                      alt="image"
                      />
                </div>
@@ -379,13 +376,13 @@
                      </div>
                      <div class="portfolio-text">
                         <h4 class="portfolio-title">
-                           <a href="javascript:void(0)">Graphics Design</a>
+                          <a href="javascript:void(0)">Events</a>
                         </h4>
                         <p class="text">
-                           Short description for the ones who look for something new.
-                           Awesome!
+                          Ceremony celebrating the achievements of our graduates.
                         </p>
-                     </div>
+                      </div>
+
                   </div>
                </div>
             </div>
@@ -395,7 +392,7 @@
             <div class="portfolio-style-one text-center">
                <div class="portfolio-image">
                   <img
-                     src="https://cdn.ayroui.com/1.0/images/portfolio/portfolio-1/pf4.jpg"
+                      src="/Images/_AVU5031.JPG"
                      alt="image"
                      />
                </div>
@@ -411,13 +408,13 @@
                      </div>
                      <div class="portfolio-text">
                         <h4 class="portfolio-title">
-                           <a href="javascript:void(0)">Graphics Design</a>
+                          <a href="javascript:void(0)">Events</a>
                         </h4>
                         <p class="text">
-                           Short description for the ones who look for something new.
-                           Awesome!
+                          Ceremony celebrating the achievements of our graduates.
                         </p>
-                     </div>
+                      </div>
+
                   </div>
                </div>
             </div>
@@ -427,7 +424,7 @@
             <div class="portfolio-style-one text-center">
                <div class="portfolio-image">
                   <img
-                     src="https://cdn.ayroui.com/1.0/images/portfolio/portfolio-1/pf5.jpg"
+                      src="/Images/_AVU5034 (1).JPG"
                      alt="image"
                      />
                </div>
@@ -443,13 +440,13 @@
                      </div>
                      <div class="portfolio-text">
                         <h4 class="portfolio-title">
-                           <a href="javascript:void(0)">Graphics Design</a>
+                          <a href="javascript:void(0)">Events</a>
                         </h4>
                         <p class="text">
-                           Short description for the ones who look for something new.
-                           Awesome!
+                          Ceremony celebrating the achievements of our graduates.
                         </p>
-                     </div>
+                      </div>
+
                   </div>
                </div>
             </div>
@@ -459,7 +456,7 @@
             <div class="portfolio-style-one text-center">
                <div class="portfolio-image">
                   <img
-                     src="https://cdn.ayroui.com/1.0/images/portfolio/portfolio-1/pf6.jpg"
+                      src="/Images/_AVU5193.JPG"
                      alt="image"
                      />
                </div>
@@ -475,13 +472,13 @@
                      </div>
                      <div class="portfolio-text">
                         <h4 class="portfolio-title">
-                           <a href="javascript:void(0)">Graphics Design</a>
+                          <a href="javascript:void(0)">Events</a>
                         </h4>
                         <p class="text">
-                           Short description for the ones who look for something new.
-                           Awesome!
+                          Ceremony celebrating the achievements of our graduates.
                         </p>
-                     </div>
+                      </div>
+
                   </div>
                </div>
             </div>
@@ -491,7 +488,7 @@
             <div class="portfolio-style-one text-center">
                <div class="portfolio-image">
                   <img
-                     src="https://cdn.ayroui.com/1.0/images/portfolio/portfolio-1/pf7.jpg"
+                      src="/Images/_AVU5214.JPG"
                      alt="image"
                      />
                </div>
@@ -507,13 +504,13 @@
                      </div>
                      <div class="portfolio-text">
                         <h4 class="portfolio-title">
-                           <a href="javascript:void(0)">Graphics Design</a>
+                          <a href="javascript:void(0)">Events</a>
                         </h4>
                         <p class="text">
-                           Short description for the ones who look for something new.
-                           Awesome!
+                          Ceremony celebrating the achievements of our graduates.
                         </p>
-                     </div>
+                      </div>
+
                   </div>
                </div>
             </div>
@@ -523,7 +520,7 @@
             <div class="portfolio-style-one text-center">
                <div class="portfolio-image">
                   <img
-                     src="https://cdn.ayroui.com/1.0/images/portfolio/portfolio-1/pf8.jpg"
+                     src="/Images/_AVU5491.JPG"
                      alt="image"
                      />
                </div>
@@ -539,13 +536,13 @@
                      </div>
                      <div class="portfolio-text">
                         <h4 class="portfolio-title">
-                           <a href="javascript:void(0)">Graphics Design</a>
+                          <a href="javascript:void(0)">Events</a>
                         </h4>
                         <p class="text">
-                           Short description for the ones who look for something new.
-                           Awesome!
+                          Ceremony celebrating the achievements of our graduates.
                         </p>
-                     </div>
+                      </div>
+
                   </div>
                </div>
             </div>
@@ -555,7 +552,7 @@
             <div class="portfolio-style-one text-center">
                <div class="portfolio-image">
                   <img
-                     src="https://cdn.ayroui.com/1.0/images/portfolio/portfolio-1/pf9.jpg"
+                     src="/Images/_AVU8589.JPG"
                      alt="image"
                      />
                </div>
@@ -571,13 +568,13 @@
                      </div>
                      <div class="portfolio-text">
                         <h4 class="portfolio-title">
-                           <a href="javascript:void(0)">Graphics Design</a>
+                          <a href="javascript:void(0)">Events</a>
                         </h4>
                         <p class="text">
-                           Short description for the ones who look for something new.
-                           Awesome!
+                          Ceremony celebrating the achievements of our graduates.
                         </p>
-                     </div>
+                      </div>
+
                   </div>
                </div>
             </div>

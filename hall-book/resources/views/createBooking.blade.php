@@ -33,10 +33,7 @@
                         <i class="fas fa-user-graduate fa-3x"></i>
                         <p>Academic</p>
                     </div>
-                    <div class="category-icon text-center" data-category="non-academic">
-                        <i class="fas fa-briefcase fa-3x"></i>
-                        <p>Non-Academic</p>
-                    </div>
+
                     <div class="category-icon text-center" data-category="administrative">
                         <i class="fas fa-user-tie fa-3x"></i>
                         <p>Administrative</p>
@@ -44,6 +41,10 @@
                     <div class="category-icon text-center" data-category="student">
                         <i class="fas fa-user fa-3x"></i>
                         <p>Student</p>
+                    </div>
+                    <div class="category-icon text-center" data-category="non-academic">
+                        <i class="fas fa-briefcase fa-3x"></i>
+                        <p>Non-Academic</p>
                     </div>
                     <div class="category-icon text-center" data-category="external">
                         <i class="fas fa-users fa-3x"></i>
@@ -64,7 +65,7 @@
             <div class="card shadow">
 
                 <div class="card-header">
-                    <h5 class="card-title">Hall Booking System</h5>
+                    <h5 class="card-title">Hall Reservation System</h5>
                 </div>
                 <div class="card-body">
                     <!-- Stepper -->
@@ -118,7 +119,7 @@
                                 <div class="form-row">
                                     <div class="col-md-6 mb-3">
                                         <label for="phone">Contact Number</label>
-                                        <input type="number" class="form-control" id="phone" name="phone" required>
+                                        <input type="text"  class="form-control" id="phone" name="phone" required>
                                         <div class="invalid-feedback">
                                             Please enter a valid phone number.
                                         </div>
@@ -135,9 +136,15 @@
                                     <div class="col-md-6 mb-3" id="facultyField" style="display: none;">
                                         <label for="faculty">Name of the Faculty</label>
                                         <select class="form-control" id="faculty" name="faculty" required>
-                                            <option value="">Select</option>
-                                            <option value="Faculty 1">Faculty 1</option>
-                                            <option value="Faculty 2">Faculty 2</option>
+                                            <option value="none">None</option>
+                                            <option value="Faculty of Agricultural Sciences">Faculty of Agricultural Sciences</option>
+                                            <option value="Faculty of Applied Sciences">Faculty of Applied Sciences</option>
+                                            <option value="Faculty of Geomatics">Faculty of Geomatics</option>
+                                            <option value="Faculty of Management Studies">Faculty of Management Studies</option>
+                                            <option value="Faculty of Social Sciences and Languages">Faculty of Social Sciences and Languages</option>
+                                            <option value="Faculty of Technology">Faculty of Technology</option>
+                                            <option value="Faculty of Computing">Faculty of Computing</option>
+                                            <option value="Faculty of Medicine">Faculty of Medicine</option>
                                             <!-- Add more options as needed -->
                                         </select>
                                         <div class="invalid-feedback">
@@ -145,11 +152,45 @@
                                         </div>
                                     </div>
                                     <div class="col-md-6 mb-3" id="departmentField" style="display: none;">
-                                        <label for="department">Name of Department</label>
+                                        <label for="department">Name of the Department</label>
                                         <select class="form-control" id="department" name="department" required>
-                                            <option value="">Select</option>
-                                            <option value="Department 1">Department 1</option>
-                                            <option value="Department 2">Department 2</option>
+                                            <option value="none">None</option>
+                                            <optgroup label="Faculty of Agricultural Sciences">
+                                              <option value="Department of Agricultural Systems">Department of Agricultural Systems</option>
+                                              <option value="Department of Agribusiness Management">Department of Agribusiness Management</option>
+                                              <option value="Department of Export Agriculture">Department of Export Agriculture</option>
+                                              <option value="Department of Livestock Production">Department of Livestock Production</option>
+                                            </optgroup>
+                                            <optgroup label="Faculty of Applied Sciences">
+                                              <option value="Department of Biological Sciences">Department of Biological Sciences</option>
+                                              <option value="Department of Physical Sciences & Technology">Department of Physical Sciences & Technology</option>
+                                              <option value="Department of Computing and Information Systems">Department of Computing and Information Systems</option>
+                                              <option value="Department of Sports Sciences & Physical Education">Department of Sports Sciences & Physical Education</option>
+                                            </optgroup>
+                                            <optgroup label="Faculty of Geomatics">
+                                              <option value="Department of Surveying & Geodesy">Department of Surveying & Geodesy</option>
+                                              <option value="Department of Remote Sensing & GIS">Department of Remote Sensing & GIS</option>
+                                            </optgroup>
+                                            <optgroup label="Faculty of Management Studies">
+                                              <option value="Department of Business Management">Department of Business Management</option>
+                                              <option value="Department of Tourism Management">Department of Tourism Management</option>
+                                              <option value="Department of Accountancy & Finance">Department of Accountancy & Finance</option>
+                                              <option value="Department of Marketing Management">Department of Marketing Management</option>
+                                            </optgroup>
+                                            <optgroup label="Faculty of Social Sciences and Languages">
+                                              <option value="Department of Social Sciences">Department of Social Sciences</option>
+                                              <option value="Department of Languages">Department of Languages</option>
+                                              <option value="Department of Political Science">Department of Political Science</option>
+                                            </optgroup>
+                                            <optgroup label="Faculty of Technology">
+                                              <option value="Department of Engineering Technology">Department of Engineering Technology</option>
+                                              <option value="Department of Biosystems Technology">Department of Biosystems Technology</option>
+                                            </optgroup>
+                                            <optgroup label="Faculty of Computing">
+                                              <option value="Department of Software Engineering">Department of Software Engineering</option>
+                                              <option value="Department of Computing and Information Systems">Department of Computing and Information Systems</option>
+                                              <option value="Department of Data Science">Department of Data Science</option>
+                                            </optgroup>
                                             <!-- Add more options as needed -->
                                         </select>
                                         <div class="invalid-feedback">
@@ -655,6 +696,9 @@
 
 
     });
+    document.addEventListener("DOMContentLoaded", function() {
+        showLoadingIndicator();
+      });
     window.onload = function() {
         hideLoadingIndicator();
       };

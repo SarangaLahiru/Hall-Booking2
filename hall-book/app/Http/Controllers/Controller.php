@@ -28,14 +28,39 @@ class Controller extends BaseController
         $pendingCount = $bookings->where('status', 'pending')->count();
         $acceptedCount = $bookings->where('status', 'accepted')->count();
         $rejectedCount = $bookings->where('status', 'rejected')->count();
+         if($adminData->role==='admin'){
+            return view('admin.dashboard', compact('adminData', 'bookings', 'pendingCount', 'acceptedCount', 'rejectedCount'));
 
-        return view('admin.dashboard', compact('adminData', 'bookings', 'pendingCount', 'acceptedCount', 'rejectedCount'));
+         }
+         else{
+            return view('users.admin_user', compact('adminData', 'bookings', 'pendingCount', 'acceptedCount', 'rejectedCount'));
+         }
+
 
     }
+    // public function index_user()
+    // {
+
+    //     // return view('admin.dashboard');
+    //     $adminData = Auth::guard('admin')->user();
+    //     $bookings = Booking::all();
+    //     // return view('admin.dashboard', compact('bookings','adminData'));
+    //     $pendingCount = $bookings->where('status', 'pending')->count();
+    //     $acceptedCount = $bookings->where('status', 'accepted')->count();
+    //     $rejectedCount = $bookings->where('status', 'rejected')->count();
+
+    //     return view('admin.admin_user', compact('adminData', 'bookings', 'pendingCount', 'acceptedCount', 'rejectedCount'));
+
+    // }
     public function showBooking($id)
     {
         $booking = Booking::findOrFail($id);
         return view('admin.booking', compact('booking'));
+    }
+    public function showviewBooking($id)
+    {
+        $booking = Booking::findOrFail($id);
+        return view('users.bookingview', compact('booking'));
     }
     public function showResetForm()
     {

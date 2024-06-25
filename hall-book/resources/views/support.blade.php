@@ -23,6 +23,15 @@
 
 </head>
 <body>
+    <div id="loadingIndicator" class="loading-indicator">
+        <div class="d-flex justify-content-center align-items-center" style="height: 100vh; position: fixed; top: 0; left: 0; right: 0; bottom: 0; background-color: rgba(255, 255, 255, 0.8); z-index: 1000;">
+          <div class="spinner-border text-primary" role="status">
+            <span class="visually-hidden"></span>
+          </div>
+          {{-- Uncomment below to add loading text --}}
+          {{-- <p class="loading-text" style="color:rgb(0, 153, 255);">Loading...</p> --}}
+        </div>
+      </div>
     <!--====== NAVBAR ONE PART START ======-->
     <section class="navbar-area navbar-one ">
        <div class="container">
@@ -30,7 +39,7 @@
              <div class="col-lg-12">
                 <nav class="navbar navbar-expand-lg">
                    <a class="navbar-brand" href="javascript:void(0)">
-                   <img src="https://cdn.ayroui.com/1.0/images/white-logo.svg" alt="Logo" />
+                   <img src="/logo.png" alt="Logo" width="300px"  />
                    </a>
                    <button
                       class="navbar-toggler"
@@ -46,23 +55,27 @@
                    <span class="toggler-icon"></span>
                    </button>
                    <div class="collapse navbar-collapse sub-menu-bar" id="navbarOne">
-                      <ul class="navbar-nav m-auto">
+                    <ul class="navbar-nav m-auto">
                         <li class="nav-item">
                             <a href="/">Booking</a>
                          </li>
                          <li class="nav-item">
-                            <a href="/services">Services</a>
+                            <a href="/calendar">Calendar</a>
                          </li>
+
                          <li class="nav-item">
                             <a href="/resources">Resources</a>
                          </li>
                          <li class="nav-item">
-                            <a href="/support">Support</a>
+                            <a href="/staff">Staff</a>
+                         </li>
+                         <li class="nav-item">
+                            <a href="/support">Help</a>
                          </li>
                       </ul>
                    </div>
                    <div class="navbar-btn d-none d-sm-inline-block">
-                      <ul>
+                      {{--  <ul>
                          <li>
                             <a class="btn primary-btn-outline" href="javascript:void(0)"
                                >Sign In</a
@@ -73,7 +86,7 @@
                                >Sign Up</a
                                >
                          </li>
-                      </ul>
+                      </ul>  --}}
                    </div>
                 </nav>
                 <!-- navbar -->
@@ -93,11 +106,10 @@
           <div class="row justify-content-center">
              <div class="col-lg-6 col-md-10">
                 <div class="video-title text-center">
-                   <h5>Learn & Share</h5>
-                   <h2>Do good work and share</h2>
+                   <h5>visual walkthrough</h5>
+                   <h2>Video Support</h2>
                    <p class="text-lg">
-                      Firsthand accounts from leaders who have changed the world we
-                      live in and the entrepreneurs shaping tomorrow’s world.
+                    For a visual walkthrough, please watch our demo video below
                    </p>
                 </div>
                 <!-- video title -->
@@ -124,6 +136,20 @@
     <script src="https://cdn.jsdelivr.net/gh/mcstudios/glightbox/dist/js/glightbox.min.js"></script>
 
     <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            showLoadingIndicator();
+          });
+        window.onload = function() {
+            hideLoadingIndicator();
+          };
+
+        function showLoadingIndicator() {
+            document.getElementById('loadingIndicator').style.display = 'block';
+          }
+
+          function hideLoadingIndicator() {
+            document.getElementById('loadingIndicator').style.display = 'none';
+          }
           //========= glightbox
           const videoTwo = GLightbox({
             selector: ".glightbox",
@@ -133,5 +159,31 @@
             autoplayVideos: true,
           });
      </script>
+
+     <script src="https://cdn.ayroui.com/1.0/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"
+    integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+    crossorigin="anonymous"></script>
+
+  <script>
+    //===== close navbar-collapse when a  clicked
+    var navbarTogglerOne = document.querySelector(
+      ".navbar-one .navbar-toggler"
+    );
+    navbarTogglerOne.addEventListener("click", function () {
+      navbarTogglerOne.classList.toggle("active");
+    });
+ </script>
+ <script src="https://cdn.jsdelivr.net/npm/glightbox@3.1.0/dist/js/glightbox.min.js"></script>
+ <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+    integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+    crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js"
+    integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+    crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"
+    integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+    crossorigin="anonymous"></script>
+
 </body>
 </html>

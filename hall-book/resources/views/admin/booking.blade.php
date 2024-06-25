@@ -49,6 +49,15 @@
     </style>
 </head>
 <body>
+    <div id="loadingIndicator" class="loading-indicator">
+        <div class="d-flex justify-content-center align-items-center" style="height: 100vh; position: fixed; top: 0; left: 0; right: 0; bottom: 0; background-color: rgba(255, 255, 255, 0.8); z-index: 1000;">
+          <div class="spinner-border text-primary" role="status">
+            <span class="visually-hidden"></span>
+          </div>
+          {{-- Uncomment below to add loading text --}}
+          {{-- <p class="loading-text" style="color:rgb(0, 153, 255);">Loading...</p> --}}
+        </div>
+      </div>
     <div class="container mt-5">
         <h1 class="text-center mb-4">Booking Details</h1>
         <div class="card">
@@ -91,6 +100,12 @@
                             <td>{{ $booking->faculty }}</td>
                         </tr>
                     @endif
+                    @if($booking->department)
+                    <tr>
+                        <th>Department:</th>
+                        <td>{{ $booking->department }}</td>
+                    </tr>
+                @endif
 
                     @if($booking->society)
                         <tr>
@@ -105,6 +120,18 @@
                             <td>{{ $booking->institution }}</td>
                         </tr>
                     @endif
+                    @if($booking->address)
+                        <tr>
+                            <th>Address:</th>
+                            <td>{{ $booking->address }}</td>
+                        </tr>
+                    @endif
+                    @if($booking->division)
+                    <tr>
+                        <th>division:</th>
+                        <td>{{ $booking->division }}</td>
+                    </tr>
+                @endif
 
                     @if($booking->post)
                         <tr>
@@ -139,7 +166,8 @@
                             <th>Request booking Dates:</th>
                             <td>
                                 @foreach ($booking->booking_dates as $date)
-                                    <div>{{ $date['date'] }} - {{ $date['start_time'] }} to {{ $date['end_time'] }}</div>
+                                    <div>{{ $date['date'] }} - {{ date('g:i A', strtotime($date['start_time'])) }} to {{ date('g:i A', strtotime($date['end_time'])) }}
+                                    </div>
                                 @endforeach
                             </td>
                         </tr>
@@ -166,25 +194,55 @@
                         </tr>
                     @endif
                 </table>
-                <div class="text-right mt-3 ">
-                    <form action="{{ route('booking.accept', $booking->id) }}" method="POST" style="display: inline;">
+                <div class="text-right mt-3">
+                    <form action="{{ route('booking.accept', $booking->id) }}" method="POST" style="display: inline;" id='accept'>
                         @csrf
                         <button type="submit" class="btn btn-success">Accept</button>
                     </form>
-                    <form action="{{ route('booking.reject', $booking->id) }}" method="POST" style="display: inline;">
-                        @csrf
-                        <button type="submit" class="btn btn-danger">Reject</button>
-                    </form>
-
-
+                    <button class="btn btn-danger" data-toggle="modal" data-target="#rejectModal">Reject</button>
                 </div>
                 <a href="{{ route('admin.dashboard') }}" class="btn btn-primary">Back to Dashboard</a>
+            </div>
+                {{--  <a href="{{ route('admin.dashboard') }}" class="btn btn-primary">Back to Dashboard</a>  --}}
 
 
 
             </div>
         </div>
     </div>
+    <!-- Modal for Rejection Reason -->
+    <div class="modal fade" id="rejectModal" tabindex="-1" aria-labelledby="rejectModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="rejectModalLabel">Reason for Rejection</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <form action="{{ route('booking.reject', $booking->id) }}" method="POST" id="reject">
+                    @csrf
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <label for="reason">Reason:</label>
+                            <select name="reason" id="reason" class="form-control" required>
+                                <option value="">Select Reason</option>
+                                <option value="Document verification failed">Document verification failed</option>
+                                <option value="Event type not suitable">Event type not suitable</option>
+                                <option value="Facilities not available">Facilities not available</option>
+                                <option value="Other">Other</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-danger">Reject</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
 
     <!-- Modal -->
     <div class="modal fade" id="documentModal" tabindex="-1" aria-labelledby="documentModalLabel" aria-hidden="true">
@@ -213,5 +271,27 @@
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            showLoadingIndicator();
+          });
+        window.onload = function() {
+            hideLoadingIndicator();
+          };
+
+        function showLoadingIndicator() {
+            document.getElementById('loadingIndicator').style.display = 'block';
+          }
+
+          function hideLoadingIndicator() {
+            document.getElementById('loadingIndicator').style.display = 'none';
+          }
+          document.getElementById('accept').addEventListener('submit', function(event) {
+            showLoadingIndicator();
+          });
+          document.getElementById('reject').addEventListener('submit', function(event) {
+            showLoadingIndicator();
+          });
+    </script>
 </body>
 </html>

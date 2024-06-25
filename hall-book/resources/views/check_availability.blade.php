@@ -3,19 +3,28 @@
 @section('title', 'Check Availability')
 
 @section('content')
+<div id="loadingIndicator" class="loading-indicator">
+    <div class="d-flex justify-content-center align-items-center" style="height: 100vh; position: fixed; top: 0; left: 0; right: 0; bottom: 0; background-color: rgba(255, 255, 255, 0.8); z-index: 1000;">
+      <div class="spinner-border text-primary" role="status">
+        <span class="visually-hidden"></span>
+      </div>
+      {{-- Uncomment below to add loading text --}}
+      {{-- <p class="loading-text" style="color:rgb(0, 153, 255);">Loading...</p> --}}
+    </div>
+  </div>
 <!--====== HEADER ONE PART START ======-->
-<section class="header-area header-one" >
+<section class="header-area header-one"  >
    <div class="header-content-area " style="height: 580px;">
       <div class="container">
          <div class="row align-items-center dis" style="margin-top: 0px">
             <div class="col-lg-6 col-12">
                <div class="header-wrapper">
-                  <div class="header-content">
+                  <div class="header-content"  data-aos="fade-up"  data-aos-duration="3000">
                      <h1 class="header-title">
-                        Hall Reservation System
+                        Prof.Dayananda Somasundara Auditorum
                      </h1>
-                     <p class="text-lg">
-                        Are you planning an event and looking for the perfect venue? Our state-of-the-art Hall Reservation System is here to make your booking process smooth and hassle-free!
+                     <p class="text-lg" style="font-size: 24px">
+                        Hall Reservation System
                      </p>
                      {{--  <div class="header-btn rounded-buttons">
                         <a
@@ -39,7 +48,15 @@
                   </div>
                </div>  --}}
                <div class="shadow">
-                <div id="calendar" class="calendar"></div>
+
+                <div id="calendar" class="calendar" style="margin-top: -10px;"  data-aos="fade-left">
+
+                    <ul class="legend" style="display: flex">
+                        <li><div class="color-box accepted"></div>Accepted</li>
+                        <li><div class="color-box pending"></div>Pending</li>
+                    </ul>
+                </div>
+
             </div>
             </div>
          </div>
@@ -64,7 +81,7 @@
         </div>
     </div>  --}}
 
-    <div class="row justify-content-center mt-4">
+    <div class="row justify-content-center mt-4" data-aos="fade-up"  data-aos-duration="1000">
         <div class="col">
             <div class="car">
                 <div class="card-body">
@@ -115,8 +132,32 @@
             </div>
         </div>
     </div>
-</div>
 
+
+</div>
+<div class="modal fade" id="eventDetailsModal" tabindex="-1" style="position: absolute; z-index:100000;" role="dialog" aria-labelledby="eventDetailsModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="eventDetailsModalLabel">Event Details</h5>
+                {{--  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>  --}}
+            </div>
+            <div class="modal-body">
+                {{--  <h5 id="eventTitle"></h5>  --}}
+                <p><strong>Status:</strong> <span id="eventTitle"></span></p>
+                <p><strong>Start:</strong> <span id="eventStart"></span></p>
+                <p><strong>End:</strong> <span id="eventEnd"></span></p>
+                <p><strong>Description:</strong></p>
+                <p id="eventDescription"></p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" id="manualCloseBtn" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
 <link href='https://use.fontawesome.com/releases/v5.0.6/css/all.css' rel='stylesheet'>
   <link href='packages/core/main.css' rel='stylesheet' />
   <link href='packages/bootstrap/main.css' rel='stylesheet' />
@@ -143,8 +184,13 @@
 <!-- Include jQuery library -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 
+
   <script>
     document.addEventListener('DOMContentLoaded', function () {
+
+        showLoadingIndicator();
+
+
         var calendarEl = document.getElementById('calendar');
         var calendar = new FullCalendar.Calendar(calendarEl, {
             plugins: ['bootstrap', 'interaction', 'dayGrid', 'timeGrid', 'list'],
@@ -161,26 +207,53 @@
             weekNumbers: true,
             navLinks: true,
             eventLimit: true,
+            eventClick: function(info) {
+                // Populate modal with event details
+                var eventObj = info.event;
+                console.log(eventObj)
+                document.getElementById('eventTitle').innerText = eventObj.extendedProps.status;
+                document.getElementById('eventStart').innerText = eventObj.start.toLocaleString();
+                document.getElementById('eventEnd').innerText = eventObj.end ? eventObj.end.toLocaleString() : 'N/A';
+                document.getElementById('eventDescription').innerText = eventObj.extendedProps.title1 || 'No description available';
+
+                // Show the modal
+                $('#eventDetailsModal').modal('show');
+            },
             dateClick: function (info) {
+                console.log(info)
                 var bookingDate = info.dateStr;
                 var bookedTimePeriods = getBookedTimePeriods(bookingDate);
                 showBookedTimePeriods(bookedTimePeriods, bookingDate);
             }
         });
         calendar.render();
+        document.getElementById('manualCloseBtn').addEventListener('click', function() {
+            $('#eventDetailsModal').modal('hide');
+        });
+
 
         function getBookedTimePeriods(bookingDate) {
             var events = calendar.getEvents();
             var bookedTimePeriods = [];
+            var bookingDateTime = new Date(bookingDate).getTime();
             events.forEach(function (event) {
                 var eventStartDate = event.start ? event.start.toISOString().split('T')[0] : null;
                 var eventEndDate = event.end ? event.end.toISOString().split('T')[0] : null;
-                if (eventStartDate === bookingDate || eventEndDate === bookingDate) {
-                    var startTime = event.start ? formatTime(event.start) : '';
-                    var endTime = event.end ? formatTime(event.end) : '';
-                    bookedTimePeriods.push(startTime + ' - ' + endTime);
+                var eventStartTime = event.start ? event.start.getTime() : null;
+                var eventEndTime = event.end ? event.end.getTime() : null;
+
+                if (eventStartDate && eventEndDate) {
+                    var startOfDay = new Date(bookingDate).setHours(0, 0, 0, 0);
+                    var endOfDay = new Date(bookingDate).setHours(23, 59, 59, 999);
+
+                    if (eventStartTime <= endOfDay && eventEndTime >= startOfDay) {
+                        var startTime = event.start ? formatTime(event.start) : '';
+                        var endTime = event.end ? formatTime(event.end) : '';
+                        bookedTimePeriods.push(startTime + ' - ' + endTime);
+                    }
                 }
             });
+            console.log(bookedTimePeriods);
             return bookedTimePeriods;
         }
 
@@ -264,22 +337,36 @@
 
         @if(session('error'))
         $(document).ready(function(){
+            var unavailableSlotsHtml = '';
+
+            @if(count(session('error')['unavailable_slots']) > 0)
+                unavailableSlotsHtml += '<p>Unavailable Time Slots:</p><ul>';
+                @foreach(session('error')['unavailable_slots'] as $slot)
+                    <?php
+                        $formattedStartTime = date('g:i A', strtotime($slot['start_time']));
+                        $formattedEndTime = date('g:i A', strtotime($slot['end_time']));
+                    ?>
+                    unavailableSlotsHtml += '<li>{{ $slot['date'] }} - {{ $formattedStartTime }} to {{ $formattedEndTime }}</li>';
+                @endforeach
+                unavailableSlotsHtml += '</ul>';
+            @endif
+
             Swal.fire({
-                title: 'Error',
-                html: '<p>{{ session('error')['message'] }}</p>' +
-                      @if(count(session('error')['unavailable_slots']) > 0)
-                          '<p>Unavailable Time Slots:</p>' +
-                          '<ul>' +
-                              @foreach(session('error')['unavailable_slots'] as $slot)
-                                  '<li>{{ $slot['date'] }} - {{ $slot['start_time'] }} to {{ $slot['end_time'] }}</li>' +
-                              @endforeach
-                          '</ul>' +
-                      @endif
-                      '',
+                title: 'Unavailable',
+                html: '<p>{{ session('error')['message'] }}</p>' + unavailableSlotsHtml,
                 icon: 'error'
             });
         });
     @endif
+    @if(session('error2'))
+    Swal.fire({
+        title: 'Unavailable',
+        text:'Time slots cannot span multiple days',
+        icon: 'error'
+    });
+
+    @endif
+
 
 
         document.getElementById('save-multiple-days').addEventListener('click', function () {
@@ -289,6 +376,17 @@
             $('#multipleDaysModal').modal('hide');
         });
     });
+    window.onload = function() {
+        hideLoadingIndicator();
+      };
+
+    function showLoadingIndicator() {
+        document.getElementById('loadingIndicator').style.display = 'block';
+      }
+
+      function hideLoadingIndicator() {
+        document.getElementById('loadingIndicator').style.display = 'none';
+      }
 
 </script>
 

@@ -51,6 +51,8 @@
 /*===== NAVBAR ONE =====*/
 .navbar-one {
     background: var(--primary);
+    position: relative;
+    z-index: 10000;
 }
 
 @media only screen and (min-width: 768px) and (max-width: 991px),
@@ -480,9 +482,10 @@ only screen and (min-width: 1400px) {
 
 .header-one .header-content-area {
     /* background-color: var(--primary); */
-    background: linear-gradient(to left top, rgba(0, 140, 255, 0.664), rgba(0, 140, 255, 0.697)), url(https://www.isagzlwis.com/wp-content/themes/liwan/images/life/auditorium/01.jpg);
+    background: linear-gradient(to left top, rgba(0, 140, 255, 0.664), rgba(0, 140, 255, 0.697)), url(/Untitled-1.png);
     /* background-size: cover; */
     position: relative;
+    background-position: left top -100px;
     padding: 130px 0;
 }
 

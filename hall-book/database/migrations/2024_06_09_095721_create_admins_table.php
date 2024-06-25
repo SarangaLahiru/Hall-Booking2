@@ -14,6 +14,7 @@ class CreateAdminsTable extends Migration
             $table->string('name');
             $table->string('email')->unique();
             $table->string('password');
+            $table->string('role')->default('user'); // Adding the role column with a default value
             $table->rememberToken();
             $table->timestamps();
         });

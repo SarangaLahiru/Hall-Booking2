@@ -135,7 +135,29 @@
 
 
 </div>
-
+<div class="modal fade" id="eventDetailsModal" tabindex="-1" style="position: absolute; z-index:100000;" role="dialog" aria-labelledby="eventDetailsModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="eventDetailsModalLabel">Event Details</h5>
+                {{--  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>  --}}
+            </div>
+            <div class="modal-body">
+                {{--  <h5 id="eventTitle"></h5>  --}}
+                <p><strong>Status:</strong> <span id="eventTitle"></span></p>
+                <p><strong>Start:</strong> <span id="eventStart"></span></p>
+                <p><strong>End:</strong> <span id="eventEnd"></span></p>
+                <p><strong>Description:</strong></p>
+                <p id="eventDescription"></p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" id="manualCloseBtn" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
 <link href='https://use.fontawesome.com/releases/v5.0.6/css/all.css' rel='stylesheet'>
   <link href='packages/core/main.css' rel='stylesheet' />
   <link href='packages/bootstrap/main.css' rel='stylesheet' />
@@ -162,6 +184,7 @@
 <!-- Include jQuery library -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 
+
   <script>
     document.addEventListener('DOMContentLoaded', function () {
 
@@ -184,7 +207,18 @@
             weekNumbers: true,
             navLinks: true,
             eventLimit: true,
+            eventClick: function(info) {
+                // Populate modal with event details
+                var eventObj = info.event;
+                console.log(eventObj)
+                document.getElementById('eventTitle').innerText = eventObj.extendedProps.status;
+                document.getElementById('eventStart').innerText = eventObj.start.toLocaleString();
+                document.getElementById('eventEnd').innerText = eventObj.end ? eventObj.end.toLocaleString() : 'N/A';
+                document.getElementById('eventDescription').innerText = eventObj.extendedProps.title1 || 'No description available';
 
+                // Show the modal
+                $('#eventDetailsModal').modal('show');
+            },
             dateClick: function (info) {
                 console.log(info)
                 var bookingDate = info.dateStr;
@@ -193,6 +227,10 @@
             }
         });
         calendar.render();
+        document.getElementById('manualCloseBtn').addEventListener('click', function() {
+            $('#eventDetailsModal').modal('hide');
+        });
+
 
         function getBookedTimePeriods(bookingDate) {
             var events = calendar.getEvents();

@@ -3,6 +3,7 @@
 
 <head>
   <meta charset='utf-8' />
+  <title>Document</title>
   <link href='https://use.fontawesome.com/releases/v5.0.6/css/all.css' rel='stylesheet'>
   <link href='packages/core/main.css' rel='stylesheet' />
   <link href='packages/bootstrap/main.css' rel='stylesheet' />
@@ -74,7 +75,7 @@
         }
 
         #calendar {
-          max-width: 900px;
+          max-width: 1000px;
           margin: 40px auto;
           padding: 0 10px;
         }
@@ -152,7 +153,9 @@
         <li><div class="color-box accepted"></div>Accepted</li>
         <li><div class="color-box pending"></div>Pending</li>
     </ul>
-      <div id='calendar'></div>
+      <div class="shadow-lg p-3 mb-5 bg-body-tertiary rounded w-75 m-auto">
+        <div id='calendar'></div>
+      </div>
 
 </body>
 <!--====== gLightBox js ======-->
@@ -205,7 +208,7 @@
             header: {
                 left: 'title',
                 center: 'prev,next today',
-                right: 'timeGridDay,listMonth'
+                right: 'dayGridMonth,timeGridDay,listMonth'
             },
 
 

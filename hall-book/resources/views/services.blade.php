@@ -60,6 +60,9 @@
                         <li class="nav-item">
                             <a href="/">Booking</a>
                          </li>
+                         <li class="nav-item">
+                            <a href="/calendar">Calendar</a>
+                         </li>
 
                          <li class="nav-item">
                             <a href="/resources">Resources</a>

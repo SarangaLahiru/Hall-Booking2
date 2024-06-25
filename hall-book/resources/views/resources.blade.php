@@ -296,7 +296,7 @@
             <div class="portfolio-style-one text-center">
                <div class="portfolio-image">
                   <img
-                     src="/Images/_AVU4617.JPG"
+                     src="/Images/img-10.png"
                      alt="image"
                      />
                </div>
@@ -328,7 +328,7 @@
             <div class="portfolio-style-one text-center">
                <div class="portfolio-image">
                   <img
-                      src="/Images/_AVU4620 (1).JPG"
+                      src="/Images/img-1.png"
                      alt="image"
                      />
                </div>
@@ -360,7 +360,7 @@
             <div class="portfolio-style-one text-center">
                <div class="portfolio-image">
                   <img
-                      src="/Images/_AVU4623.JPG"
+                      src="/Images/img-2.png"
                      alt="image"
                      />
                </div>
@@ -392,7 +392,7 @@
             <div class="portfolio-style-one text-center">
                <div class="portfolio-image">
                   <img
-                      src="/Images/_AVU5031.JPG"
+                      src="/Images/img-3.png"
                      alt="image"
                      />
                </div>
@@ -424,7 +424,7 @@
             <div class="portfolio-style-one text-center">
                <div class="portfolio-image">
                   <img
-                      src="/Images/_AVU5034 (1).JPG"
+                      src="/Images/img-4.png"
                      alt="image"
                      />
                </div>
@@ -456,7 +456,7 @@
             <div class="portfolio-style-one text-center">
                <div class="portfolio-image">
                   <img
-                      src="/Images/_AVU5193.JPG"
+                      src="/Images/img-5.png"
                      alt="image"
                      />
                </div>
@@ -488,7 +488,7 @@
             <div class="portfolio-style-one text-center">
                <div class="portfolio-image">
                   <img
-                      src="/Images/_AVU5214.JPG"
+                      src="/Images/img-6.png"
                      alt="image"
                      />
                </div>
@@ -520,7 +520,7 @@
             <div class="portfolio-style-one text-center">
                <div class="portfolio-image">
                   <img
-                     src="/Images/_AVU5491.JPG"
+                     src="/Images/img-7.png"
                      alt="image"
                      />
                </div>
@@ -552,7 +552,7 @@
             <div class="portfolio-style-one text-center">
                <div class="portfolio-image">
                   <img
-                     src="/Images/_AVU8589.JPG"
+                     src="/Images/img-9.png"
                      alt="image"
                      />
                </div>

@@ -55,6 +55,7 @@ class BookingController extends Controller
     //     return view('check_availability', compact('events'));
     // }
 
+
     public function showCalendar()
 {
     // Retrieve booking data from the database
@@ -81,6 +82,32 @@ class BookingController extends Controller
 
     // Assuming you are returning a view with the events
     return view('check_availability', ['events' => $events]);
+}
+public function showCalendar2(){
+    // Retrieve booking data from the database
+    $bookings = Booking::all();
+
+    // Format the booking data for FullCalendar
+    $events = [];
+    foreach ($bookings as $booking) {
+        foreach ($booking->booking_dates as $bookingDate) {
+            $startTime = date('g:i A', strtotime($bookingDate['start_time']));
+            $endTime = date('g:i A', strtotime($bookingDate['end_time']));
+
+            // Determine color based on the status
+            $color = ($booking->status == 'accepted') ? 'green' : '#EEE600';
+
+            $events[] = [
+                'title' =>  $booking->event_type,
+                'start' => $bookingDate['date'] . 'T' . $bookingDate['start_time'],
+                'end' => $bookingDate['date'] . 'T' . $bookingDate['end_time'],
+                'color' => $color, // Customize the color based on status
+            ];
+        }
+    }
+
+    // Assuming you are returning a view with the events
+    return view('calendar1', ['events' => $events]);
 }
 
 

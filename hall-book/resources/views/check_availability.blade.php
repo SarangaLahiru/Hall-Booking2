@@ -49,7 +49,7 @@
                </div>  --}}
                <div class="shadow">
 
-                <div id="calendar" class="calendar" style="margin-top: -10px" data-aos="fade-left">
+                <div id="calendar" class="calendar" style="margin-top: -10px;"  data-aos="fade-left">
 
                     <ul class="legend" style="display: flex">
                         <li><div class="color-box accepted"></div>Accepted</li>
@@ -166,9 +166,6 @@
     document.addEventListener('DOMContentLoaded', function () {
 
         showLoadingIndicator();
-
-
-
 
 
         var calendarEl = document.getElementById('calendar');

@@ -8,9 +8,12 @@ use App\Http\Controllers\Auth\AdminLoginController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Mail;
 
-Route::get('/calendar', function () {
-    return view('calendar');
-});
+// Route::get('/calendar', function () {
+//     return view('calendar');
+// });
+// Route::get('/calendar', function () {
+//     return view('calendar');
+// });
 Route::get('/staff', function () {
     return view('services');
 });
@@ -27,6 +30,7 @@ Route::get('/support', function () {
 // });
 // Route::post('/booked', [BookingController::class, 'store'])->name('booked');
 Route::get('/', [BookingController::class, 'showCalendar'])->name('show-calendar');
+Route::get('/calendar', [BookingController::class, 'showCalendar2'])->name('show-calendar2');
 // Route::post('/check-availability', [BookingController::class, 'checkAvailability'])->name('check-availability');
 // Route::post('/booked', [BookingController::class, 'store'])->name('booked');
 // Route::get('/createBooking', [BookingController::class, 'createBookingForm'])->name('create-booking-form');

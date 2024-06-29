@@ -10,7 +10,9 @@
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
     <link rel="stylesheet" href="{{ asset('css/services.css') }}">
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
-
+    <!-- Bootstrap and FontAwesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
     <div id="loadingIndicator" class="loading-indicator">
@@ -22,71 +24,82 @@
           {{-- <p class="loading-text" style="color:rgb(0, 153, 255);">Loading...</p> --}}
         </div>
       </div>
-    <!--====== NAVBAR ONE PART START ======-->
-    <section class="navbar-area navbar-one ">
-       <div class="container">
-          <div class="row">
-             <div class="col-lg-12">
-                <nav class="navbar navbar-expand-lg">
-                   <a class="navbar-brand" href="javascript:void(0)">
-                   <img src="/logo.png" alt="Logo" width="300px"  />
-                   </a>
-                   <button
-                      class="navbar-toggler"
-                      type="button"
-                      data-bs-toggle="collapse"
-                      data-bs-target="#navbarOne"
-                      aria-controls="navbarOne"
-                      aria-expanded="false"
-                      aria-label="Toggle navigation"
-                      >
-                   <span class="toggler-icon"></span>
-                   <span class="toggler-icon"></span>
-                   <span class="toggler-icon"></span>
-                   </button>
-                   <div class="collapse navbar-collapse sub-menu-bar" id="navbarOne">
-                      <ul class="navbar-nav m-auto">
-                        <li class="nav-item">
-                            <a href="/">Booking</a>
-                         </li>
-                         <li class="nav-item">
-                            <a href="/calendar">Calendar</a>
-                         </li>
+      <!--====== NAVBAR ONE PART START ======-->
+      <section class="navbar-area navbar-one relative">
+         <div class="container">
+            <div class="row">
+               <div class="col-lg-12">
+                  <nav class="navbar navbar-expand-lg">
+                     <a class="navbar-brand" href="javascript:void(0)">
+                        <img src="/logo.png" alt="Logo" width="300px" />
+                     </a>
+                     <button
+                        class="navbar-toggler"
+                        type="button"
+                        data-bs-toggle="collapse"
+                        data-bs-target="#navbarOne"
+                        aria-controls="navbarOne"
+                        aria-expanded="false"
+                        aria-label="Toggle navigation">
+                        <span class="toggler-icon"></span>
+                        <span class="toggler-icon"></span>
+                        <span class="toggler-icon"></span>
+                     </button>
+                     <div class="collapse navbar-collapse sub-menu-bar" id="navbarOne">
+                        <ul class="navbar-nav m-auto">
+                           <li class="nav-item">
+                              <a href="/" class="nav-link">Booking</a>
+                           </li>
+                           <li class="nav-item">
+                              <a href="/calendar" class="nav-link">Calendar</a>
+                           </li>
+                           <li class="nav-item">
+                              <a href="/staff" class="nav-link">Staff & Resources</a>
+                           </li>
+                           <li class="nav-item">
+                              <a href="/resources" class="nav-link">Past Events</a>
+                           </li>
+                           <li class="nav-item">
+                              <a href="/support" class="nav-link">Help</a>
+                           </li>
+                           {{--  <div class="boxContact">
+                              <ul class="">
 
-                         <li class="nav-item">
-                            <a href="/resources">Resources</a>
-                         </li>
-                         <li class="nav-item">
-                            <a href="/staff">Staff</a>
-                         </li>
-                         <li class="nav-item">
-                            <a href="/support">Help</a>
-                         </li>
-                      </ul>
-                   </div>
-                   <div class="navbar-btn d-none d-sm-inline-block">
-                      {{--  <ul>
-                         <li>
-                            <a class="btn primary-btn-outline" href="javascript:void(0)"
-                               >Sign In</a
-                               >
-                         </li>
-                         <li>
-                            <a class="btn primary-btn" href="javascript:void(0)"
-                               >Sign Up</a
-                               >
-                         </li>
-                      </ul>  --}}
-                   </div>
-                </nav>
-                <!-- navbar -->
-             </div>
-          </div>
-          <!-- row -->
-       </div>
-       <!-- container -->
-    </section>
-    <!--====== NAVBAR ONE PART ENDS ======-->
+                                    <div>
+                                      <i class="fas fa-phone "></i> (123) 456-7890
+                                    </div>
+
+
+                                     <div>
+                                      <i class="fas fa-map-marker-alt "></i> 123 Main St, Anytown, USA
+
+                                     </div>
+                               </ul>
+
+                           </div>  --}}
+                        </ul>
+                        <div class="navbar-btn d-none d-sm-inline-block">
+                          <div class="" style="font-size: 13px; color:white; width:200px; position:relative; right:-95px;">
+                            <div>
+                                <i class="fas fa-phone "></i> +94 45-2280021
+                              </div>
+
+
+                               <div>
+                                <i class="fas fa-envelope "></i> example@gmail.com
+                               </div>
+                              </div>
+                       </div>
+                     </div>
+                  </nav>
+                  <!-- navbar -->
+               </div>
+            </div>
+            <!-- row -->
+         </div>
+         <!-- container -->
+      </section>
+      <!--====== NAVBAR ONE PART ENDS ======-->
 
 
 
@@ -276,7 +289,7 @@
       <div class="row justify-content-center">
          <div class="col-xxl-6 col-xl-7 col-lg-8">
             <div class="section-title text-center mb-5">
-               <h2 class="mb-3 fw-bold "> Prof.Dayananda Somasundara Auditorum</h2>
+               <h2 class="mb-3 fw-bold "> Prof. Dayananda Somasundara Auditorum</h2>
 
             </div>
          </div>
@@ -285,9 +298,9 @@
          <div class="col-lg-12">
             <div class="portfolio-menu">
                <button data-filter="all" class="active">Events</button>
-               <button data-filter="branding">Lighting system</button>
+               {{--  <button data-filter="branding">Lighting system</button>
                <button data-filter="marketing">Audio System</button>
-               <button data-filter="planning">Stage</button>
+               <button data-filter="planning">Stage</button>  --}}
                {{--  <button data-filter="research">RESEARCH</button>  --}}
             </div>
             <!-- portfolio menu -->

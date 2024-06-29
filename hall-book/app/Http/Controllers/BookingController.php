@@ -2,6 +2,8 @@
 namespace App\Http\Controllers;
 use App\Mail\BookingAccepted;
 use App\Mail\BookingRejected;
+use App\Mail\ApplicantSubmit;
+use App\Mail\AdminRequest;
 use Illuminate\Support\Facades\Mail;
 use App\Models\Booking;
 use App\Models\User;
@@ -59,7 +61,10 @@ class BookingController extends Controller
     public function showCalendar()
 {
     // Retrieve booking data from the database
-    $bookings = Booking::all();
+    // $bookings = Booking::all();
+    $bookings = Booking::whereIn('status', ['accepted', 'pending'])->orderBy('created_at', 'desc')->get();
+
+
 
     // Format the booking data for FullCalendar
     $events = [];
@@ -87,7 +92,10 @@ class BookingController extends Controller
 }
 public function showCalendar2(){
     // Retrieve booking data from the database
-    $bookings = Booking::all();
+    // $bookings = Booking::all();
+    // $bookings = Booking::whereIn('status', ['accepted', 'pending'])->get();
+    $bookings = Booking::whereIn('status', ['accepted', 'pending'])->orderBy('created_at', 'desc')->get();
+
 
     // Format the booking data for FullCalendar
     $events = [];
@@ -181,6 +189,18 @@ public function showCalendar2(){
             // Save the relative path to the database (remove 'public/' part)
             $document = str_replace('public/','', $path);
         }
+        $division=null;
+        if ($request->input('division')) {
+            $division=$request->input('division');
+
+
+        }
+        $department=null;
+        if ($request->input('department')) {
+            $department=$request->input('department');
+
+
+        }
 
         // Prepare facilities data
         $facilities = $request->input('facilities', []);
@@ -224,8 +244,9 @@ public function showCalendar2(){
                     'event_type'=>$request->input('eventType'),
                     'event_description'=>$request->input('eventDescription'),
                     'faculty' => $request->input('faculty'),
-                    'department'=>$request->input('department'),
+                    'department'=>$department,
                     'documents'=>$document,
+                    'division'=>$division,
                 ];
                 break;
             case 'non-academic':
@@ -278,6 +299,8 @@ public function showCalendar2(){
 
         // Save the booking to the database
         $booking->save();
+        Mail::to($booking->email)->send(new ApplicantSubmit($booking));
+        Mail::to('lahirusashika@gmail.com')->send(new AdminRequest($booking));
 
         // Redirect the user to a success page
         // return redirect()->route('successPage')->with('success', 'Booking created successfully.');
@@ -328,13 +351,14 @@ public function reject(Request $request, $id)
 
     $booking = Booking::findOrFail($id);
 
-
+    $booking->status = 'rejected';
+    $booking->save();
 
     // Reject and delete the booking
     $reason = $request->input('reason');
     Mail::to($booking->email)->send(new BookingRejected($booking, $reason));
 
-    $booking->delete();
+    // $booking->delete();
 
     return redirect()->route('admin.dashboard')->with('success', 'Booking rejected and deleted successfully.');
 }

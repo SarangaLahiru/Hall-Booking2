@@ -25,7 +25,10 @@ class AvailabilityController extends Controller
         }
 
         // Get all bookings
-        $bookings = Booking::all();
+        // $bookings = Booking::all();
+        $bookings = Booking::whereIn('status', ['accepted', 'pending'])->orderBy('created_at', 'desc')->get();
+
+
 
         foreach ($bookings as $booking) {
             $bookingDates = is_string($booking->booking_dates) ? json_decode($booking->booking_dates, true) : $booking->booking_dates;

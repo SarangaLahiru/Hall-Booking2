@@ -49,6 +49,11 @@
     </style>
 </head>
 <body>
+    <style>
+        .hidden {
+            display: none;
+        }
+    </style>
     <div id="loadingIndicator" class="loading-indicator">
         <div class="d-flex justify-content-center align-items-center" style="height: 100vh; position: fixed; top: 0; left: 0; right: 0; bottom: 0; background-color: rgba(255, 255, 255, 0.8); z-index: 1000;">
           <div class="spinner-border text-primary" role="status">
@@ -233,6 +238,10 @@
                                 <option value="Other">Other</option>
                             </select>
                         </div>
+                        <div class="form-group hidden" id="other-reason-group">
+                            <label for="other-reason">Please specify:</label>
+                            <input type="text" name="other_reason" id="other-reason" class="form-control">
+                        </div>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -292,6 +301,17 @@
           document.getElementById('reject').addEventListener('submit', function(event) {
             showLoadingIndicator();
           });
+
+          const reasonSelect = document.getElementById('reason');
+            const otherReasonGroup = document.getElementById('other-reason-group');
+
+            reasonSelect.addEventListener('change', function() {
+                if (this.value === 'Other') {
+                    otherReasonGroup.classList.remove('hidden');
+                } else {
+                    otherReasonGroup.classList.add('hidden');
+                }
+            });
     </script>
 </body>
 </html>

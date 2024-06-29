@@ -83,13 +83,13 @@
 
 
       <!--====== NAVBAR ONE PART START ======-->
-      <section class="navbar-area navbar-one ">
+      <section class="navbar-area navbar-one relative">
          <div class="container">
             <div class="row">
                <div class="col-lg-12">
                   <nav class="navbar navbar-expand-lg">
                      <a class="navbar-brand" href="javascript:void(0)">
-                     <img src="/logo.png" alt="Logo" width="300px"  />
+                        <img src="/logo.png" alt="Logo" width="300px" />
                      </a>
                      <button
                         class="navbar-toggler"
@@ -98,45 +98,56 @@
                         data-bs-target="#navbarOne"
                         aria-controls="navbarOne"
                         aria-expanded="false"
-                        aria-label="Toggle navigation"
-                        >
-                     <span class="toggler-icon"></span>
-                     <span class="toggler-icon"></span>
-                     <span class="toggler-icon"></span>
+                        aria-label="Toggle navigation">
+                        <span class="toggler-icon"></span>
+                        <span class="toggler-icon"></span>
+                        <span class="toggler-icon"></span>
                      </button>
                      <div class="collapse navbar-collapse sub-menu-bar" id="navbarOne">
                         <ul class="navbar-nav m-auto">
-                          <li class="nav-item">
-                              <a href="/">Booking</a>
+                           <li class="nav-item">
+                              <a href="/" class="nav-link">Booking</a>
                            </li>
                            <li class="nav-item">
-                            <a href="/calendar">Calendar</a>
-                         </li>
+                              <a href="/calendar" class="nav-link">Calendar</a>
+                           </li>
+                           <li class="nav-item">
+                              <a href="/staff" class="nav-link">Staff & Resources</a>
+                           </li>
+                           <li class="nav-item">
+                              <a href="/resources" class="nav-link">Past Events</a>
+                           </li>
+                           <li class="nav-item">
+                              <a href="/support" class="nav-link">Help</a>
+                           </li>
+                           {{--  <div class="boxContact">
+                              <ul class="">
 
-                           <li class="nav-item">
-                              <a href="/resources">Resources</a>
-                           </li>
-                           <li class="nav-item">
-                              <a href="/staff">Staff</a>
-                           </li>
-                           <li class="nav-item">
-                              <a href="/support">Help</a>
-                           </li>
+                                    <div>
+                                      <i class="fas fa-phone "></i> (123) 456-7890
+                                    </div>
+
+
+                                     <div>
+                                      <i class="fas fa-map-marker-alt "></i> 123 Main St, Anytown, USA
+
+                                     </div>
+                               </ul>
+
+                           </div>  --}}
                         </ul>
-                     </div>
-                     <div class="navbar-btn d-none d-sm-inline-block">
-                        {{--  <ul>
-                           <li>
-                              <a class="btn primary-btn-outline" href="javascript:void(0)"
-                                 >Sign In</a
-                                 >
-                           </li>
-                           <li>
-                              <a class="btn primary-btn" href="javascript:void(0)"
-                                 >Sign Up</a
-                                 >
-                           </li>
-                        </ul>  --}}
+                        <div class="navbar-btn d-none d-sm-inline-block">
+                          <div class="" style="font-size: 13px; color:white; width:200px; position:relative; right:-95px;">
+                            <div>
+                                <i class="fas fa-phone "></i> +94 45-2280021
+                              </div>
+
+
+                               <div>
+                                <i class="fas fa-envelope "></i> example@gmail.com
+                               </div>
+                              </div>
+                       </div>
                      </div>
                   </nav>
                   <!-- navbar -->

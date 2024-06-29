@@ -23,7 +23,8 @@ class Controller extends BaseController
 
         // return view('admin.dashboard');
         $adminData = Auth::guard('admin')->user();
-        $bookings = Booking::all();
+        // $bookings = Booking::all();
+        $bookings = Booking::orderBy('created_at', 'desc')->get();
         // return view('admin.dashboard', compact('bookings','adminData'));
         $pendingCount = $bookings->where('status', 'pending')->count();
         $acceptedCount = $bookings->where('status', 'accepted')->count();

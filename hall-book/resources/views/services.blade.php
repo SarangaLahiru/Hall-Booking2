@@ -21,9 +21,50 @@
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
     <link rel="stylesheet" href="{{ asset('css/resources.css') }}">
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
-
+    <!-- Bootstrap and FontAwesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
+    <style>
+        .feature-icon {
+            font-size: 2rem;
+            color: #007bff;
+            flex-shrink: 0;
+        }
+        .feature-list {
+            list-style: none;
+            padding-left: 0;
+        }
+        .feature-list li {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+            border-bottom: 1px solid #ddd;
+            padding-bottom: 10px;
+        }
+        .feature-list li:last-child {
+            border-bottom: none;
+        }
+        .feature-list li i {
+            margin-right: 15px;
+        }
+        .feature-list li span {
+            font-size: 1.2rem;
+        }
+        .common-image {
+            max-width: 100%;
+            height: auto;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        .feature-section {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+    </style>
     <div id="loadingIndicator" class="loading-indicator">
         <div class="d-flex justify-content-center align-items-center" style="height: 100vh; position: fixed; top: 0; left: 0; right: 0; bottom: 0; background-color: rgba(255, 255, 255, 0.8); z-index: 1000;">
           <div class="spinner-border text-primary" role="status">
@@ -33,83 +74,93 @@
           {{-- <p class="loading-text" style="color:rgb(0, 153, 255);">Loading...</p> --}}
         </div>
       </div>
-    <!--====== NAVBAR ONE PART START ======-->
-    <section class="navbar-area navbar-one ">
-       <div class="container">
-          <div class="row">
-             <div class="col-lg-12">
-                <nav class="navbar navbar-expand-lg">
-                   <a class="navbar-brand" href="javascript:void(0)">
-                   <img src="/logo.png" alt="Logo" width="300px"  />
-                   </a>
-                   <button
-                      class="navbar-toggler"
-                      type="button"
-                      data-bs-toggle="collapse"
-                      data-bs-target="#navbarOne"
-                      aria-controls="navbarOne"
-                      aria-expanded="false"
-                      aria-label="Toggle navigation"
-                      >
-                   <span class="toggler-icon"></span>
-                   <span class="toggler-icon"></span>
-                   <span class="toggler-icon"></span>
-                   </button>
-                   <div class="collapse navbar-collapse sub-menu-bar" id="navbarOne">
-                    <ul class="navbar-nav m-auto">
-                        <li class="nav-item">
-                            <a href="/">Booking</a>
-                         </li>
-                         <li class="nav-item">
-                            <a href="/calendar">Calendar</a>
-                         </li>
+      <!--====== NAVBAR ONE PART START ======-->
+      <section class="navbar-area navbar-one relative">
+         <div class="container">
+            <div class="row">
+               <div class="col-lg-12">
+                  <nav class="navbar navbar-expand-lg">
+                     <a class="navbar-brand" href="javascript:void(0)">
+                        <img src="/logo.png" alt="Logo" width="300px" />
+                     </a>
+                     <button
+                        class="navbar-toggler"
+                        type="button"
+                        data-bs-toggle="collapse"
+                        data-bs-target="#navbarOne"
+                        aria-controls="navbarOne"
+                        aria-expanded="false"
+                        aria-label="Toggle navigation">
+                        <span class="toggler-icon"></span>
+                        <span class="toggler-icon"></span>
+                        <span class="toggler-icon"></span>
+                     </button>
+                     <div class="collapse navbar-collapse sub-menu-bar" id="navbarOne">
+                        <ul class="navbar-nav m-auto">
+                           <li class="nav-item">
+                              <a href="/" class="nav-link">Booking</a>
+                           </li>
+                           <li class="nav-item">
+                              <a href="/calendar" class="nav-link">Calendar</a>
+                           </li>
+                           <li class="nav-item">
+                              <a href="/staff" class="nav-link">Staff & Resources</a>
+                           </li>
+                           <li class="nav-item">
+                              <a href="/resources" class="nav-link">Past Events</a>
+                           </li>
+                           <li class="nav-item">
+                              <a href="/support" class="nav-link">Help</a>
+                           </li>
+                           {{--  <div class="boxContact">
+                              <ul class="">
 
-                         <li class="nav-item">
-                            <a href="/resources">Resources</a>
-                         </li>
-                         <li class="nav-item">
-                            <a href="/staff">Staff</a>
-                         </li>
-                         <li class="nav-item">
-                            <a href="/support">Help</a>
-                         </li>
-                      </ul>
-                   </div>
-                   <div class="navbar-btn d-none d-sm-inline-block">
-                      <ul>
-                         {{--  <li>
-                            <a class="btn primary-btn-outline" href="javascript:void(0)"
-                               >Sign In</a
-                               >
-                         </li>
-                         <li>
-                            <a class="btn primary-btn" href="javascript:void(0)"
-                               >Sign Up</a
-                               >
-                         </li>  --}}
-                      </ul>
-                   </div>
-                </nav>
-                <!-- navbar -->
-             </div>
-          </div>
-          <!-- row -->
-       </div>
-       <!-- container -->
-    </section>
-    <!--====== NAVBAR ONE PART ENDS ======-->
+                                    <div>
+                                      <i class="fas fa-phone "></i> (123) 456-7890
+                                    </div>
+
+
+                                     <div>
+                                      <i class="fas fa-map-marker-alt "></i> 123 Main St, Anytown, USA
+
+                                     </div>
+                               </ul>
+
+                           </div>  --}}
+                        </ul>
+                        <div class="navbar-btn d-none d-sm-inline-block">
+                          <div class="" style="font-size: 13px; color:white; width:200px; position:relative; right:-95px;">
+                            <div>
+                                <i class="fas fa-phone "></i> +94 45-2280021
+                              </div>
+
+
+                               <div>
+                                <i class="fas fa-envelope "></i> example@gmail.com
+                               </div>
+                              </div>
+                       </div>
+                     </div>
+                  </nav>
+                  <!-- navbar -->
+               </div>
+            </div>
+            <!-- row -->
+         </div>
+         <!-- container -->
+      </section>
+      <!--====== NAVBAR ONE PART ENDS ======-->
 
     <!--======  Start Section Title One ======-->
-<div class="section-title-one">
+<div class="section-title-one mt-4">
    <div class="container">
       <div class="row">
          <div class="col-lg-12">
             <div class="text-center">
                <div class="content">
-                  <h2 class="fw-bold">Our Key Features</h2>
-                  <p>
-                     Lorem ipsum dolor sit amet, consectetur adipisicing elit sed do
-                     eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                  <h2 class="fw-bold">Meet Our Staff</h2>
+                  <p  class="lead">
+                     Our dedicated team is here to ensure your event is a success.
                   </p>
                </div>
             </div>
@@ -124,14 +175,14 @@
 <section class="team-area">
    <div class="container">
       <div class="row">
-         <div class="col-lg-3 col-md-6">
+         <div class="col-md-6 col-lg-4">
             <div class="single-team text-center team-style-one">
                <div class="team-image">
-                  <img src="https://cdn.ayroui.com/1.0/images/team/team-1.jpg" alt="Team" />
+                  <img src="images/Mrs. YS Chandrasekara.jpg"  alt="Team" />
                </div>
                <div class="team-content">
-                  <h4 class="name">Jeffery Riley</h4>
-                  <span class="sub-title">Art Director</span>
+                  <h4 class="name">Mrs. YS Chandrasekara</h4>
+                  <span class="sub-title">Manager</span>
                   <ul class="social">
                      <li>
                         <a href="javascript:void(0)">
@@ -153,14 +204,15 @@
             </div>
             <!-- single team -->
          </div>
-         <div class="col-lg-3 col-md-6">
+         <div class="col-md-6 col-lg-4">
             <div class="single-team text-center team-style-one">
                <div class="team-image">
-                  <img src="https://cdn.ayroui.com/1.0/images/team/team-2.jpg" alt="Team" />
+
+                  <img src="images/PM Chamith Janaka Bandara.jpg" alt="Team" />
                </div>
                <div class="team-content">
-                  <h4 class="name">Riley Beata</h4>
-                  <span class="sub-title">Art Director</span>
+                  <h4 class="name">Mr. PM Chamith Janaka Bandara</h4>
+                  <span class="sub-title">Technical Officer</span>
                   <ul class="social">
                      <li>
                         <a href="javascript:void(0)">
@@ -182,14 +234,15 @@
             </div>
             <!-- single team -->
          </div>
-         <div class="col-lg-3 col-md-6">
+         <div class="col-md-6 col-lg-4">
             <div class="single-team text-center team-style-one">
                <div class="team-image">
-                  <img src="https://cdn.ayroui.com/1.0/images/team/team-3.jpg" alt="Team" />
+                <img src="images/G kithsiri Fernando.jpg" height="450px" alt="Team" />
+
                </div>
                <div class="team-content">
-                  <h4 class="name">Kamil Kiwis</h4>
-                  <span class="sub-title">Art Director</span>
+                  <h4 class="name">Mr. G Kithsiri Fernando</h4>
+                  <span class="sub-title">Technical Officer</span>
                   <ul class="social">
                      <li>
                         <a href="javascript:void(0)">
@@ -211,41 +264,56 @@
             </div>
             <!-- single team -->
          </div>
-         <div class="col-lg-3 col-md-6">
-            <div class="single-team text-center team-style-one">
-               <div class="team-image">
-                  <img src="https://cdn.ayroui.com/1.0/images/team/team-4.jpg" alt="Team" />
-               </div>
-               <div class="team-content">
-                  <h4 class="name">Kamil Kiwis</h4>
-                  <span class="sub-title">Art Director</span>
-                  <ul class="social">
-                     <li>
-                        <a href="javascript:void(0)">
-                        <i class="lni lni-facebook-filled"></i>
-                        </a>
-                     </li>
-                     <li>
-                        <a href="javascript:void(0)">
-                        <i class="lni lni-twitter-original"></i>
-                        </a>
-                     </li>
-                     <li>
-                        <a href="javascript:void(0)">
-                        <i class="lni lni-linkedin-original"></i>
-                        </a>
-                     </li>
-                  </ul>
-               </div>
-            </div>
-            <!-- single team -->
-         </div>
+
       </div>
       <!-- row -->
    </div>
    <!-- container -->
 </section>
 <!--====== TEAM STYLE ONE ENDS ======-->
+<div class="container" style="margin-top: 80px;">
+    <div class="text-center mb-5">
+        <h1> Our Features!</h1>
+        <p class="lead">At Prof. Dayananda Somasundara Auditorum, we pride ourselves on providing top-notch facilities to make your events unforgettable.</p>
+    </div>
+
+    <div class="row feature-section">
+        <div class="col-md-6 mb-4">
+            <img src="images/img-f.jpg" class="common-image" alt="Hall Image">
+        </div>
+        <div class="col-md-6">
+            <ul class="feature-list">
+                <li>
+                    <i class="fas fa-building feature-icon"></i>
+                    <span>Spacious Hall</span>
+                </li>
+                <li>
+                    <i class="fas fa-chess-king feature-icon"></i>
+                    <span>Elegant Stage</span>
+                </li>
+                <li>
+                    <i class="fas fa-lightbulb feature-icon"></i>
+                    <span>Advanced Lighting System</span>
+                </li>
+                <li>
+                    <i class="fas fa-volume-up feature-icon"></i>
+                    <span>High-Quality Audio System</span>
+                </li>
+                <li>
+                    <i class="fas fa-tv feature-icon"></i>
+                    <span>Multimedia Capabilities</span>
+                </li>
+                <li>
+                    <i class="fas fa-binoculars feature-icon"></i>
+                    <span>Balcony Seating</span>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+
+
 
 </body>
 <script src="https://cdn.jsdelivr.net/npm/glightbox@3.1.0/dist/js/glightbox.min.js"></script>

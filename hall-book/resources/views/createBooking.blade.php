@@ -6,6 +6,9 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Stepper Form with Validation</title>
     <link rel="stylesheet" href="{{asset('/css/create_booking.css')}}">
+    <!-- Bootstrap and FontAwesome -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+<link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 
@@ -100,7 +103,7 @@
                                         </div>
                                     </div>
                                     <div class="col mb-3" id="studentNoField" style="display: none;">
-                                        <label for="studentNo">Student Register No</label>
+                                        <label for="studentNo">Student Registration No</label>
                                         <input type="text" class="form-control" id="studentNo" name="studentNo" required>
                                         <div class="invalid-feedback">
                                             Please enter a valid student number.
@@ -134,9 +137,10 @@
                                         </div>
                                     </div>
                                     <div class="col-md-6 mb-3" id="facultyField" style="display: none;">
-                                        <label for="faculty">Name of the Faculty</label>
+                                        <label for="faculty" id="Otherl">Name of the Faculty</label>
                                         <select class="form-control" id="faculty" name="faculty" required>
-                                            <option value="none">None</option>
+                                            <option value="">select</option>
+                                            <option id="Other" style="display: none;" value="none">None</option>
                                             <option value="Faculty of Agricultural Sciences">Faculty of Agricultural Sciences</option>
                                             <option value="Faculty of Applied Sciences">Faculty of Applied Sciences</option>
                                             <option value="Faculty of Geomatics">Faculty of Geomatics</option>
@@ -145,16 +149,18 @@
                                             <option value="Faculty of Technology">Faculty of Technology</option>
                                             <option value="Faculty of Computing">Faculty of Computing</option>
                                             <option value="Faculty of Medicine">Faculty of Medicine</option>
+
                                             <!-- Add more options as needed -->
                                         </select>
                                         <div class="invalid-feedback">
                                             Please select your Faculty.
                                         </div>
                                     </div>
+
                                     <div class="col-md-6 mb-3" id="departmentField" style="display: none;">
                                         <label for="department">Name of the Department</label>
                                         <select class="form-control" id="department" name="department" required>
-                                            <option value="none">None</option>
+                                            <option value="">select</option>
                                             <optgroup label="Faculty of Agricultural Sciences">
                                               <option value="Department of Agricultural Systems">Department of Agricultural Systems</option>
                                               <option value="Department of Agribusiness Management">Department of Agribusiness Management</option>
@@ -198,8 +204,8 @@
                                         </div>
                                     </div>
                                     <div class="col-md-6 mb-3" id="divisionField" style="display: none;">
-                                        <label for="division">Name of Division</label>
-                                        <input type="text" class="form-control" id="division" name="division" required>
+                                        <label for="division">Name of Division/Center/Unit</label>
+                                        <input type="text" class="form-control" id="division" name="division" placeholder="If not, please mention that as 'None'" required>
                                         <div class="invalid-feedback">
                                             Please enter your Division.
                                         </div>
@@ -283,6 +289,7 @@
                                         <option value="social_gathering">Social Gathering</option>
                                         <option value="student_meeting">Student Meeting</option>
                                         <option value="workshop">Workshop</option>
+                                        <option value="other">Other</option>
                                     </select>
 
                                     <div class="invalid-feedback">
@@ -311,9 +318,10 @@
                                                 <label class="form-check-label" for="lightSystem">Lightning System</label>
                                             </div>
                                             <div class="form-check col">
-                                                <input class="form-check-input" type="checkbox" value="fullHall" id="fullHall" name="facilities[]">
-                                                <label class="form-check-label" for="fullHall">Hall</label>
+                                                <input class="form-check-input" type="checkbox" value="audioSystem" id="audioSystem" name="facilities[]">
+                                                <label class="form-check-label" for="audioSystem">Audio System</label>
                                             </div>
+
 
                                         </div>
                                         <div class="row">
@@ -323,9 +331,10 @@
                                                 <label class="form-check-label" for="balcony">Balcony</label>
                                             </div>
                                             <div class="form-check col">
-                                                <input class="form-check-input" type="checkbox" value="audience" id="audience" name="facilities[]">
-                                                <label class="form-check-label" for="audience">Audience</label>
+                                                <input class="form-check-input" type="checkbox" value="fullHall" id="fullHall" name="facilities[]">
+                                                <label class="form-check-label" for="fullHall">Hall</label>
                                             </div>
+
                                             <div class="form-check col">
                                                 <input class="form-check-input" type="checkbox" value="technicalOfficer" id="technicalOfficer" name="facilities[]">
                                                 <label class="form-check-label" for="technicalOfficer">Technical Officer</label>
@@ -333,10 +342,8 @@
                                         </div>
 
                                         <div class="row">
-                                            <div class="form-check col">
-                                                <input class="form-check-input" type="checkbox" value="audioSystem" id="audioSystem" name="facilities[]">
-                                                <label class="form-check-label" for="audioSystem">Audio System</label>
-                                            </div>
+
+
                                             <div class="form-check col">
                                                 <input class="form-check-input" type="checkbox" value="multimedia" id="multimedia" name="facilities[]">
                                                 <label class="form-check-label" for="multimedia">Multimedia</label>
@@ -344,6 +351,10 @@
                                             <div class="form-check col">
                                                 <input class="form-check-input" type="checkbox" value="oilLamp" id="oilLamp" name="facilities[]">
                                                 <label class="form-check-label" for="oilLamp">Oil Lamp</label>
+                                            </div>
+                                            <div class="form-check col">
+                                                {{--  <input class="form-check-input" type="checkbox" value="audience" id="audience" name="facilities[]">
+                                                <label class="form-check-label" for="audience">Audience</label>  --}}
                                             </div>
                                         </div>
 
@@ -363,10 +374,10 @@
                             <!-- Step 3 -->
                             <div class="step" data-step="2" style="display: none;">
                                 <div class="form-group">
-                                    <label for="fileInput">Upload your verification document (JPG, PNG, PDF)</label>
+                                    <label for="fileInput" id="fileInputl">Upload your verification document.(If any)</label>
                                     <div class="custom-file">
                                         <input value="none" type="file" class="custom-file-input" id="fileInput" name="fileInput" accept=".jpg, .jpeg, .png, .pdf" required>
-                                        <label class="custom-file-label" for="fileInput">Choose file</label>
+                                        <label class="custom-file-label" for="fileInput">JPG, PNG, or PDF</label>
                                         <div class="invalid-feedback">
                                             Please upload a file in JPG, PNG, or PDF format.
                                         </div>
@@ -405,7 +416,16 @@
                                         </div>
                                         <div class="modal-body">
                                             <!-- Your terms and conditions content here -->
-                                            <p>This is where your terms and conditions will be displayed.</p>
+                                            <p>
+                                                I hereby confirm that the information provided in section 1 of this application form is accurate
+                                                and that this event/activity will be conducted in full compliance with the laws, regulations,
+                                                bylaws, and legal guidelines applicable to the Sabaragamuwa University of Sri Lanka.
+                                                Furthermore, I hereby agree to pay the full assessed cost to the university if any
+                                                damage occurs to the Auditorium of the Faculty of Social Sciences and Languages building or
+                                                any of its equipment or accessories, as determined by the university, due to the conduct of this
+                                                event/activity. Accordingly, I hereby request permission to use the Faculty Auditorium for the
+                                                aforementioned event/activity.
+                                            </p>
                                         </div>
                                         <div class="modal-footer">
                                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -491,6 +511,9 @@
                 $('#societyField').hide(); // Hide society field if external category is selected
                 $('#postField').show();
                 $('#addressField').show();
+                document.getElementById('fileInputl').innerText = 'Upload your verification document.';
+
+
 
             }
             else if (selectedCategory === 'academic') {
@@ -501,6 +524,7 @@
                 $('#societyField').show();
                 $('#postField').show();
                 $('#departmentField').show();
+                document.getElementById('Other').style.display = 'block';
 
             }
             else if (selectedCategory === 'non-academic') {
@@ -511,6 +535,7 @@
                 $('#societyField').show();
                 $('#postField').show();
                 $('#divisionField').show();
+                document.getElementById('Other').style.display = 'block';
 
             }
 
@@ -523,6 +548,8 @@
                 $('#societyField').show();
                 $('#postField').show();
                 $('#divisionField').show();
+
+                document.getElementById('Other').style.display = 'block';
             }
 
             $('#categoryModal').modal('hide');
@@ -692,6 +719,25 @@
                 event.preventDefault();
                 window.location.href='/';
             });
+
+
+                console.log(selectedCategory)
+                document.getElementById('faculty').addEventListener('change', function () {
+                    var divisionFieldField = document.getElementById('divisionField');
+                    if(selectedCategory !== 'administrative' && selectedCategory !== 'non-academic'){
+                    if (this.value === 'none') {
+                        divisionFieldField.style.display = 'block';
+                        document.getElementById('division').setAttribute('required', 'required');
+                        document.getElementById('departmentField').style.display = 'none';
+                        document.getElementById('department').value = 'none';
+                    } else {
+                        divisionFieldField.style.display = 'none';
+                        document.getElementById('division').removeAttribute('required');
+                        document.getElementById('departmentField').style.display = 'block';
+                    }
+                }
+                });
+
 
 
 

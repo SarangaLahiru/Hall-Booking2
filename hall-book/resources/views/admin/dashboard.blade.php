@@ -112,25 +112,25 @@
                 </tr>
             </thead>
             <tbody>
-                @foreach ($bookings->sortByDesc('created_at') as $index => $booking)
-                    <tr>
-                        <td>{{ $index + 1 }}</td>
-                        <td>{{ $booking->created_at->format('Y-m-d') }}</td>
-                        <td>{{ $booking->name }}</td>
-                        <td>{{ $booking->category }}</td>
-                        <td class="{{ $booking->status === 'pending' ? 'text-danger' : ($booking->status === 'accepted' ? 'text-success' : '') }}">
-                            {{ $booking->status }}
-                        </td>
-                        <td>
-                            @foreach ($booking->booking_dates as $date)
-                                <div>{{ $date['date'] }} - {{ date('g:i A', strtotime($date['start_time'])) }} to {{ date('g:i A', strtotime($date['end_time'])) }}</div>
-                            @endforeach
-                        </td>
-                        <td>
-                            <a href="{{ route('admin.booking.show', $booking->id) }}" class="btn btn-primary btn-sm">View More</a>
-                        </td>
-                    </tr>
-                @endforeach
+                @foreach ($bookings as $index => $booking)
+                <tr>
+                    <td>{{ $index + 1 }}</td>
+                    <td>{{ $booking->created_at->format('Y-m-d') }}</td>
+                    <td>{{ $booking->name }}</td>
+                    <td>{{ $booking->category }}</td>
+                    <td class="{{ $booking->status === 'pending' ? 'text-danger' : ($booking->status === 'accepted' ? 'text-success' : '') }}">
+                        {{ ucfirst($booking->status) }}
+                    </td>
+                    <td>
+                        @foreach ($booking->booking_dates as $date)
+                            <div>{{ $date['date'] }} - {{ date('g:i A', strtotime($date['start_time'])) }} to {{ date('g:i A', strtotime($date['end_time'])) }}</div>
+                        @endforeach
+                    </td>
+                    <td>
+                        <a href="{{ route('admin.booking.show', $booking->id) }}" class="btn btn-primary btn-sm">View More</a>
+                    </td>
+                </tr>
+            @endforeach
             </tbody>
         </table>
     </div>

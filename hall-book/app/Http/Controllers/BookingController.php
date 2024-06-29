@@ -356,6 +356,10 @@ public function reject(Request $request, $id)
 
     // Reject and delete the booking
     $reason = $request->input('reason');
+    if ($reason === 'other') {
+        $reason = $request->input('other_reason');
+    }
+    // $other=$request->input('other_reason');
     Mail::to($booking->email)->send(new BookingRejected($booking, $reason));
 
     // $booking->delete();

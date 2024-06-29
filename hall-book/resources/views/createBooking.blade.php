@@ -675,6 +675,11 @@
             if (fileInput.files.length > 0 || $('#termsConditions').is(':checked')) {
                 // Submit the form
                 $('#stepper-form').submit();
+
+
+                    showLoadingIndicator();
+
+
             }
         });
 
@@ -741,6 +746,7 @@
 
 
 
+
     });
     document.addEventListener("DOMContentLoaded", function() {
         showLoadingIndicator();
@@ -756,6 +762,9 @@
       function hideLoadingIndicator() {
         document.getElementById('loadingIndicator').style.display = 'none';
       }
+
+
+
 </script>
 </body>
 </html>

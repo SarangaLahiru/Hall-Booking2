@@ -24,6 +24,7 @@
           {{-- <p class="loading-text" style="color:rgb(0, 153, 255);">Loading...</p> --}}
         </div>
       </div>
+      {{--  @include('navbar\navbar');  --}}
       <!--====== NAVBAR ONE PART START ======-->
       <section class="navbar-area navbar-one relative">
          <div class="container">

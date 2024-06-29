@@ -1,35 +1,33 @@
 <!DOCTYPE html>
-<html>
-
+<html lang="en">
 <head>
-  <meta charset='utf-8' />
-  <title>Document</title>
-  <link href='https://use.fontawesome.com/releases/v5.0.6/css/all.css' rel='stylesheet'>
-  <link href='packages/core/main.css' rel='stylesheet' />
-  <link href='packages/bootstrap/main.css' rel='stylesheet' />
-  <link href='packages/timegrid/main.css' rel='stylesheet' />
-  <link href='packages/daygrid/main.css' rel='stylesheet' />
-  <link href='packages/list/main.css' rel='stylesheet' />
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"
-        integrity="sha512-AA1Bzp5Q0K1KanKKmvN/4d3IRKVlv9PYgwFPvm32nPO6QS8yH1HO7LbgB1pgiOxPtfeg5zEn2ba64MUcqJx6CA=="
-        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="{{ asset('css/check_availability.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/app.css') }}">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.11.3/font/bootstrap-icons.min.css" integrity="sha512-dPXYcDub/aeb08c63jRq/k6GaKccl256JQy/AnOq7CAnEZ9FzSL9wSbcZkMp4R26vBsMLFYH4kQ67/bbV8XaCQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link href='https://use.fontawesome.com/releases/v5.0.6/css/all.css' rel='stylesheet'>
+    <link href='packages/core/main.css' rel='stylesheet' />
+    <link href='packages/bootstrap/main.css' rel='stylesheet' />
+    <link href='packages/timegrid/main.css' rel='stylesheet' />
+    <link href='packages/daygrid/main.css' rel='stylesheet' />
+    <link href='packages/list/main.css' rel='stylesheet' />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"
+          integrity="sha512-AA1Bzp5Q0K1KanKKmvN/4d3IRKVlv9PYgwFPvm32nPO6QS8yH1HO7LbgB1pgiOxPtfeg5zEn2ba64MUcqJx6CA=="
+          crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+      <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+      <link rel="stylesheet" href="{{ asset('css/check_availability.css') }}">
+      <link rel="stylesheet" href="{{ asset('css/app.css') }}">
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.11.3/font/bootstrap-icons.min.css" integrity="sha512-dPXYcDub/aeb08c63jRq/k6GaKccl256JQy/AnOq7CAnEZ9FzSL9wSbcZkMp4R26vBsMLFYH4kQ67/bbV8XaCQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
 
-    <link rel="stylesheet" href="{{ asset('css/services.css') }}">
+      <link rel="stylesheet" href="{{ asset('css/services.css') }}">
 
-    <!--====== Bootstrap CSS ======-->
+      <!--====== Bootstrap CSS ======-->
 
-<!--====== gLightBox CSS ======-->
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/glightbox@3.1.0/dist/css/glightbox.min.css" />
-
+  <!--====== gLightBox CSS ======-->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/glightbox@3.1.0/dist/css/glightbox.min.css" />
 
 </head>
-
-
 <body>
     <style>
         body {
@@ -80,96 +78,91 @@
           padding: 0 10px;
         }
       </style>
+    <!--====== NAVBAR ONE PART START ======-->
+    <section class="navbar-area navbar-one relative">
+           <div class="container">
+                <div class="row">
+                   <div class="col-lg-12">
+                      <nav class="navbar navbar-expand-lg">
+                         <a class="navbar-brand" href="javascript:void(0)">
+                            <img src="/logo.png" alt="Logo" width="300px" />
+                         </a>
+                         <button
+                            class="navbar-toggler"
+                            type="button"
+                            data-bs-toggle="collapse"
+                            data-bs-target="#navbarOne"
+                            aria-controls="navbarOne"
+                            aria-expanded="false"
+                            aria-label="Toggle navigation">
+                            <span class="toggler-icon"></span>
+                            <span class="toggler-icon"></span>
+                            <span class="toggler-icon"></span>
+                         </button>
+                         <div class="collapse navbar-collapse sub-menu-bar" id="navbarOne">
+                            <ul class="navbar-nav m-auto">
+                               <li class="nav-item">
+                                  <a href="/" class="nav-link">Booking</a>
+                               </li>
+                               <li class="nav-item">
+                                  <a href="/calendar" class="nav-link">Calendar</a>
+                               </li>
+                               <li class="nav-item">
+                                  <a href="/staff" class="nav-link">Staff & Resources</a>
+                               </li>
+                               <li class="nav-item">
+                                  <a href="/resources" class="nav-link">Past Events</a>
+                               </li>
+                               <li class="nav-item">
+                                  <a href="/support" class="nav-link">Help</a>
+                               </li>
+                               {{--  <div class="boxContact">
+                                  <ul class="">
+
+                                        <div>
+                                          <i class="fas fa-phone "></i> (123) 456-7890
+                                        </div>
 
 
-      <!--====== NAVBAR ONE PART START ======-->
-      <section class="navbar-area navbar-one relative">
-         <div class="container">
-            <div class="row">
-               <div class="col-lg-12">
-                  <nav class="navbar navbar-expand-lg">
-                     <a class="navbar-brand" href="javascript:void(0)">
-                        <img src="/logo.png" alt="Logo" width="300px" />
-                     </a>
-                     <button
-                        class="navbar-toggler"
-                        type="button"
-                        data-bs-toggle="collapse"
-                        data-bs-target="#navbarOne"
-                        aria-controls="navbarOne"
-                        aria-expanded="false"
-                        aria-label="Toggle navigation">
-                        <span class="toggler-icon"></span>
-                        <span class="toggler-icon"></span>
-                        <span class="toggler-icon"></span>
-                     </button>
-                     <div class="collapse navbar-collapse sub-menu-bar" id="navbarOne">
-                        <ul class="navbar-nav m-auto">
-                           <li class="nav-item">
-                              <a href="/" class="nav-link">Booking</a>
-                           </li>
-                           <li class="nav-item">
-                              <a href="/calendar" class="nav-link">Calendar</a>
-                           </li>
-                           <li class="nav-item">
-                              <a href="/staff" class="nav-link">Staff & Resources</a>
-                           </li>
-                           <li class="nav-item">
-                              <a href="/resources" class="nav-link">Past Events</a>
-                           </li>
-                           <li class="nav-item">
-                              <a href="/support" class="nav-link">Help</a>
-                           </li>
-                           {{--  <div class="boxContact">
-                              <ul class="">
+                                         <div>
+                                          <i class="fas fa-map-marker-alt "></i> 123 Main St, Anytown, USA
 
-                                    <div>
-                                      <i class="fas fa-phone "></i> (123) 456-7890
-                                    </div>
+                                         </div>
+                                   </ul>
+
+                               </div>  --}}
+                            </ul>
+                            <div class="navbar-btn d-none d-sm-inline-block">
+                              <div class="" style="font-size: 13px; color:white; width:200px; position:relative; right:-95px;">
+                                <div>
+                                    <i class="fas fa-phone "></i> +94 45-2280021
+                                  </div>
 
 
-                                     <div>
-                                      <i class="fas fa-map-marker-alt "></i> 123 Main St, Anytown, USA
+                                   <div>
+                                    <i class="fas fa-envelope "></i> example@gmail.com
+                                   </div>
+                                  </div>
+                           </div>
+                         </div>
+                      </nav>
+                      <!-- navbar -->
+                   </div>
+                </div>
+                <!-- row -->
+             </div>
+             <!-- container -->
+    </section>
+          <!--====== NAVBAR ONE PART ENDS ======-->
+          <ul class="legend" style="display: flex; margin:  10px  auto; width:60%">
+            <li><div class="color-box accepted"></div>Accepted</li>
+            <li><div class="color-box pending"></div>Pending</li>
+        </ul>
 
-                                     </div>
-                               </ul>
-
-                           </div>  --}}
-                        </ul>
-                        <div class="navbar-btn d-none d-sm-inline-block">
-                          <div class="" style="font-size: 13px; color:white; width:200px; position:relative; right:-95px;">
-                            <div>
-                                <i class="fas fa-phone "></i> +94 45-2280021
-                              </div>
-
-
-                               <div>
-                                <i class="fas fa-envelope "></i> example@gmail.com
-                               </div>
-                              </div>
-                       </div>
-                     </div>
-                  </nav>
-                  <!-- navbar -->
-               </div>
-            </div>
-            <!-- row -->
-         </div>
-         <!-- container -->
-      </section>
-      <!--====== NAVBAR ONE PART ENDS ======-->
-
-      <!--====== NAVBAR ONE PART ENDS ======-->
-      <ul class="legend" style="display: flex; margin:  10px  auto; width:60%">
-        <li><div class="color-box accepted"></div>Accepted</li>
-        <li><div class="color-box pending"></div>Pending</li>
-    </ul>
-      <div class="shadow-lg p-3 mb-5 bg-body-tertiary rounded w-75 m-auto">
-        <div id='calendar'></div>
-      </div>
-
+        <div class="shadow-lg p-3 mb-5 bg-body-tertiary rounded w-75 m-auto">
+            <div id='calendar'></div>
+          </div>
 </body>
-<!--====== gLightBox js ======-->
 <script src="https://cdn.jsdelivr.net/npm/glightbox@3.1.0/dist/js/glightbox.min.js"></script>
 
 <script src='packages/core/main.js'></script>
@@ -236,5 +229,4 @@
     });
 
   </script>
-
 </html>

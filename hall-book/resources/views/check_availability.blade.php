@@ -3,85 +3,87 @@
 @section('title', 'Check Availability')
 
 @section('content')
+
 <div id="loadingIndicator" class="loading-indicator">
-    <div class="d-flex justify-content-center align-items-center" style="height: 100vh; position: fixed; top: 0; left: 0; right: 0; bottom: 0; background-color: rgba(255, 255, 255, 0.8); z-index: 1000;">
-      <div class="spinner-border text-primary" role="status">
-        <span class="visually-hidden"></span>
-      </div>
-      {{-- Uncomment below to add loading text --}}
-      {{-- <p class="loading-text" style="color:rgb(0, 153, 255);">Loading...</p> --}}
+    <div class="d-flex justify-content-center align-items-center"
+        style="height: 100vh; position: fixed; top: 0; left: 0; right: 0; bottom: 0; background-color: rgba(255, 255, 255, 0.8); z-index: 1000;">
+        <div class="spinner-border text-primary" role="status">
+            <span class="visually-hidden"></span>
+        </div>
+        {{-- Uncomment below to add loading text --}}
+        {{-- <p class="loading-text" style="color:rgb(0, 153, 255);">Loading...</p> --}}
     </div>
-  </div>
+</div>
+
+
 <!--====== HEADER ONE PART START ======-->
-<section class="header-area header-one"  >
-   <div class="header-content-area " style="height: 580px;">
-      <div class="container">
-         <div class="row align-items-center dis" style="margin-top: 0px">
-            <div class="col-lg-6 col-12">
-               <div class="header-wrapper">
-                  <div class="header-content"  data-aos="fade-up"  data-aos-duration="3000">
-                     <h1 class="header-title">
-                        Prof. Dayananda Somasundara Auditorum
-                     </h1>
-                     <p class="text-lg" style="font-size: 24px">
-                        Hall Reservation System
-                     </p>
-                     {{--  <div class="header-btn rounded-buttons">
-                        <a
-                           class="btn primary-btn-outline btn-lg"
-                           href="javascript:void(0)"
-                           >
-                        DOWNLOAD NOW
-                        </a>
-                     </div>  --}}
-                  </div>
-                  <!-- header content -->
-               </div>
-            </div>
-            <div class="col">
-               {{--  <div class="header-image d-none d-lg-block">
-                  <div class="image">
-                     <img
-                        src="https://cdn.ayroui.com/1.0/images/header/header-1.svg"
-                        alt="Header"
-                        />
-                  </div>
-               </div>  --}}
-               <div class="shadow">
-
-                <div id="calendar" class="calendar" style="margin-top: -10px;"  data-aos="fade-left">
-
-                    <ul class="legend" style="display: flex">
-                        <li><div class="color-box accepted"></div>Accepted</li>
-                        <li><div class="color-box pending"></div>Pending</li>
-                    </ul>
+<section class="header-area header-one">
+    <div class="header-content-area " style="height: 580px;">
+        <div class="container">
+            <div class="row align-items-center dis" style="margin-top: 0px">
+                <div class="col-lg-6 col-12">
+                    <div class="header-wrapper">
+                        <div class="header-content" data-aos="fade-up" data-aos-duration="3000">
+                            <h1 class="header-title">
+                                Prof. Dayananda Somasundara Auditorum
+                            </h1>
+                            <p class="text-lg" style="font-size: 24px">
+                                Hall Reservation System
+                            </p>
+                            {{-- <div class="header-btn rounded-buttons">
+                                <a class="btn primary-btn-outline btn-lg" href="javascript:void(0)">
+                                    DOWNLOAD NOW
+                                </a>
+                            </div> --}}
+                        </div>
+                        <!-- header content -->
+                    </div>
                 </div>
+                <div class="col">
+                    {{-- <div class="header-image d-none d-lg-block">
+                        <div class="image">
+                            <img src="https://cdn.ayroui.com/1.0/images/header/header-1.svg" alt="Header" />
+                        </div>
+                    </div> --}}
+                    <div class="shadow">
 
+                        <div id="calendar" class="calendar" style="margin-top: -10px;" data-aos="fade-left">
+
+                            <ul class="legend" style="display: flex">
+                                <li>
+                                    <div class="color-box accepted"></div>Accepted
+                                </li>
+                                <li>
+                                    <div class="color-box pending"></div>Pending
+                                </li>
+                            </ul>
+                        </div>
+
+                    </div>
+                </div>
             </div>
-            </div>
-         </div>
-         <!-- row -->
-      </div>
-      <!-- container -->
-      <div class="header-shape">
-         <img src="https://cdn.ayroui.com/1.0/images/header/header-shape.svg" alt="shape" />
-      </div>
-      <!-- header-shape -->
-   </div>
-   <!-- header content area -->
+            <!-- row -->
+        </div>
+        <!-- container -->
+        <div class="header-shape">
+            <img src="https://cdn.ayroui.com/1.0/images/header/header-shape.svg" alt="shape" />
+        </div>
+        <!-- header-shape -->
+    </div>
+    <!-- header content area -->
 </section>
 <!--====== HEADER ONE PART ENDS ======-->
 <div class="container check">
-    {{--  <div class="row">
+    {{-- <div class="row">
         <div class="col-md-6">
             <h2 class="text-xl-start fs-3 fs-md-4 title">Hall Reservation System</h2>
         </div>
         <div class="col-md-6 text-md-right">
             <div id="calendar" class="calendar"></div>
         </div>
-    </div>  --}}
+    </div> --}}
 
-    <div class="row justify-content-center mt-4" data-aos="fade-up"  data-aos-duration="1000">
+    <div class="row justify-content-center mt-4" data-aos="fade-up" data-aos-duration="1000">
         <div class="col">
             <div class="car">
                 <div class="card-body">
@@ -96,31 +98,40 @@
                                         <div class="row mt-3">
                                             <div class="col-md-4">
                                                 <label for="booking_date" class="form-label">Booking Date:</label>
-                                                <input type="date" id="booking_date" name="availability_data[0][date]" class="form-control" required>
+                                                <input type="date" id="booking_date" name="availability_data[0][date]"
+                                                    class="form-control" required>
                                             </div>
                                             <div class="col-md-3">
                                                 <label for="start_time" class="form-label">Start Time:</label>
-                                                <input type="time" id="start_time" name="availability_data[0][start_time]" class="form-control" required>
+                                                <input type="time" id="start_time"
+                                                    name="availability_data[0][start_time]" class="form-control"
+                                                    required>
                                             </div>
                                             <div class="col-md-3">
                                                 <label for="end_time" class="form-label">End Time:</label>
-                                                <input type="time" id="end_time" name="availability_data[0][end_time]" class="form-control" required>
+                                                <input type="time" id="end_time" name="availability_data[0][end_time]"
+                                                    class="form-control" required>
                                             </div>
                                             <div class="col d-flex align-items-end">
 
-                                                <button type="submit" id="check-availability" class="btn btn-primary" style="font-size: 15px">Check Availability</button>
-                                                {{--  <button type="button" class="btn btn-danger remove-day-btn">Remove</button>  --}}
-                                                {{--  <button type="submit" id="check-availability" class="btn btn-primary a2">Check Availability</button>  --}}
+                                                <button type="submit" id="check-availability" class="btn btn-primary"
+                                                    style="font-size: 15px">Check Availability</button>
+                                                {{-- <button type="button"
+                                                    class="btn btn-danger remove-day-btn">Remove</button> --}}
+                                                {{-- <button type="submit" id="check-availability"
+                                                    class="btn btn-primary a2">Check Availability</button> --}}
                                             </div>
                                         </div>
 
                                     </div>
                                     <div class="text-left mt-2">
-                                        {{--  <button type="button" id="add-day-btn" class="btn btn-success">Add more Days</button>  --}}
+                                        {{-- <button type="button" id="add-day-btn" class="btn btn-success">Add more
+                                            Days</button> --}}
                                     </div>
                                 </div>
                                 <div class="modal-footer">
-                                    <button type="button" id="add-day-btn" class="btn btn-success">Add more Days</button>
+                                    <button type="button" id="add-day-btn" class="btn btn-success">Add more
+                                        Days</button>
 
 
 
@@ -135,17 +146,18 @@
 
 
 </div>
-<div class="modal fade" id="eventDetailsModal" tabindex="-1" style="position: absolute; z-index:100000;" role="dialog" aria-labelledby="eventDetailsModalLabel" aria-hidden="true">
+<div class="modal fade" id="eventDetailsModal" tabindex="-1" style="position: absolute; z-index:100000;" role="dialog"
+    aria-labelledby="eventDetailsModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="eventDetailsModalLabel">Event Details</h5>
-                {{--  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                {{-- <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
-                </button>  --}}
+                </button> --}}
             </div>
             <div class="modal-body">
-                {{--  <h5 id="eventTitle"></h5>  --}}
+                {{-- <h5 id="eventTitle"></h5> --}}
                 <p><strong>Status:</strong> <span id="eventTitle"></span></p>
                 <p><strong>Start:</strong> <span id="eventStart"></span></p>
                 <p><strong>End:</strong> <span id="eventEnd"></span></p>
@@ -158,26 +170,23 @@
         </div>
     </div>
 </div>
-<link href='https://use.fontawesome.com/releases/v5.0.6/css/all.css' rel='stylesheet'>
-  <link href='packages/core/main.css' rel='stylesheet' />
-  <link href='packages/bootstrap/main.css' rel='stylesheet' />
-  <link href='packages/timegrid/main.css' rel='stylesheet' />
-  <link href='packages/daygrid/main.css' rel='stylesheet' />
-  <link href='packages/list/main.css' rel='stylesheet' />
-  <script src='packages/core/main.js'></script>
-  <script src='packages/interaction/main.js'></script>
-  <script src='packages/bootstrap/main.js'></script>
-  <script src='packages/daygrid/main.js'></script>
-  <script src='packages/timegrid/main.js'></script>
-  <script src='packages/list/main.js'></script>
-  <script src='js/theme-chooser.js'></script>
-<!-- Ensure FullCalendar CSS is loaded -->
-{{--  <link href="https://cdn.jsdelivr.net/npm/fullcalendar-scheduler@5.3.0/main.min.css" rel="stylesheet">  --}}
+
+
+<link href='packages/core/main.css' rel='stylesheet' />
+<link href='packages/bootstrap/main.css' rel='stylesheet' />
+<link href='packages/timegrid/main.css' rel='stylesheet' />
+<link href='packages/daygrid/main.css' rel='stylesheet' />
+<link href='packages/list/main.css' rel='stylesheet' />
+<script src='packages/core/main.js'></script>
+<script src='packages/interaction/main.js'></script>
+<script src='packages/bootstrap/main.js'></script>
+<script src='packages/daygrid/main.js'></script>
+<script src='packages/timegrid/main.js'></script>
+<script src='packages/list/main.js'></script>
+<script src='js/theme-chooser.js'></script>
 
 <!-- Ensure FullCalendar JS is loaded -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-{{--  <script src="https://cdn.jsdelivr.net/npm/fullcalendar-scheduler@5.3.0/main.min.js"></script>  --}}
-<!-- SweetAlert library -->
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 <!-- Bootstrap JS (Ensure you have Bootstrap CSS included in your app layout) -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
@@ -185,7 +194,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 
 
-  <script>
+<script>
     document.addEventListener('DOMContentLoaded', function () {
 
         showLoadingIndicator();
@@ -207,7 +216,7 @@
             weekNumbers: true,
             navLinks: true,
             eventLimit: true,
-            eventClick: function(info) {
+            eventClick: function (info) {
                 // Populate modal with event details
                 var eventObj = info.event;
                 console.log(eventObj)
@@ -227,7 +236,7 @@
             }
         });
         calendar.render();
-        document.getElementById('manualCloseBtn').addEventListener('click', function() {
+        document.getElementById('manualCloseBtn').addEventListener('click', function () {
             $('#eventDetailsModal').modal('hide');
         });
 
@@ -335,58 +344,61 @@
             });
         });
 
-        @if(session('error'))
-        $(document).ready(function(){
-            var unavailableSlotsHtml = '';
+        @if (session('error'))
+            $(document).ready(function () {
+                var unavailableSlotsHtml = '';
 
-            @if(count(session('error')['unavailable_slots']) > 0)
-                unavailableSlotsHtml += '<p>Unavailable Time Slots:</p><ul>';
+                @if (count(session('error')['unavailable_slots']) > 0)
+                    unavailableSlotsHtml += '<p>Unavailable Time Slots:</p><ul>';
                 @foreach(session('error')['unavailable_slots'] as $slot)
-                    <?php
+                    <? php
                         $formattedStartTime = date('g:i A', strtotime($slot['start_time']));
-                        $formattedEndTime = date('g:i A', strtotime($slot['end_time']));
+                $formattedEndTime = date('g:i A', strtotime($slot['end_time']));
                     ?>
                     unavailableSlotsHtml += '<li>{{ $slot['date'] }} - {{ $formattedStartTime }} to {{ $formattedEndTime }}</li>';
                 @endforeach
                 unavailableSlotsHtml += '</ul>';
-            @endif
+                @endif
 
+                Swal.fire({
+                    title: 'Unavailable',
+                    html: '<p>{{ session('error')['message'] }}</p>' + unavailableSlotsHtml,
+                    icon: 'error'
+                });
+            });
+        @endif
+        @if (session('error2'))
             Swal.fire({
                 title: 'Unavailable',
-                html: '<p>{{ session('error')['message'] }}</p>' + unavailableSlotsHtml,
+                text: 'Time slots cannot span multiple days',
                 icon: 'error'
             });
-        });
-    @endif
-    @if(session('error2'))
-    Swal.fire({
-        title: 'Unavailable',
-        text:'Time slots cannot span multiple days',
-        icon: 'error'
+
+        @endif
+
+
+
+        {
+            {
+                --document.getElementById('save-multiple-days').addEventListener('click', function () {
+                    var container = document.getElementById('multiple-days-container');
+                    var fieldsContainer = document.getElementById('multiple-days-fields').innerHTML;
+                    container.innerHTML = fieldsContainer;
+                    $('#multipleDaysModal').modal('hide');
+                }); --}
+        }
     });
-
-    @endif
-
-
-
-        document.getElementById('save-multiple-days').addEventListener('click', function () {
-            var container = document.getElementById('multiple-days-container');
-            var fieldsContainer = document.getElementById('multiple-days-fields').innerHTML;
-            container.innerHTML = fieldsContainer;
-            $('#multipleDaysModal').modal('hide');
-        });
-    });
-    window.onload = function() {
+    window.onload = function () {
         hideLoadingIndicator();
-      };
+    };
 
     function showLoadingIndicator() {
         document.getElementById('loadingIndicator').style.display = 'block';
-      }
+    }
 
-      function hideLoadingIndicator() {
+    function hideLoadingIndicator() {
         document.getElementById('loadingIndicator').style.display = 'none';
-      }
+    }
 
 </script>
 

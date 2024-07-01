@@ -31,13 +31,16 @@
                 </ul>
                 <p>Please login to the admin panel to review and process the booking request.</p>
                 <p>Best regards,</p>
-                <p>Your Company Name</p>
+                <p>Prof. Dayananda Somasundara Auditorium Hall - Reservation System</p>
+                <p>Contact Information:</p>
+                <p>Phone: +94 45-2280021</p>
+                <p>Email: example@gmail.com</p>
             </td>
         </tr>
         <!-- Footer Row -->
         <tr style="background-color: #f8f9fa; color: #333;">
             <td style="padding: 10px; text-align: center;">
-                <small>&copy; {{ date('Y') }} Your Company Name. All rights reserved.</small>
+                <small>&copy; {{ date('Y') }} Prof. Dayananda Somasundara Auditorium - Hall Reservation System. All rights reserved.</small>
             </td>
         </tr>
     </table>

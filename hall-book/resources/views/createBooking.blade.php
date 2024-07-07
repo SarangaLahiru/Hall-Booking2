@@ -127,9 +127,9 @@
                                     <div class="form-row">
                                         <div class="col-md-6 mb-3">
                                             <label for="phone">Contact Number</label>
-                                            <input type="text" class="form-control" id="phone" name="phone" required>
+                                            <input type="text" class="form-control" id="phone" name="phone" pattern="\d{10}" required>
                                             <div class="invalid-feedback">
-                                                Please enter a valid phone number.
+                                                Please enter a valid  phone number.
                                             </div>
                                         </div>
 
@@ -146,22 +146,15 @@
                                             <select class="form-control" id="faculty" name="faculty" required>
                                                 <option value="">select</option>
                                                 <option id="Other" style="display: none;" value="none">None</option>
-                                                <option value="Faculty of Agricultural Sciences">Faculty of Agricultural
-                                                    Sciences</option>
-                                                <option value="Faculty of Applied Sciences">Faculty of Applied Sciences
-                                                </option>
-                                                <option value="Faculty of Geomatics">Faculty of Geomatics</option>
-                                                <option value="Faculty of Graduate Studies">Faculty of Graduate Studies
-                                                </option>
-                                                <option value="Faculty of Management Studies">Faculty of Management
-                                                    Studies</option>
-
-                                                <option value="Faculty of Medicine">Faculty of Medicine</option>
-                                                <option value="Faculty of Social Sciences and Languages">Faculty of
-                                                    Social Sciences and Languages</option>
-                                                <option value="Faculty of Technology">Faculty of Technology</option>
+                                                <option value="Faculty of Agricultural Sciences">Faculty of Agricultural Sciences</option>
+                                                <option value="Faculty of Applied Sciences">Faculty of Applied Sciences</option>
                                                 <option value="Faculty of Computing">Faculty of Computing</option>
-
+                                                <option value="Faculty of Geomatics">Faculty of Geomatics</option>
+                                                <option value="Faculty of Graduate Studies">Faculty of Graduate Studies</option>
+                                                <option value="Faculty of Management Studies">Faculty of Management Studies</option>
+                                                <option value="Faculty of Medicine">Faculty of Medicine</option>
+                                                <option value="Faculty of Social Sciences and Languages">Faculty of Social Sciences and Languages</option>
+                                                <option value="Faculty of Technology">Faculty of Technology</option>
                                                 <!-- Add more options as needed -->
                                             </select>
                                             <div class="invalid-feedback">
@@ -173,114 +166,81 @@
                                             <label for="department">Name of the Department</label>
                                             <select class="form-control" id="department" name="department" required>
                                                 <option value="">select</option>
+                                                <option id="Other1" value="none" style="display:none;">None</option>
                                                 <optgroup label="Faculty of Agricultural Sciences">
-                                                    <option value="Department of Agribusiness Management">Department of
-                                                        Agribusiness Management</option>
-
-                                                    <option value="Department of Export Agriculture">Department of
-                                                        Export Agriculture</option>
-                                                    <option value="Department of Livestock Production">Department of
-                                                        Livestock Production</option>
+                                                    <option value="Department of Agribusiness Management">Department of Agribusiness Management</option>
+                                                    <option value="Department of Export Agriculture">Department of Export Agriculture</option>
+                                                    <option value="Department of Livestock Production">Department of Livestock Production</option>
                                                 </optgroup>
                                                 <optgroup label="Faculty of Applied Sciences">
-                                                    <option value="Department of Food Science & Technology">Department
-                                                        of
-                                                        Food Science & Technology</option>
-                                                    <option value="Department of Physical Sciences & Technology">
-                                                        Department of Physical Sciences & Technology</option>
-                                                    <option value="Department of Sports Sciences & Physical Education">
-                                                        Department of Sports Sciences & Physical Education</option>
-                                                </optgroup>
-                                                <optgroup label="Faculty of Geomatics">
-                                                    <option value="Department of Surveying & Geodesy">Department of
-                                                        Surveying & Geodesy</option>
-                                                    <option value="Department of Remote Sensing & GIS">Department of
-                                                        Remote Sensing & GIS</option>
-                                                </optgroup>
-                                                <optgroup label="Faculty of Management Studies">
-                                                    <option value="Department of Business Management">Department of
-                                                        Business Management</option>
-                                                    <option value="Department of Tourism Management">Department of
-                                                        Tourism Management</option>
-                                                    <option value="Department of Accountancy & Finance">Department of
-                                                        Accountancy & Finance</option>
-                                                    <option value="Department of Marketing Management">Department of
-                                                        Marketing Management</option>
-                                                </optgroup>
-                                                <optgroup label="Faculty of Social Sciences and Languages">
-                                                    <option value="Department of Social Sciences">Department of Social
-                                                        Sciences</option>
-                                                    <option value="Department of English Language Teaching">Department
-                                                        of English Language Teaching
-                                                    </option>
-                                                    <option value="Department of Geography & Environmental Management">
-                                                        Department of
-                                                        Geography & Environmental Management</option>
-                                                    <option value="Department of Information Technology">Department of
-                                                        Information Technology</option>
-                                                    <option value="Department of Languages">Department of
-                                                        Languages</option>
-                                                </optgroup>
-                                                <optgroup label="Faculty of Technology">
-                                                    <option value="Department of Engineering Technology">Department of
-                                                        Engineering Technology</option>
-                                                    <option value="Department of Biosystems Technology">Department of
-                                                        Biosystems Technology</option>
+                                                    <option value="Department of Food Science & Technology">Department of Food Science & Technology</option>
+                                                    <option value="Department of Physical Sciences & Technology">Department of Physical Sciences & Technology</option>
+                                                    <option value="Department of Sports Sciences & Physical Education">Department of Sports Sciences & Physical Education</option>
                                                 </optgroup>
                                                 <optgroup label="Faculty of Computing">
-                                                    <option value="Department of Software Engineering">Department of
-                                                        Software Engineering</option>
-                                                    <option value="Department of Computing and Information Systems">
-                                                        Department of Computing and Information Systems</option>
-                                                    <option value="Department of Data Science">Department of Data
-                                                        Science</option>
+                                                    <option value="Department of Software Engineering">Department of Software Engineering</option>
+                                                    <option value="Department of Computing and Information Systems">Department of Computing and Information Systems</option>
+                                                    <option value="Department of Data Science">Department of Data Science</option>
+                                                </optgroup>
+                                                <optgroup label="Faculty of Geomatics">
+                                                    <option value="Department of Surveying & Geodesy">Department of Surveying & Geodesy</option>
+                                                    <option value="Department of Remote Sensing & GIS">Department of Remote Sensing & GIS</option>
                                                 </optgroup>
                                                 <optgroup label="Faculty of Graduate Studies">
                                                     <option value="Agricultural Sciences">Agricultural Sciences</option>
-                                                    <option value="Computing & Information Systems">Computing &
-                                                        Information Systems</option>
+                                                    <option value="Computing & Information Systems">Computing & Information Systems</option>
                                                     <option value="Geomatics">Geomatics</option>
                                                     <option value="Humanities">Humanities</option>
                                                     <option value="Management">Management</option>
-                                                    <option value="Physical & Natural Sciences">Physical & Natural
-                                                        Sciences</option>
+                                                    <option value="Physical & Natural Sciences">Physical & Natural Sciences</option>
                                                     <option value="Social Sciences">Social Sciences</option>
-                                                    <option value="Sports Science & Physical Education">Sports Science &
-                                                        Physical Education</option>
+                                                    <option value="Sports Science & Physical Education">Sports Science & Physical Education</option>
                                                     <option value="Medicine">Medicine</option>
                                                     <option value="Technology">Technology</option>
-                                                    <option value="Indigenous Knowledge & Community Studies">Indigenous
-                                                        Knowledge & Community Studies</option>
-
+                                                    <option value="Indigenous Knowledge & Community Studies">Indigenous Knowledge & Community Studies</option>
+                                                </optgroup>
+                                                <optgroup label="Faculty of Management Studies">
+                                                    <option value="Department of Business Management">Department of Business Management</option>
+                                                    <option value="Department of Tourism Management">Department of Tourism Management</option>
+                                                    <option value="Department of Accountancy & Finance">Department of Accountancy & Finance</option>
+                                                    <option value="Department of Marketing Management">Department of Marketing Management</option>
                                                 </optgroup>
                                                 <optgroup label="Faculty of Medicine">
                                                     <option value="Anatomy">Anatomy</option>
                                                     <option value="Biochemistry">Biochemistry</option>
                                                     <option value="Community Medicine">Community Medicine</option>
-                                                    <option value="Forensic Medicine & Toxicology">Forensic Medicine &
-                                                        Toxicology</option>
+                                                    <option value="Forensic Medicine & Toxicology">Forensic Medicine & Toxicology</option>
                                                     <option value="Medicine">Medicine</option>
                                                     <option value="Microbiology">Microbiology</option>
-                                                    <option value="Obstetrics and Gynaecology">Obstetrics and
-                                                        Gynaecology</option>
+                                                    <option value="Obstetrics and Gynaecology">Obstetrics and Gynaecology</option>
                                                     <option value="Paediatrics">Paediatrics</option>
                                                     <option value="Parasitology">Parasitology</option>
                                                     <option value="Pathology">Pathology</option>
                                                     <option value="Pharmacology">Pharmacology</option>
                                                     <option value="Physiology">Physiology</option>
-                                                    <option value="Primary Care & Family Medicine">Primary Care & Family
-                                                        Medicine</option>
+                                                    <option value="Primary Care & Family Medicine">Primary Care & Family Medicine</option>
                                                     <option value="Psychiatry">Psychiatry</option>
                                                     <option value="Surgery">Surgery</option>
                                                 </optgroup>
-                                                <!-- Add more options as needed -->
+                                                <optgroup label="Faculty of Social Sciences and Languages">
+                                                    <option value="Department of Social Sciences">Department of Social Sciences</option>
+                                                    <option value="Department of English Language Teaching">Department of English Language Teaching</option>
+                                                    <option value="Department of Geography & Environmental Management">Department of Geography & Environmental Management</option>
+                                                    <option value="Department of Information Technology">Department of Information Technology</option>
+                                                    <option value="Department of Languages">Department of Languages</option>
+                                                </optgroup>
+                                                <optgroup label="Faculty of Technology">
+                                                    <option value="Department of Engineering Technology">Department of Engineering Technology</option>
+                                                    <option value="Department of Biosystems Technology">Department of Biosystems Technology</option>
+                                                </optgroup>
                                             </select>
+
                                             <div class="invalid-feedback">
                                                 Please select your Department.
                                             </div>
                                         </div>
                                         <div class="col-md-6 mb-3" id="divisionField" style="display: none;">
-                                            <label for="division">Name of Division/Center/Unit</label>
+                                            <label for="division">Name of the Division/Centre/Unit</label>
                                             <input type="text" class="form-control" id="division" name="division"
                                                 placeholder="If not, please mention that as 'None'" required>
                                             <div class="invalid-feedback">
@@ -289,7 +249,7 @@
                                         </div>
 
                                         <div class="col-md-6 mb-3" id="societyField">
-                                            <label for="society">Society</label>
+                                            <label for="society" id="societyL">Society</label>
                                             <input type="text" class="form-control" id="society" name="society"
                                                 placeholder="If not, please mention that as 'None'" required>
                                             <div class="invalid-feedback">
@@ -637,8 +597,11 @@
                     $('#idNoField').hide();
                     $('#institutionField').hide(); // Hide institution field if student category is selected
                     $('#societyField').show(); // Show society field if student category is selected
-                    $('#postField').hide();
+                    $('#postField').show();
                     $('#departmentField').show();
+                    document.getElementById('Other1').style.display = 'block';
+                    document.getElementById('Other').style.display = 'block';
+                    document.getElementById('societyL').innerText = 'Society/ Association';
 
                 } else if (selectedCategory === 'external') {
                     $('#studentNoField').hide();
@@ -771,15 +734,21 @@
             $('#submitBtn').click(function () {
 
                 var fileInput = $('#fileInput')[0];
-                if (selectedCategory === 'external' || selectedCategory === 'non-academic') {
+                var validFile = true;
+                var validTerms = true;
+                if (selectedCategory === 'external') {
                     if (fileInput.files.length === 0) {
                         $('#fileInput').addClass('is-invalid');
+                        validFile = false;
+
+
                     } else {
                         var fileSize = fileInput.files[0].size / (1024 * 1024); // Convert bytes to MB
                         if (fileSize > 5) { // Check if file size exceeds 5 MB
                             $('#fileInput').addClass('is-invalid');
                             $('#fileInput').next('.custom-file-label').html('Choose file'); // Reset file label
                             alert('File size exceeds the limit of 5 MB.');
+                            validFile = false;
                             return; // Exit the function without submitting the form
                         } else {
                             $('#fileInput').removeClass('is-invalid');
@@ -790,12 +759,13 @@
                 // Check if terms and conditions checkbox is checked
                 if (!$('#termsConditions').is(':checked')) {
                     $('#termsConditions').addClass('is-invalid');
+                    validTerms = false;
                 } else {
                     $('#termsConditions').removeClass('is-invalid');
                 }
 
                 // Check if both conditions are met
-                if (fileInput.files.length > 0 || $('#termsConditions').is(':checked')) {
+                if (validFile && validTerms) {
                     // Submit the form
                     $('#stepper-form').submit();
 
@@ -852,7 +822,7 @@
             console.log(selectedCategory)
             document.getElementById('faculty').addEventListener('change', function () {
                 var divisionFieldField = document.getElementById('divisionField');
-                if (selectedCategory !== 'administrative' && selectedCategory !== 'non-academic') {
+                if (selectedCategory !== 'administrative' && selectedCategory !== 'non-academic' && selectedCategory !== 'student') {
                     if (this.value === 'none') {
                         divisionFieldField.style.display = 'block';
                         document.getElementById('division').setAttribute('required', 'required');

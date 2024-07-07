@@ -173,7 +173,7 @@
         <div class="row justify-content-center">
             <div class="col-xxl-6 col-xl-7 col-lg-8">
                 <div class="section-title text-center mb-5">
-                    <h2 class="mb-3 fw-bold "> Prof. Dayananda Somasundara Auditorum</h2>
+                    <h2 class="mb-3 fw-bold ">Events at the Prof. Dayananda Somasundara Auditorum</h2>
 
                 </div>
             </div>
@@ -181,7 +181,7 @@
         <div class="row">
             <div class="col-lg-12">
                 <div class="portfolio-menu">
-                    <button data-filter="all" class="active">Events</button>
+                    {{--  <button data-filter="all" class="active">Events</button>  --}}
                     {{-- <button data-filter="branding">Lighting system</button>
                     <button data-filter="marketing">Audio System</button>
                     <button data-filter="planning">Stage</button> --}}

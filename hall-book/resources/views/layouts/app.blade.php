@@ -24,7 +24,7 @@
 <body>
 
     <!--====== NAVBAR ONE PART START ======-->
-    <section class="navbar-area navbar-one relative">
+    <section class="navbar-area navbar-one relative" >
         <div class="container">
             <div class="row">
                 <div class="col-lg-12">
@@ -81,7 +81,7 @@
 
 
                                     <div>
-                                        <i class="fas fa-envelope "></i> example@gmail.com
+                                        <i class="fas fa-envelope "></i>  audi@ssl.sab.ac.lk
                                     </div>
                                 </div>
                             </div>
@@ -108,30 +108,30 @@
                 <div class="col-md-4 mb-4" style="color: white;">
                     <h5 class="text-uppercase font-weight-bold">Contact Information</h5>
                     <p style="color: white;">
-                        <i class="fas fa-map-marker-alt me-2"></i>Faculty of Social Sciences and Languages,<br>
+                        <i class="fas fa-map-marker-alt me-2"></i> Faculty of Social Sciences and Languages,<br>
                         Sabaragamuwa University of Sri Lanka,<br>
                         P.O. Box 02, Belihuloya 70140, Sri Lanka
                     </p>
                     <p style="color: white;">
-                        <i class="fas fa-phone-alt me-2"></i>+94 45-2280021
+                        <i class="fas fa-phone-alt me-2"></i> +94 45-2280021
                     </p>
                     <p style="color: white;">
                         <i class="fas fa-envelope me-2"></i><a href="mailto:example@gmail.com"
-                            class="text-light">example@gmail.com</a>
+                            class="text-light"> audi@ssl.sab.ac.lk </a>
                     </p>
                 </div>
                 <!-- Navigation Links -->
                 <div class="col-md-4 mb-4">
                     <h5 class="text-uppercase font-weight-bold">Quick Links</h5>
                     <ul class="list-unstyled">
-                        <li><a href="#" class="text-light d-block mb-2"><i class="fas fa-calendar-alt me-2"></i>Booking
+                        <li><a href="#" class="text-light d-block mb-2"><i class="fas fa-calendar-alt me-2"></i> Booking
                                 Calendar</a></li>
-                        <li><a href="#" class="text-light d-block mb-2"><i class="fas fa-users me-2"></i>Staff &
+                        <li><a href="#" class="text-light d-block mb-2"><i class="fas fa-users me-2"></i> Staff &
                                 Resources</a></li>
-                        <li><a href="#" class="text-light d-block mb-2"><i class="fas fa-history me-2"></i>Past
+                        <li><a href="#" class="text-light d-block mb-2"><i class="fas fa-history me-2"></i> Past
                                 Events</a></li>
                         <li><a href="#" class="text-light d-block mb-2"><i
-                                    class="fas fa-question-circle me-2"></i>Help</a></li>
+                                    class="fas fa-question-circle me-2"></i> Help</a></li>
                     </ul>
                 </div>
                 <!-- Logo and Social Media -->

@@ -291,20 +291,31 @@ public function showCalendar2(){
             $additionalFields
         );
 
+        $availabilityData = Session::get('availabilityData', []);
+
+        $check=$this->checkMultipleDaysAvailability($availabilityData);
+
         // Handle file upload
 
 
         // Create a new Booking instance with the booking data
-        $booking = new Booking($bookingData);
 
-        // Save the booking to the database
-        $booking->save();
-        Mail::to($booking->email)->send(new ApplicantSubmit($booking));
-        Mail::to('lahirusashika@gmail.com')->send(new AdminRequest($booking));
+        if($check){
+            $booking = new Booking($bookingData);
 
-        // Redirect the user to a success page
-        // return redirect()->route('successPage')->with('success', 'Booking created successfully.');
-        return view('successpage')->with('success', 'Booking created successfully.');
+            // Save the booking to the database
+            $booking->save();
+            Mail::to($booking->email)->send(new ApplicantSubmit($booking));
+            Mail::to('lahirusashika@gmail.com')->send(new AdminRequest($booking));
+
+            // Redirect the user to a success page
+            // return redirect()->route('successPage')->with('success', 'Booking created successfully.');
+            return view('successpage')->with('success', 'Booking created successfully.');
+        }
+        else{
+            return view('errorpage')->with('error', 'Booking error.');
+
+        }
     }
 
     public function accept($id)
@@ -365,6 +376,56 @@ public function reject(Request $request, $id)
     // $booking->delete();
 
     return redirect()->route('admin.dashboard')->with('success', 'Booking rejected and deleted successfully.');
+}
+
+
+
+public function checkMultipleDaysAvailability($request)
+{
+    $availabilityData = $request;
+    $unavailableSlots = [];
+
+    foreach ($availabilityData as $data) {
+        $bookingDate = $data['date'];
+        $startTime = $data['start_time'];
+        $endTime = $data['end_time'];
+
+         // Check if the time slot spans two days
+         if (strtotime($startTime) > strtotime($endTime)) {
+            $invalidSlots[] = $data;
+            continue; // Skip further checks for this slot
+        }
+
+        // Get all bookings
+        // $bookings = Booking::all();
+        $bookings = Booking::whereIn('status', ['accepted', 'pending'])->orderBy('created_at', 'desc')->get();
+
+
+
+        foreach ($bookings as $booking) {
+            $bookingDates = is_string($booking->booking_dates) ? json_decode($booking->booking_dates, true) : $booking->booking_dates;
+
+            foreach ($bookingDates as $bookingDateObj) {
+                if ($bookingDateObj['date'] == $bookingDate) {
+                    // Check for time conflicts
+                    if (($startTime < $bookingDateObj['end_time']) && ($endTime > $bookingDateObj['start_time'])) {
+                        $unavailableSlots[] = $data;
+                        break 2; // Break out of both loops if a conflict is found
+                    }
+                }
+            }
+        }
+    }
+
+
+
+    if (empty($unavailableSlots)) {
+
+        return  true;
+     } else {
+        return  false;
+
+    }
 }
 
 

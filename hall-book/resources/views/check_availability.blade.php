@@ -115,7 +115,7 @@
                                             <div class="col d-flex align-items-end">
 
                                                 <button type="submit" id="check-availability" class="btn btn-primary"
-                                                    style="font-size: 15px">Check Availability</button>
+                                                    style="font-size: 15px;" >Check Availability</button>
                                                 {{-- <button type="button"
                                                     class="btn btn-danger remove-day-btn">Remove</button> --}}
                                                 {{-- <button type="submit" id="check-availability"
@@ -351,9 +351,9 @@
                 @if (count(session('error')['unavailable_slots']) > 0)
                     unavailableSlotsHtml += '<p>Unavailable Time Slots:</p><ul>';
                 @foreach(session('error')['unavailable_slots'] as $slot)
-                    <? php
+                    <?php
                         $formattedStartTime = date('g:i A', strtotime($slot['start_time']));
-                $formattedEndTime = date('g:i A', strtotime($slot['end_time']));
+                        $formattedEndTime = date('g:i A', strtotime($slot['end_time']));
                     ?>
                     unavailableSlotsHtml += '<li>{{ $slot['date'] }} - {{ $formattedStartTime }} to {{ $formattedEndTime }}</li>';
                 @endforeach
@@ -379,13 +379,13 @@
 
 
         {
-            {
-                --document.getElementById('save-multiple-days').addEventListener('click', function () {
+
+                document.getElementById('save-multiple-days').addEventListener('click', function () {
                     var container = document.getElementById('multiple-days-container');
                     var fieldsContainer = document.getElementById('multiple-days-fields').innerHTML;
                     container.innerHTML = fieldsContainer;
                     $('#multipleDaysModal').modal('hide');
-                }); --}
+                });
         }
     });
     window.onload = function () {

@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Controllers\Auth\AdminLoginController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Mail;
+use Barryvdh\DomPDF\Facade\Pdf;
 
 // Route::get('/calendar', function () {
 //     return view('calendar');
@@ -25,6 +26,7 @@ Route::get('/resources', function () {
 Route::get('/support', function () {
     return view('support');
 });
+
 
 
 // Route::get('/dash', function () {
@@ -53,6 +55,10 @@ Route::prefix('admin')->group(function () {
         Route::get('/password/reset', [Controller::class, 'showResetForm'])->name('admin.password.reset');
         Route::post('/password/reset', [Controller::class, 'reset'])->name('admin.password.update');
         Route::get('/dashboard', [Controller::class, 'index'])->name('admin.dashboard');
+
+        Route::get('/report/analytics', [Controller::class, 'generateAnalyticsReport'])->name('report.analytics');
+        Route::get('/report/full', [Controller::class, 'generateFullReport'])->name('report.full');
+        Route::get('/analytics', [Controller::class, 'indexC'])->name('admin.analytics')->middleware('check.role:admin');
         Route::get('/booking/{id}', [App\Http\Controllers\Controller::class, 'showBooking'])->name('admin.booking.show')->middleware('check.role:admin');
         Route::post('/booking/{id}/accept', [BookingController::class, 'accept'])->name('booking.accept')->middleware('check.role:admin');;
 

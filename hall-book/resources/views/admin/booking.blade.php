@@ -233,8 +233,8 @@
                             <select name="reason" id="reason" class="form-control" required>
                                 <option value="">Select Reason</option>
                                 <option value="Document verification failed">Document verification failed</option>
-                                <option value="Event type not suitable">Event type not suitable</option>
-                                <option value="Facilities not available">Facilities not available</option>
+                                <option value="Event type not suitable">Event type unsuitable</option>
+                                <option value="Facilities not available">Facilities unavailable</option>
                                 <option value="Other">Other</option>
                             </select>
                         </div>

@@ -46,9 +46,9 @@
             <div class="col-lg-6 col-md-10">
                 <div class="video-title text-center">
                     <h5>visual walkthrough</h5>
-                    <h2>Video Support</h2>
+                    <h2>Reservation Support</h2>
                     <p class="text-lg">
-                        For a visual walkthrough, please watch our demo video below
+                        Please watch our demo video
                     </p>
                 </div>
                 <!-- video title -->

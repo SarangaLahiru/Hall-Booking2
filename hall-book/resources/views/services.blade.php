@@ -107,10 +107,10 @@
                         <img src="Images/Mrs. YS Chandrasekara.jpg" alt="Team" />
                     </div>
                     <div class="team-content">
-                        <h4 class="name">Mrs. YS Chandrasekara</h4>
+                        <h4 class="name">Mrs. Yashoda Chandrasekara</h4>
                         <span class="sub-title">Manager</span>
                         <ul class="social">
-                            <li>
+                            {{--  <li>
                                 <a href="javascript:void(0)">
                                     <i class="lni lni-facebook-filled"></i>
                                 </a>
@@ -124,7 +124,7 @@
                                 <a href="javascript:void(0)">
                                     <i class="lni lni-linkedin-original"></i>
                                 </a>
-                            </li>
+                            </li>  --}}
                         </ul>
                     </div>
                 </div>
@@ -137,10 +137,10 @@
                         <img src="Images/PM Chamith Janaka Bandara.jpg" alt="Team" />
                     </div>
                     <div class="team-content">
-                        <h4 class="name">Mr. PM Chamith Janaka Bandara</h4>
+                        <h4 class="name">Mr.Chamith Bandara</h4>
                         <span class="sub-title">Technical Officer</span>
                         <ul class="social">
-                            <li>
+                            {{--  <li>
                                 <a href="javascript:void(0)">
                                     <i class="lni lni-facebook-filled"></i>
                                 </a>
@@ -154,7 +154,7 @@
                                 <a href="javascript:void(0)">
                                     <i class="lni lni-linkedin-original"></i>
                                 </a>
-                            </li>
+                            </li>  --}}
                         </ul>
                     </div>
                 </div>
@@ -163,14 +163,14 @@
             <div class="col-md-6 col-lg-4">
                 <div class="single-team text-center team-style-one">
                     <div class="team-image">
-                        <img src="Images/G kithsiri Fernando.jpg" height="450px" alt="Team" />
+                        <img src="Images/G kithsiri Fernando.png" height="450px" alt="Team" />
 
                     </div>
                     <div class="team-content">
-                        <h4 class="name">Mr. G Kithsiri Fernando</h4>
+                        <h4 class="name">Mr.Kithsiri Fernando</h4>
                         <span class="sub-title">Technical Officer</span>
                         <ul class="social">
-                            <li>
+                            {{--  <li>
                                 <a href="javascript:void(0)">
                                     <i class="lni lni-facebook-filled"></i>
                                 </a>
@@ -184,7 +184,7 @@
                                 <a href="javascript:void(0)">
                                     <i class="lni lni-linkedin-original"></i>
                                 </a>
-                            </li>
+                            </li>  --}}
                         </ul>
                     </div>
                 </div>
@@ -200,7 +200,7 @@
 <div class="container" style="margin-top: 80px;">
     <div class="text-center mb-5">
         <h1> Our Features!</h1>
-        <p class="lead">At Prof. Dayananda Somasundara Auditorum, we pride ourselves on providing top-notch
+        <p class="lead">At the Prof. Dayananda Somasundara Auditorum, we pride ourselves on providing top-notch
             facilities to make your events unforgettable.</p>
     </div>
 
@@ -228,7 +228,7 @@
                 </li>
                 <li>
                     <i class="fas fa-tv feature-icon"></i>
-                    <span>Multimedia Capabilities</span>
+                    <span>Multimedia Facilities</span>
                 </li>
                 <li>
                     <i class="fas fa-binoculars feature-icon"></i>

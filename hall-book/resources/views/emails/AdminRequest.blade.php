@@ -19,6 +19,7 @@
             background-color: #fff;
             border-radius: 8px;
             border: 1px rgb(228, 228, 228) solid;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         }
 
         .header {
@@ -57,14 +58,30 @@
         .footer small {
             font-size: 12px;
         }
+
+        .button {
+            display: inline-block;
+            padding: 10px 20px;
+            margin-top: 20px;
+            font-size: 16px;
+            color: #fff;
+            background-color: #007bff;
+            text-decoration: none;
+            border-radius: 5px;
+            text-align: center;
+        }
+
+        .button:hover {
+            background-color: #0056b3;
+        }
     </style>
 </head>
 
 <body>
-    <div class="container shadow-lg">
+    <div class="container">
         <div class="header">
             <h1>New Booking Request Received</h1>
-            <p>Prof. Dayananda Somasundara Auditorium </p>
+            <p>Prof. Dayananda Somasundara Auditorium</p>
         </div>
         <div class="content">
             <p>Hello Admin,</p>
@@ -79,11 +96,13 @@
                 @endforeach
             </ul>
             <p>Please login to the admin panel to review and process the booking request.</p>
+            <a href="{{ $adminBoardLink }}" class="button">Go to Admin Panel</a>
             <p>Best regards,</p>
+            <p>Manager,</p>
             <p>Prof. Dayananda Somasundara Auditorium Hall - Reservation System</p>
             <p>Contact Information:</p>
             <p>Phone: +94 45-2280021</p>
-            <p>Email: audi@ssl.sab.ac.lk </p>
+            <p>Email: audi@ssl.sab.ac.lk</p>
         </div>
         <div class="footer">
             <small>&copy; {{ date('Y') }} Prof. Dayananda Somasundara Auditorium - Hall Reservation System. All rights

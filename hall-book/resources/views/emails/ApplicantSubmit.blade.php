@@ -69,7 +69,7 @@
             <p>Prof. Dayananda Somasundara Auditorium </p>
         </div>
         <div class="content">
-            <p>Dear {{ $booking->name }},</p>
+            <p>Dear Sir/Madam,</p>
             <p>Your hall booking request has been received and is awaiting confirmation.</p>
             <p>Below are the details of your booking request:</p>
             <p><strong>Event Type:</strong> {{ $booking->event_type }}</p>
@@ -82,6 +82,7 @@
             </ul>
             <p>We will notify you once your booking request is accepted. Thank you for choosing our service!</p>
             <p>Best regards,</p>
+            <p>Manager,</p>
             <p>Prof. Dayananda Somasundara Auditorium - Hall Reservation System</p>
             <p>Contact Information:</p>
             <p>Phone: +94 45-2280021</p>

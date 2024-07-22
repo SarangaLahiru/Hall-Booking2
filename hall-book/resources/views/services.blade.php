@@ -83,7 +83,7 @@
         <div class="row">
             <div class="col-lg-12">
                 <div class="text-center">
-                    <div class="content">
+                    <div class="content mt-2">
                         <h2 class="fw-bold">Meet Our Staff</h2>
                         <p class="lead">
                             Our dedicated team is here to ensure your event is a success.
@@ -206,7 +206,7 @@
 
     <div class="row feature-section">
         <div class="col-md-6 mb-4">
-            <img src="images/img-f.jpg" class="common-image" alt="Hall Image">
+            <img src="images/img-9.png" class="common-image" alt="Hall Image">
         </div>
         <div class="col-md-6">
             <ul class="feature-list">

@@ -24,6 +24,7 @@ use League\Csv\CannotInsertRecord;
 
 class Controller extends BaseController
 {
+
     public function index()
     {
 
@@ -288,6 +289,10 @@ $bookingCounts = array_values($monthlyCounts);
 
 
 
+    }
+    public function seeAccounts(){
+        $adminData = Auth::guard('admin')->user();
+        return view('admin.accounts',compact('adminData'));
     }
 
     public function generateAnalyticsReport()

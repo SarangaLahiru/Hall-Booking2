@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Check Availability')
+@section('title', 'Calendar')
 
 @section('content')
 <link href='https://use.fontawesome.com/releases/v5.0.6/css/all.css' rel='stylesheet'>

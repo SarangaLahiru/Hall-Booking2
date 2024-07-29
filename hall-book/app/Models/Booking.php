@@ -12,7 +12,7 @@ class Booking extends Model
      * @var array
      */
     protected $fillable = [
-        'name', 'student_no', 'nic_no', 'phone', 'email', 'faculty', 'society', 'institution', 'post', 'category', 'event_type', 'event_description', 'booking_dates', 'facilities', 'documents','department','division','address'
+        'name', 'student_no', 'userID','nic_no', 'phone', 'email', 'faculty', 'society', 'institution', 'post', 'category', 'event_type', 'event_description', 'booking_dates', 'facilities', 'documents','department','division','address'
     ];
 
     /**

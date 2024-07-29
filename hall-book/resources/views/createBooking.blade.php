@@ -26,41 +26,7 @@
             {{-- <p class="loading-text" style="color:rgb(0, 153, 255);">Loading...</p> --}}
         </div>
     </div>
-    <!-- Category Selection Modal -->
-    <div class="modal fade" id="categoryModal" tabindex="-1" role="dialog" data-backdrop="static" data-keyboard="false">
-        <div class="modal-dialog modal-dialog-centered" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title">Select User Category</h5>
-                </div>
-                <div class="modal-body">
-                    <div class="d-flex justify-content-center flex-wrap">
-                        <div class="category-icon text-center" data-category="academic">
-                            <i class="fas fa-user-graduate fa-3x"></i>
-                            <p>Academic</p>
-                        </div>
 
-                        <div class="category-icon text-center" data-category="administrative">
-                            <i class="fas fa-user-tie fa-3x"></i>
-                            <p>Administrative</p>
-                        </div>
-                        <div class="category-icon text-center" data-category="student">
-                            <i class="fas fa-user fa-3x"></i>
-                            <p>Student</p>
-                        </div>
-                        <div class="category-icon text-center" data-category="non-academic">
-                            <i class="fas fa-briefcase fa-3x"></i>
-                            <p>Non-Academic</p>
-                        </div>
-                        <div class="category-icon text-center" data-category="external">
-                            <i class="fas fa-users fa-3x"></i>
-                            <p>External</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
 
 
     <div class="container mt-5">
@@ -95,7 +61,7 @@
                             @csrf
 
                             <!-- Step 1 -->
-                            <input type="hidden" id="selectedCategory" name="category" value="">
+                            <input type="hidden" id="selectedCategory" name="category" value="{{ Auth::user()->category }}">
                             <div class="step-content">
                                 <div class="step" data-step="0">
                                     <div class="form-row">
@@ -116,11 +82,15 @@
                                         </div>
                                         <div class="col mb-3" id="idNoField" style="display: none;">
                                             <label for="idNo">NIC Number</label>
-                                            <input type="text" class="form-control" id="idNo" name="idNo" required>
+                                            <input type="text" class="form-control" id="idNo" name="idNo" required value="{{ Auth::user()->NIC }}">
                                             <div class="invalid-feedback">
                                                 Please enter a valid ID number.
                                             </div>
                                         </div>
+
+                                            <input type="text" class="form-control" id="userID" name="userID" required value="{{ Auth::user()->NIC }}" style="display: none;">
+
+
 
 
                                     </div>
@@ -570,26 +540,9 @@
     <script>
 
         $(document).ready(function () {
-            var selectedCategory = null;
+            var selectedCategory = @json(Auth::user()->category);
 
-            $('.category-icon').click(function () {
-                $('.category-icon').removeClass('selected');
 
-                $(this).addClass('selected');
-                selectedCategory = $(this).data('category');
-                $('#selectedCategory').val(selectedCategory);
-
-                // Create Bootstrap alert with change button and refresh functionality
-                var alertHtml = '<div class="alert alert-info alert-dismissible fade show" role="alert">';
-                alertHtml += '<strong>Selected Category:</strong> ' + selectedCategory;
-                alertHtml += '<button type="button" class="close" data-dismiss="alert" aria-label="Close">';
-                alertHtml += '<span aria-hidden="true">&times;</span>';
-                alertHtml += '</button>';
-                alertHtml += '<button type="button" class="btn btn-primary btn-sm ml-2" onclick="location.reload();">Change</button>';
-                alertHtml += '</div>';
-
-                // Append alert to alert container
-                $('#alertContainer').html(alertHtml);
 
                 if (selectedCategory === 'student') {
                     $('#studentNoField').show();
@@ -652,8 +605,6 @@
                     document.getElementById('Other').style.display = 'block';
                 }
 
-                $('#categoryModal').modal('hide');
-            });
 
 
 
@@ -661,8 +612,6 @@
             var currentStep = 0;
             var steps = $('.step-content .step');
             var stepperSteps = $('.stepper .step');
-            var selectedCategory = null;
-
             function showStep(step) {
                 steps.hide();
                 steps.eq(step).show();
@@ -780,12 +729,7 @@
                 $(this).removeClass('is-invalid');
             });
 
-            $('.category-icon').click(function () {
-                $('.category-icon').removeClass('selected');
-                $(this).addClass('selected');
-                selectedCategory = $(this).data('category');
-                $('#categoryModal').modal('hide');
-            });
+
 
 
 

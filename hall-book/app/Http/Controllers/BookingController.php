@@ -6,6 +6,7 @@ use App\Mail\ApplicantSubmit;
 use App\Mail\AdminRequest;
 use Illuminate\Support\Facades\Mail;
 use App\Models\Booking;
+use Illuminate\Support\Facades\Auth;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
@@ -207,10 +208,12 @@ public function showCalendar2(){
 
         // Prepare additional fields based on category
         $category = $request->input('category');
+
         $additionalFields = [];
         switch ($category) {
             case 'student':
                 $additionalFields = [
+                    'userID' => $request->input('userID'), // Add this line
                     'student_no' => $request->input('studentNo'),
                     'faculty' => $request->input('faculty'),
                     'category' => $request->input('category'),
@@ -224,6 +227,7 @@ public function showCalendar2(){
                 break;
             case 'external':
                 $additionalFields = [
+                    'userID'=>$request->input('userID'),
                     'nic_no' => $request->input('idNo'),
                     'institution' => $request->input('institution'),
                     'post' => $request->input('post'),
@@ -236,6 +240,7 @@ public function showCalendar2(){
                 break;
             case 'academic':
                 $additionalFields = [
+                    'userID'=>$request->input('userID'),
                     'nic_no' => $request->input('idNo'),
                     // 'institution' => $request->input('institution'),
                     'post' => $request->input('post'),
@@ -251,6 +256,7 @@ public function showCalendar2(){
                 break;
             case 'non-academic':
                 $additionalFields = [
+                    'userID'=>$request->input('userID'),
                     'nic_no' => $request->input('idNo'),
                     // 'institution' => $request->input('institution'),
                     'post' => $request->input('post'),
@@ -265,6 +271,7 @@ public function showCalendar2(){
                 break;
             case 'administrative':
                 $additionalFields = [
+                    'userID'=>$request->input('userID'),
                     'nic_no' => $request->input('idNo'),
                     // 'institution' => $request->input('institution'),
                     'post' => $request->input('post'),

@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Check Availability')
+@section('title', 'Staff & Services')
 
 @section('content')
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.11.3/font/bootstrap-icons.min.css"

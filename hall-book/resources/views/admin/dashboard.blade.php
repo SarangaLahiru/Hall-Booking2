@@ -218,7 +218,7 @@
         <h6 class="dropdown-header">
             Message Center
         </h6>
-        @forelse ($todayMessages as $message)
+        {{--  @forelse ($todayMessages as $message)
         <a class="dropdown-item d-flex align-items-center" href="#">
             <div class="dropdown-list-image mr-3">
                 <img class="rounded-circle" src="img/undraw_profile_1.svg" alt="...">
@@ -235,7 +235,7 @@
                 No messages today.
             </div>
         </a>
-        @endforelse
+        @endforelse  --}}
         <a class="dropdown-item text-center small text-gray-500" href="#">Read More Messages</a>
     </div>
 </li>

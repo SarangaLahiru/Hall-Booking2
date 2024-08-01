@@ -16,18 +16,7 @@ use Barryvdh\DomPDF\Facade\Pdf;
 // Route::get('/calendar', function () {
 //     return view('calendar');
 // });
-Route::get('/send-test-email', function () {
-    $recipient = 'lahirusashika@gmail.com';
-    $subject = 'Test Email Subject';
-    $message = 'This is a test email from Laravel.';
 
-    Mail::raw($message, function ($mail) use ($recipient, $subject) {
-        $mail->to($recipient)
-             ->subject($subject);
-    });
-
-    return 'Test email sent!';
-});
 
 
 Route::get('/staff', function () {

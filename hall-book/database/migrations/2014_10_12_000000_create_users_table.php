@@ -9,19 +9,26 @@ class CreateUsersTable extends Migration
     public function up()
     {
         Schema::create('users', function (Blueprint $table) {
-            $table->id(); // This creates an auto-incrementing primary key as an unsigned big integer
-            $table->string('first_name'); // Added first name field
-            $table->string('last_name'); // Added last name field
-            $table->string('email')->unique(); // Email field with unique constraint
-            $table->string('NIC')->unique(); // National ID Card field with unique constraint
-            $table->string('phone'); // Added phone number field
-            $table->string('gender'); // Added gender field
-            $table->timestamp('email_verified_at')->nullable(); // Nullable timestamp for email verification
-            $table->string('password'); // Password field
-            $table->string('category');
-            $table->rememberToken(); // Token for remembering user sessions
-            $table->timestamps(); // Created_at and updated_at timestamps
+            $table->id();
+        $table->string('first_name');
+        $table->string('last_name');
+        $table->string('NIC')->unique();
+        $table->string('phone_number');
+        $table->string('email')->unique();
+        $table->string('student_no')->nullable();
+        $table->string('faculty')->nullable();
+        $table->string('department')->nullable();
+        $table->string('institution')->nullable();
+        $table->string('division')->nullable();
+        $table->string('society')->nullable();
+        $table->string('post')->nullable();
+        $table->string('address')->nullable();
+        $table->string('category');
+        $table->string('password');
+        $table->timestamp('email_verified_at')->nullable();
+        $table->timestamps();
         });
+
     }
 
     public function down()

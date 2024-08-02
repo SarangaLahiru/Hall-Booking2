@@ -13,7 +13,7 @@ class CreateUsersTable extends Migration
         $table->string('first_name');
         $table->string('last_name');
         $table->string('NIC')->unique();
-        $table->string('phone_number');
+        $table->string('phone_number')->unique();
         $table->string('email')->unique();
         $table->string('student_no')->nullable();
         $table->string('faculty')->nullable();
@@ -25,6 +25,7 @@ class CreateUsersTable extends Migration
         $table->string('address')->nullable();
         $table->string('category');
         $table->string('password');
+        $table->string('remember_token')->nullable();
         $table->timestamp('email_verified_at')->nullable();
         $table->timestamps();
         });

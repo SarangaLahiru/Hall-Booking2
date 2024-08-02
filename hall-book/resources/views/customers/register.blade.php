@@ -117,7 +117,7 @@
                                 <!-- Common Fields -->
                                 <div class="col-12">
                                     <label for="first_name" class="form-label">First Name <span class="text-danger">*</span></label>
-                                    <input type="text" id="first_name" class="form-control" name="first_name" placeholder="First Name">
+                                    <input type="text" id="first_name" class="form-control @error('first_name') is-invalid @enderror" name="first_name" placeholder="First Name">
 
                                     @error('first_name')
                                     <div class="invalid-feedback">
@@ -128,7 +128,7 @@
                                 </div>
                                 <div class="col-12">
                                     <label for="last_name" class="form-label">Last Name <span class="text-danger">*</span></label>
-                                    <input type="text" id="last_name" class="form-control" name="last_name" placeholder="Last Name">
+                                    <input type="text" id="last_name" class="form-control @error('last_name') is-invalid @enderror" name="last_name" placeholder="Last Name">
                                     @error('last_name')
                                     <div class="invalid-feedback">
                                         {{ $message }}
@@ -138,7 +138,7 @@
                                 </div>
                                 <div class="col-12">
                                     <label for="nic_number" class="form-label">NIC Number <span class="text-danger">*</span></label>
-                                    <input type="text" id="nic_number" class="form-control" name="nic_number" placeholder="NIC Number">
+                                    <input type="text" id="nic_number" class="form-control @error('nic_number') is-invalid @enderror" name="nic_number" placeholder="NIC Number">
                                     @error('nic_number')
                                     <div class="invalid-feedback">
                                         {{ $message }}
@@ -148,7 +148,7 @@
                                 </div>
                                 <div class="col-12">
                                     <label for="phone_number" class="form-label">Contact Number <span class="text-danger">*</span></label>
-                                    <input type="tel" id="phone_number" class="form-control" name="phone_number" placeholder="Phone Number" required>
+                                    <input type="tel" id="phone_number" class="form-control @error('phone_number') is-invalid @enderror" name="phone_number" placeholder="Phone Number" >
                                     @error('phone_number')
                                     <div class="invalid-feedback">
                                         {{ $message }}
@@ -157,7 +157,7 @@
                                 </div>
                                 <div class="col-12">
                                     <label for="email" class="form-label">Email Address<span class="text-danger">*</span></label>
-                                    <input type="email" id="email" class="form-control" name="email" placeholder="Email">
+                                    <input type="email" id="email" class="form-control @error('email') is-invalid @enderror" name="email" placeholder="Email">
                                     @error('email')
                                     <div class="invalid-feedback">
                                         {{ $message }}
@@ -169,7 +169,7 @@
                                 <!-- Conditional Fields -->
                                 <div id="studentNoField" class="col-12" style="display: none;">
                                     <label for="student_no" class="form-label">Student Registration No</label>
-                                    <input type="text" id="student_no" class="form-control" name="student_no" placeholder="Student Number">
+                                    <input type="text" id="student_no" class="form-control @error('student_no') is-invalid @enderror" name="student_no" placeholder="Student Number">
                                     @error('student_no')
                                     <div class="invalid-feedback">
                                         {{ $message }}
@@ -178,7 +178,7 @@
                                 </div>
                                 <div id="facultyField" class="col-12" style="display: none;">
                                     <label for="faculty" id="Otherl">Name of the Faculty</label>
-                                    <select class="form-control" id="faculty" name="faculty">
+                                    <select class="form-control @error('faculty') is-invalid @enderror" id="faculty" name="faculty">
                                         <option value="">select</option>
                                         <option id="Other" style="display: none;" value="none">None</option>
                                         <option value="Faculty of Agricultural Sciences">Faculty of Agricultural Sciences</option>
@@ -201,7 +201,7 @@
                                 </div>
                                 <div id="departmentField" class="col-12" style="display: none;">
                                     <label for="department">Name of the Department</label>
-                                    <select class="form-control" id="department" name="department">
+                                    <select class="form-control @error('department') is-invalid @enderror" id="department" name="department">
                                         <option value="">select</option>
                                         <option id="Other1" value="none" style="display:none;">None</option>
                                         <optgroup label="Faculty of Agricultural Sciences">
@@ -282,7 +282,7 @@
 
                                      <div id="institutionField" class="col-12" style="display: none;">
                                     <label for="institution" class="form-label">Name of the institution</label>
-                                    <input type="text" id="institution" class="form-control" name="institution" placeholder="Institution">
+                                    <input type="text" id="institution" class="form-control @error('institution') is-invalid @enderror" name="institution" placeholder="Institution">
                                     @error('institution')
                                         <div class="invalid-feedback">
                                             {{ $message }}
@@ -291,7 +291,7 @@
                                 </div>
                                 <div id="divisionField" class="col-12" style="display: none;">
                                     <label for="division">Name of the Division/Centre/Unit</label>
-                                    <input type="text" class="form-control" id="division" name="division"
+                                    <input type="text" class="form-control @error('division') is-invalid @enderror" id="division" name="division"
                                         placeholder="If not, please mention that as 'None'">
                                         @error('division')
                                         <div class="invalid-feedback">
@@ -302,7 +302,7 @@
                                 </div>
                                 <div id="societyField" class="col-12" style="display: none;">
                                     <label for="society" id="societyL" class="form-label">Society</label>
-                                    <input type="text" id="society" class="form-control" name="society" placeholder="Society">
+                                    <input type="text" id="society" class="form-control @error('society') is-invalid @enderror" name="society" placeholder="Society">
                                     @error('society')
                                         <div class="invalid-feedback">
                                             {{ $message }}
@@ -311,7 +311,7 @@
                                 </div>
                                 <div id="postField" class="col-12" style="display: none;">
                                     <label for="post" class="form-label">Designation</label>
-                                    <input type="text" id="post" class="form-control" name="post" placeholder="Designation">
+                                    <input type="text" id="post" class="form-control @error('post') is-invalid @enderror" name="post" placeholder="Designation">
                                     @error('post')
                                         <div class="invalid-feedback">
                                             {{ $message }}
@@ -321,7 +321,7 @@
 
                                 <div id="addressField" class="col-12" style="display: none;">
                                     <label for="address" class="form-label">Address</label>
-                                    <input type="text" id="address" class="form-control" name="address" placeholder="Address">
+                                    <input type="text" id="address" class="form-control @error('address') is-invalid @enderror" name="address" placeholder="Address">
                                     @error('address')
                                         <div class="invalid-feedback">
                                             {{ $message }}
@@ -331,12 +331,14 @@
 
 
                                 <!-- Additional Information -->
+                                <input type="hidden" name="selectedCategory" id="selectedCategory" value="{{ old('selectedCategory', session('selectedCategory')) }}">
+    <input type="hidden" name="formSubmitted" id="formSubmitted" value="1">
                                 <input type="hidden" name="category" id="Category">
 
 
                                 <div class="col-12">
                                     <label for="password" class="form-label">Password <span class="text-danger">*</span></label>
-                                    <input type="password" id="password" class="form-control @error('password') is-invalid @enderror" name="password" placeholder="Password" required>
+                                    <input type="password" id="password" class="form-control @error('password') is-invalid @enderror" name="password" placeholder="Password">
                                     @error('password')
                                         <div class="invalid-feedback">
                                             {{ $message }}
@@ -345,7 +347,7 @@
                                 </div>
                                 <div class="col-12">
                                     <label for="password_confirmation" class="form-label">Confirm Password <span class="text-danger">*</span></label>
-                                    <input type="password" id="password_confirmation" class="form-control @error('password_confirmation') is-invalid @enderror" name="password_confirmation" placeholder="Confirm Password" required>
+                                    <input type="password" id="password_confirmation" class="form-control @error('password_confirmation') is-invalid @enderror" name="password_confirmation" placeholder="Confirm Password">
                                     @error('password_confirmation')
                                         <div class="invalid-feedback">
                                             {{ $message }}
@@ -370,20 +372,16 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://unpkg.com/bootstrap@5.3.3/dist/js/bootstrap.min.js"></script>
     <script>
+        let selectedCategory = document.getElementById('selectedCategory').value;
 
-
-        // Variable to hold the selected category
-        let selectedCategory = '';
-
-        // Function to handle category selection
         function selectCategory(category) {
             selectedCategory = category;
+            document.getElementById('selectedCategory').value = category;
             $('.btn-category').removeClass('selected');
             $(`.btn-category[data-category="${category}"]`).addClass('selected');
             $('#confirmCategoryBtn').prop('disabled', false);
         }
 
-        // Handle confirm button click in modal
         $('#confirmCategoryBtn').click(function() {
             if (selectedCategory) {
                 document.getElementById('Category').value = selectedCategory;
@@ -391,50 +389,61 @@
                 $('#formContainer').show(); // Show form container
                 $('#form').show();
 
-                // Hide all fields initially
-                $('#studentNoField, #facultyField, #idNoField, #institutionField, #societyField, #postField, #departmentField, #divisionField, #addressField, #fileInputl, #Other, #Other1').hide();
-
-                // Show fields based on selected category
-                if (selectedCategory === 'student') {
-                    $('#studentNoField').show();
-                    $('#facultyField').show();
-                    $('#departmentField').show();
-
-                    $('#societyL').text('Society/Association');
-
-                } else if (selectedCategory === 'external') {
-                    $('#idNoField').show();
-                    $('#institutionField').show();
-                    $('#postField').show();
-                    $('#addressField').show();
-                } else if (selectedCategory === 'academic') {
-                    $('#idNoField').show();
-                    $('#facultyField').show();
-                    $('#postField').show();
-                    $('#departmentField').show();
-                } else if (selectedCategory === 'non-academic') {
-                    $('#idNoField').show();
-                    $('#facultyField').show();
-                    $('#divisionField').show();
-                } else {
-                    $('#idNoField').show();
-                    $('#facultyField').show();
-                    $('#postField').show();
-                    $('#divisionField').show();
-                }
-
+                showConditionalFields(selectedCategory);
             } else {
                 alert('Please select a category.');
             }
         });
 
-        // Show the category selection modal on page load
+        // Function to show fields based on selected category
+        function showConditionalFields(category) {
+            // Hide all fields initially
+            $('#studentNoField, #facultyField, #idNoField, #institutionField, #societyField, #postField, #departmentField, #divisionField, #addressField, #fileInputl, #Other, #Other1').hide();
+
+            // Show fields based on selected category
+            if (category === 'student') {
+                $('#studentNoField').show();
+                $('#facultyField').show();
+                $('#departmentField').show();
+                $('#societyL').text('Society/Association');
+            } else if (category === 'external') {
+                $('#idNoField').show();
+                $('#institutionField').show();
+                $('#postField').show();
+                $('#addressField').show();
+            } else if (category === 'academic') {
+                $('#idNoField').show();
+                $('#facultyField').show();
+                $('#postField').show();
+                $('#departmentField').show();
+                $('#Other').show();
+            } else if (category === 'non-academic') {
+                $('#idNoField').show();
+                $('#facultyField').show();
+                $('#divisionField').show();
+            } else {
+                $('#idNoField').show();
+                $('#facultyField').show();
+                $('#postField').show();
+                $('#divisionField').show();
+            }
+        }
+
+        // Show the category selection modal on page load if no category is selected
         $(document).ready(function() {
-            var categoryModal = new bootstrap.Modal(document.getElementById('categoryModal'), {
-                backdrop: 'static',
-                keyboard: false
-            });
-            categoryModal.show();
+            if (!selectedCategory) {
+                var categoryModal = new bootstrap.Modal(document.getElementById('categoryModal'), {
+                    backdrop: 'static',
+                    keyboard: false
+                });
+                categoryModal.show();
+            } else {
+                $('#formContainer').show();
+                $('#form').show();
+
+                // Show conditional fields based on selected category
+                showConditionalFields(selectedCategory);
+            }
         });
 
         document.getElementById('faculty').addEventListener('change', function () {
@@ -452,9 +461,9 @@
                 }
             }
         });
-
-
     </script>
+
+
 
 </body>
 </html>

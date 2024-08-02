@@ -67,7 +67,7 @@
                                     <div class="form-row">
                                         <div class="col mb-3">
                                             <label for="name">Applicant Name</label>
-                                            <input type="text" class="form-control" id="name" name="name" required>
+                                            <input type="text" class="form-control" id="name" name="name" value="{{ Auth::user()->first_name }}" required>
                                             <div class="invalid-feedback">
                                                 Please enter your name.
                                             </div>
@@ -75,7 +75,7 @@
                                         <div class="col mb-3" id="studentNoField" style="display: none;">
                                             <label for="studentNo">Student Registration No</label>
                                             <input type="text" class="form-control" id="studentNo" name="studentNo"
-                                                required>
+                                                required value="{{ Auth::user()->student_no }}">
                                             <div class="invalid-feedback">
                                                 Please enter a valid student number.
                                             </div>
@@ -97,7 +97,7 @@
                                     <div class="form-row">
                                         <div class="col-md-6 mb-3">
                                             <label for="phone">Contact Number</label>
-                                            <input type="text" class="form-control" id="phone" name="phone" pattern="\d{10}" required>
+                                            <input type="text" class="form-control" id="phone" name="phone" pattern="\d{10}" value="{{ Auth::user()->phone_number }}" required>
                                             <div class="invalid-feedback">
                                                 Please enter a valid  phone number.
                                             </div>
@@ -106,14 +106,14 @@
 
                                         <div class="col-md-6 mb-3">
                                             <label for="email">Email Address</label>
-                                            <input type="email" class="form-control" id="email" name="email" required>
+                                            <input type="email" class="form-control" id="email" name="email"  value="{{ Auth::user()->email }}" required>
                                             <div class="invalid-feedback">
                                                 Please enter a valid email address.
                                             </div>
                                         </div>
                                         <div class="col-md-6 mb-3" id="facultyField" style="display: none;">
                                             <label for="faculty" id="Otherl">Name of the Faculty</label>
-                                            <select class="form-control" id="faculty" name="faculty" required>
+                                            <select class="form-control" id="faculty" name="faculty"  value="{{ Auth::user()->faculty }}" required>
                                                 <option value="">select</option>
                                                 <option id="Other" style="display: none;" value="none">None</option>
                                                 <option value="Faculty of Agricultural Sciences">Faculty of Agricultural Sciences</option>
@@ -212,7 +212,7 @@
                                         <div class="col-md-6 mb-3" id="divisionField" style="display: none;">
                                             <label for="division">Name of the Division/Centre/Unit</label>
                                             <input type="text" class="form-control" id="division" name="division"
-                                                placeholder="If not, please mention that as 'None'" required>
+                                                placeholder="If not, please mention that as 'None'"  value="{{ Auth::user()->division }}" required>
                                             <div class="invalid-feedback">
                                                 Please enter your Division.
                                             </div>
@@ -221,7 +221,7 @@
                                         <div class="col-md-6 mb-3" id="societyField">
                                             <label for="society" id="societyL">Society</label>
                                             <input type="text" class="form-control" id="society" name="society"
-                                                placeholder="If not, please mention that as 'None'" required>
+                                                placeholder="If not, please mention that as 'None'"  value="{{ Auth::user()->society }}" required>
                                             <div class="invalid-feedback">
                                                 Please enter your Society.
                                             </div>
@@ -233,7 +233,7 @@
                                         </div> --}}
                                         <div class="col-md-6 mb-3" id="institutionField" style="display: none;">
                                             <label for="institution">Name of the Institution</label>
-                                            <input type="text" class="form-control" id="institution" name="institution"
+                                            <input type="text" class="form-control" id="institution" name="institution"  value="{{ Auth::user()->institution}}"
                                                 required>
                                             <div class="invalid-feedback">
                                                 Please enter the name of the institution.
@@ -241,14 +241,14 @@
                                         </div>
                                         <div class="col-md-6 mb-3" id="postField">
                                             <label for="post">Designation</label>
-                                            <input type="text" class="form-control" name="post" required>
+                                            <input type="text" class="form-control" name="post" value="{{ Auth::user()->post}}"  required>
                                             <div class="invalid-feedback">
                                                 Please enter a valid post.
                                             </div>
                                         </div>
                                         <div class="col mb-3" id="addressField" style="display: none;">
                                             <label for="address">Address</label>
-                                            <input type="text" class="form-control" id="address" name="address"
+                                            <input type="text" class="form-control" id="address" name="address" value="{{ Auth::user()->address}}"
                                                 required>
                                             <div class="invalid-feedback">
                                                 Please enter a valid address.
